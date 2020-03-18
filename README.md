@@ -38,6 +38,14 @@ File format specifying data signatures to be used as single source of truth in v
         id: string;
 
         name: string;
+        value: string;
+        @graphql: Int
+        characters: number;
+        public: boolean;
+
+        @graphql: Date
+        @protobuf: number
+        generatedAt: Date;
         generatedBy: User;
     }
 
@@ -57,6 +65,10 @@ File format specifying data signatures to be used as single source of truth in v
     export interface Text {
         id: string;
         name: string;
+        value: string;
+        characters: number;
+        public: boolean;
+        generatedAt: Date;
         generatedBy: User;
     }
 
@@ -74,6 +86,10 @@ File format specifying data signatures to be used as single source of truth in v
     type Text {
         id: ID!
         name: String!
+        value: String!
+        characters: Int!
+        public: Boolean!
+        generatedAt: Date!
         generatedBy: User!
     }
 
@@ -91,7 +107,11 @@ File format specifying data signatures to be used as single source of truth in v
     message Text {
         required string id = 1;
         required string name = 2;
-        required User generatedBy = 2;
+        required string value = 3;
+        required number characters = 4;
+        required boolean public = 5;
+        required number generatedAt = 6;
+        required User generatedBy = 7;
     }
 
     message User {
