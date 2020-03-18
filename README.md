@@ -1,4 +1,17 @@
-# datasign
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/datasign/master/about/identity/datasign-logo.png" height="250px">
+    <br />
+    <a target="_blank" href="https://github.com/plurid/datasign/blob/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
+    </a>
+</p>
+
+
+
+<h1 align="center">
+    datasign
+</h1>
+
 
 File format specifying data signatures to be used as single source of truth in various pipelines
 
