@@ -1,12 +1,13 @@
 import {
     DatasignCompilerOptions,
+    Target,
 } from '../../data/interfaces';
 
 
 
 class DatasignCompiler {
     private text: string;
-    private targets: string[];
+    private targets: Target[];
 
     constructor({
         text,
