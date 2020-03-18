@@ -10,7 +10,7 @@ File format specifying data signatures to be used as single source of truth in v
                                                     |
         _____________________________________________________________________________________
         |                                           |                                       |
-    to TypeScript                                to GraphQL                             to Protocol Buffers/gRPC
+    to TypeScript                               to GraphQL                              to Protocol Buffers/gRPC
     Text.ts                                     Text.graphql                            Text.proto
 ```
 
