@@ -9,9 +9,9 @@ describe('DatasignCompiler', () => {
     it('basic', () => {
         const data: DatasignCompilerData = {
             source: `
-                data Item {
-                    id: string;
-                }
+data Item {
+    id: string;
+}
             `,
             targets: [
                 'typescript',
@@ -22,10 +22,20 @@ describe('DatasignCompiler', () => {
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
         const expectedTypescript = `
-            export interface Item {
-                id: string;
-            }
-        `
+export interface Item {
+    id: string;
+}
+        `;
+        const expectedGraphql = `
+type Item {
+    id: String!
+}
+        `;
+        const expectedProtobuf = `
+message Item {
+    required string id = 1;
+}
+        `;
 
         expect(result.typescript).toBe('');
     });
