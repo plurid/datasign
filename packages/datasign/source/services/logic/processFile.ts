@@ -56,7 +56,7 @@ const processFile = async (
     file: string,
     data: ProcessData,
 ) => {
-    const filepath = path.join(__dirname, file);
+    const filepath = path.join(process.cwd(), file);
     const statistics = statSync(filepath);
 
     if (!statistics.isDirectory()) {
