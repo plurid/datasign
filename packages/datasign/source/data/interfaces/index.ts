@@ -23,7 +23,7 @@ export type ResolveFile = 'file';
 export type ResolveProcess = 'process';
 export type ResolveFlatten = 'flatten';
 export type Resolve = ResolveFile | ResolveProcess | ResolveFlatten;
-export interface ResolveTypes {
+export interface Resolves {
     file: ResolveFile;
     process: ResolveProcess;
     flatten: ResolveFlatten;
