@@ -4,20 +4,80 @@ import {
     promises as fs,
 } from 'fs';
 
-import DatasignCompiler from '@plurid/datasign-compiler';
+import DatasignCompiler, {
+    DatasignCompileResult,
+    Target,
+} from '@plurid/datasign-compiler';
 
 import {
     ProcessData,
+    Resolve,
 } from '../../data/interfaces';
 
 
 
-const writeFiles = async (
-    contents: any,
-    targets: any,
+const resolveFilename = (
+    target: Target,
 ) => {
-
+    switch (target) {
+        case 'typescript':
+            return 'file.ts';
+        case 'graphql':
+            return 'file.graphql';
+        case 'protobuf':
+            return 'file.proto';
+    }
 }
+
+
+const writeFiles = async (
+    contents: DatasignCompileResult,
+    targets: Target[],
+    outputPath: string,
+) => {
+    for (const target of targets) {
+        const targetData = contents[target];
+
+        if (targetData) {
+            const filename = resolveFilename(target);
+            const targetPath = path.join(outputPath, filename);
+            await fs.writeFile(targetPath, targetData);
+        }
+    }
+
+    // console.log(contents);
+    // console.log(targets);
+    // console.log(outputPath);
+}
+
+const resolveOutputPath = (
+    filepath: string,
+    output: string,
+    resolve: Resolve,
+) => {
+    switch (resolve) {
+        case 'file':
+            {
+                const relativePath = path.relative(process.cwd(), filepath);
+                const relativeDirectory = path.dirname(relativePath);
+                const outputPath = path.join(output, relativeDirectory);
+                return outputPath;
+            }
+        case 'process':
+            {
+                const relativePath = path.relative(process.cwd(), filepath);
+                const relativeDirectory = path.dirname(relativePath);
+                const outputPath = path.join(output, relativeDirectory);
+                return outputPath;
+            }
+        case 'flatten':
+            {
+                const outputPath = output;
+                return outputPath;
+            }
+    }
+}
+
 
 const handleFile = async (
     filepath: string,
@@ -29,26 +89,33 @@ const handleFile = async (
         targets,
     } = data;
 
-    console.log('filepath', filepath);
-    console.log('targets', targets);
-    console.log('output', output);
-    console.log('resolve', resolve);
+    // console.log('filepath', filepath);
+    // console.log('targets', targets);
+    // console.log('output', output);
+    // console.log('resolve', resolve);
 
-   // check if file is a .datasign file
+    const source = await fs.readFile(filepath, 'utf-8');
+    const outputPath = resolveOutputPath(
+        filepath,
+        output,
+        resolve,
+    );
 
-   const source = await fs.readFile(filepath, 'utf-8');
+    const compilerData = {
+        source,
+        targets,
+        options: {
+            comments: false,
+        },
+    };
+    const compiler = new DatasignCompiler(compilerData);
+    const contents = compiler.compile();
 
-   const compilerData = {
-       source,
-       targets,
-       options: {
-           comments: false,
-       },
-   };
-   const compiler = new DatasignCompiler(compilerData);
-   const contents = compiler.compile();
-
-   await writeFiles(contents, targets);
+    await writeFiles(
+        contents,
+        targets,
+        outputPath,
+    );
 }
 
 
@@ -56,8 +123,6 @@ const processFile = async (
     file: string,
     data: ProcessData,
 ) => {
-    console.log(file);
-
     const filepath = path.isAbsolute(file)
         ? file
         : path.join(process.cwd(), file);
@@ -65,7 +130,6 @@ const processFile = async (
 
     if (!statistics.isDirectory()) {
         const extension = path.extname(file);
-        console.log('extension', extension);
 
         if (extension !== '.datasign') {
             return;
