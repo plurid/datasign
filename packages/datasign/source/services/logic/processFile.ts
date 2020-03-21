@@ -59,6 +59,7 @@ const writeFiles = async (
     }
 }
 
+
 const resolveOutputPath = (
     filepath: string,
     output: string,
