@@ -56,18 +56,21 @@ const processFile = async (
     file: string,
     data: ProcessData,
 ) => {
-    const extension = path.extname(file);
+    console.log(file);
 
-    if (extension !== '.datasign') {
-        return;
-    }
-
-    console.log('extension', extension);
-
-    const filepath = path.join(process.cwd(), file);
+    const filepath = path.isAbsolute(file)
+        ? file
+        : path.join(process.cwd(), file);
     const statistics = statSync(filepath);
 
     if (!statistics.isDirectory()) {
+        const extension = path.extname(file);
+        console.log('extension', extension);
+
+        if (extension !== '.datasign') {
+            return;
+        }
+
         await handleFile(filepath, data);
         return;
     }
@@ -75,7 +78,8 @@ const processFile = async (
     const files = await fs.readdir(filepath);
 
     for (const file of files) {
-        await processFile(file, data);
+        const subfilePath = path.join(filepath, file);
+        await processFile(subfilePath, data);
     }
 }
 
