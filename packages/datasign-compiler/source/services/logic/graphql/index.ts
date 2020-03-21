@@ -1,6 +1,6 @@
 import {
     DatasignEntity,
-} from '../../data/interfaces';
+} from '../../../data/interfaces';
 
 
 

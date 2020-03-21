@@ -14,7 +14,7 @@ import {
     generateGraphql,
     generateProtobuf,
     generateTypescript,
-} from '../../logic';
+} from '../../services/logic';
 
 
 
