@@ -17,20 +17,27 @@ import {
 
 
 const resolveFilename = (
+    name: string,
     target: Target,
 ) => {
+    let extension = '';
     switch (target) {
         case 'typescript':
-            return 'file.ts';
+            extension = '.ts';
+            break;
         case 'graphql':
-            return 'file.graphql';
+            extension = '.graphql';
+            break;
         case 'protobuf':
-            return 'file.proto';
+            extension = '.proto';
+            break;
     }
+    return name + extension;
 }
 
 
 const writeFiles = async (
+    name: string,
     contents: DatasignCompileResult,
     targets: Target[],
     outputPath: string,
@@ -39,15 +46,11 @@ const writeFiles = async (
         const targetData = contents[target];
 
         if (targetData) {
-            const filename = resolveFilename(target);
+            const filename = resolveFilename(name, target);
             const targetPath = path.join(outputPath, filename);
             await fs.writeFile(targetPath, targetData);
         }
     }
-
-    // console.log(contents);
-    // console.log(targets);
-    // console.log(outputPath);
 }
 
 const resolveOutputPath = (
@@ -89,10 +92,7 @@ const handleFile = async (
         targets,
     } = data;
 
-    // console.log('filepath', filepath);
-    // console.log('targets', targets);
-    // console.log('output', output);
-    // console.log('resolve', resolve);
+    const filename = path.basename(filepath, '.datasign');
 
     const source = await fs.readFile(filepath, 'utf-8');
     const outputPath = resolveOutputPath(
@@ -112,6 +112,7 @@ const handleFile = async (
     const contents = compiler.compile();
 
     await writeFiles(
+        filename,
         contents,
         targets,
         outputPath,
