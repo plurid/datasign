@@ -1,6 +1,6 @@
 export interface CompileData {
     files: string[];
-    target: string[];
+    targets: string[];
     output: string;
     resolve: string;
 }

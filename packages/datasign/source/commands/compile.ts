@@ -9,13 +9,13 @@ const compileCommand = async (
 ) => {
     const {
         files,
-        target,
+        targets,
         output,
         resolve,
     } = data;
 
     console.log('files', files);
-    console.log('target', target);
+    console.log('targets', targets);
     console.log('output', output);
     console.log('resolve', resolve);
 }
