@@ -8,9 +8,33 @@ import {
 describe('DatasignCompiler', () => {
     it('basic', () => {
         const data: DatasignCompilerData = {
+//             source: `
+// data Item {
+//     id: string;
+// }
+//             `,
             source: `
-data Item {
+@entityID: TextEntity // assigns an ID to the type itself
+data Text {
+    // type the 'id' field to 'ID' in GraphQL, and 'string' for TypeScript/Protocol Buffers/gRPC
+    @graphql: ID
     id: string;
+
+    name: string;
+    value: string;
+    @graphql: Int
+    characters: number;
+    public: boolean;
+
+    @graphql: Date
+    @protobuf: number
+    generatedAt: Date;
+    generatedBy: User;
+}
+
+data User {
+    id: string;
+    name: string;
 }
             `,
             targets: [
@@ -36,6 +60,8 @@ message Item {
     required string id = 1;
 }
         `;
+
+        // console.log(result);
 
         // expect(result.typescript).toBe('');
         expect('').toBe('');
