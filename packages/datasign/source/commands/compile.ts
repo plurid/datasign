@@ -25,7 +25,7 @@ const compileCommand = async (
 
     const processData: ProcessData = {
         targets: processTargets(targets),
-        output: path.join(__dirname, output),
+        output: path.join(process.cwd(), output),
         resolve: processResolve(resolve),
     };
 
