@@ -46,6 +46,7 @@ class Loader {
                 this.source = content;
                 this.parsedSource = parseSource(this.source);
             } catch (error) {
+                console.log('File not found.');
             }
         }
 
