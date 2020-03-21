@@ -20,9 +20,9 @@ import {
 
 
 
-async function main(
+const main = async (
     program: CommanderStatic,
-) {
+) => {
     program
         .name('datasign')
         .usage('<files>')
@@ -67,11 +67,13 @@ async function main(
     program.parseAsync(process.argv);
 }
 
-
-main(program);
+const cli = () => {
+    main(program);
+}
 
 
 export {
+    cli,
     DatasignCompiler,
     DatasignLoader,
 }

@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require('../distribution/index.js');
+const datasign = require('../distribution/index.js');
+
+datasign.cli();
