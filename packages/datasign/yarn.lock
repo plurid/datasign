@@ -346,10 +346,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@plurid/datasign-compiler@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@plurid/datasign-compiler/-/datasign-compiler-0.0.1.tgz#0007ef46aebb75c8f68e661fbdbd3d31ced6cc12"
-  integrity sha512-RVYVIgl/cujhtlaF2luiMXlEV91lJJy8wAcRvRNLR+XrHmrLUqB4Z8hBLHcBj1++HJEyyfwPkgxgKGUzJs/DKw==
+"@plurid/datasign-compiler@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@plurid/datasign-compiler/-/datasign-compiler-0.0.2.tgz#a6f6f3f21eb652c8f4fc3900cd072219dc394103"
+  integrity sha512-cHO7QC/njPS/ZCcat1C/Ghhz58jpMyTHOD42LRCrKBoqidKdC9L16CKeCSLmZjVwKzZuH7zWr+gibW4/V7Cr+g==
 
 "@rollup/plugin-commonjs@^11.0.2":
   version "11.0.2"
