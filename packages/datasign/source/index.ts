@@ -29,15 +29,16 @@ async function main(
                 return;
             }
 
-            const target = separateList(program.target);
             const {
+                target,
                 output,
                 resolve,
             } = program;
+            const targets = separateList(target);
 
             const data: CompileData = {
                 files,
-                target,
+                targets,
                 output,
                 resolve,
             };
@@ -48,14 +49,14 @@ async function main(
         .option(
             '-t, --target <type>',
             'compilation targets: typescript, graphql, protobuf',
-            'typescript,graphql,protobuf'
+            'typescript,graphql,protobuf',
         ).option(
             '-o, --output <path>',
             'output path',
             '.',
         ).option(
             '-r, --resolve <type>',
-            'resolve the output path relative to "file" directory, "process" directory, or "flatten" into the output path',
+            'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
             'file',
         );
 
