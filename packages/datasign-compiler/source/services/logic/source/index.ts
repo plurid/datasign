@@ -116,10 +116,12 @@ const parseEntity = (
             case 'DATA_END':
                 break;
             case 'DATA_FIELD':
-                const field = extractField(value, fieldAnnotations);
-                fieldAnnotations = [];
-                data.push(field);
-                break;
+                {
+                    const field = extractField(value, fieldAnnotations);
+                    fieldAnnotations = [];
+                    data.push(field);
+                    break;
+                }
             case 'EMPTY_LINE':
                 break;
         }
