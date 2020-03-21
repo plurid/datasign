@@ -56,14 +56,26 @@ const processFile = async (
     file: string,
     data: ProcessData,
 ) => {
+    const extension = path.extname(file);
+
+    if (extension !== '.datasign') {
+        return;
+    }
+
+    console.log('extension', extension);
+
     const filepath = path.join(process.cwd(), file);
     const statistics = statSync(filepath);
 
     if (!statistics.isDirectory()) {
         await handleFile(filepath, data);
-    } else {
-        // read files from dir
-        // loop over files
+        return;
+    }
+
+    const files = await fs.readdir(filepath);
+
+    for (const file of files) {
+        await processFile(file, data);
     }
 }
 
