@@ -10,6 +10,10 @@ import DatasignCompiler, {
 } from '@plurid/datasign-compiler';
 
 import {
+    DATASIGN_EXTENSION,
+} from '../../data/constants';
+
+import {
     ProcessData,
     Resolve,
 } from '../../data/interfaces';
@@ -92,7 +96,7 @@ const handleFile = async (
         targets,
     } = data;
 
-    const filename = path.basename(filepath, '.datasign');
+    const filename = path.basename(filepath, DATASIGN_EXTENSION);
 
     const source = await fs.readFile(filepath, 'utf-8');
     const outputPath = resolveOutputPath(
@@ -132,7 +136,7 @@ const processFile = async (
     if (!statistics.isDirectory()) {
         const extension = path.extname(file);
 
-        if (extension !== '.datasign') {
+        if (extension !== DATASIGN_EXTENSION) {
             return;
         }
 
