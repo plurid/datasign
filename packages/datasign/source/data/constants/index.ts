@@ -2,7 +2,7 @@ import {
     ResolveFile,
     ResolveProcess,
     ResolveFlatten,
-    ResolveTypes,
+    Resolves,
 } from '../interfaces';
 
 export const DATASIGN_EXTENSION = '.datasign';
@@ -11,7 +11,7 @@ export const DATASIGN_EXTENSION = '.datasign';
 export const resolveFile: ResolveFile = 'file';
 export const resolveProcess: ResolveProcess = 'process';
 export const resolveFlatten: ResolveFlatten = 'flatten';
-export const resolveTypes: ResolveTypes = {
+export const resolves: Resolves = {
     file: resolveFile,
     process: resolveProcess,
     flatten: resolveFlatten,

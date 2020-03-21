@@ -7,11 +7,12 @@ import {
 import DatasignCompiler, {
     DatasignCompileResult,
     Target,
+    targets,
 } from '@plurid/datasign-compiler';
 
 import {
     DATASIGN_EXTENSION,
-    resolveTypes,
+    resolves,
 } from '../../data/constants';
 
 import {
@@ -27,13 +28,13 @@ const resolveFilename = (
 ) => {
     let extension = '';
     switch (target) {
-        case 'typescript':
+        case targets.typescript:
             extension = '.ts';
             break;
-        case 'graphql':
+        case targets.graphql:
             extension = '.graphql';
             break;
-        case 'protobuf':
+        case targets.protobuf:
             extension = '.proto';
             break;
     }
@@ -64,21 +65,21 @@ const resolveOutputPath = (
     resolve: Resolve,
 ) => {
     switch (resolve) {
-        case resolveTypes.file:
+        case resolves.file:
             {
                 const relativePath = path.relative(process.cwd(), filepath);
                 const relativeDirectory = path.dirname(relativePath);
                 const outputPath = path.join(output, relativeDirectory);
                 return outputPath;
             }
-        case resolveTypes.process:
+        case resolves.process:
             {
                 const relativePath = path.relative(process.cwd(), filepath);
                 const relativeDirectory = path.dirname(relativePath);
                 const outputPath = path.join(output, relativeDirectory);
                 return outputPath;
             }
-        case resolveTypes.flatten:
+        case resolves.flatten:
             {
                 const outputPath = output;
                 return outputPath;
