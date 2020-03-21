@@ -2,6 +2,10 @@ import program, {
     CommanderStatic,
 } from 'commander';
 
+import DatasignCompiler, {
+    DatasignLoader,
+} from '@plurid/datasign-compiler';
+
 import {
     compileCommand,
 } from './commands';
@@ -65,3 +69,9 @@ async function main(
 
 
 main(program);
+
+
+export {
+    DatasignCompiler,
+    DatasignLoader,
+}
