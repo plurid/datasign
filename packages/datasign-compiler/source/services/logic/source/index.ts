@@ -4,6 +4,7 @@ import {
 
 import {
     DatasignEntity,
+    DatasignEntityData,
     TypedLine,
 } from '../../../data/interfaces';
 
@@ -65,6 +66,23 @@ const extractEntityName = (
     return '';
 }
 
+const extractField = (
+    line: string,
+) => {
+    const split = line.split(':');
+    const name = split[0].trim().replace('?', '');
+    const type = split[1].trim().replace(';', '');
+    const required = !/\?/.test(line);
+
+    const field: DatasignEntityData = {
+        name,
+        type,
+        required,
+    };
+
+    return field;
+}
+
 
 const parseEntity = (
     unparsedEntity: TypedLine[],
@@ -80,31 +98,42 @@ const parseEntity = (
     //         },
     //     ],
     // };
-    const entity: DatasignEntity = {
-        id: '',
-        name: '',
-        data: [],
-    };
+    let name = '';
+    let id = '';
     const data = [];
 
     for (const line of unparsedEntity) {
-        switch (line.type) {
+        const {
+            type,
+            value,
+        } = line;
+
+        switch (type) {
             case 'ENTITY_ANNOTATION':
                 break;
             case 'FIELD_ANNOTATION':
                 break;
             case 'DATA_START':
-                entity.name = extractEntityName(line.value);
+                name = extractEntityName(value);
                 break;
             case 'DATA_END':
                 break;
             case 'DATA_FIELD':
+                const field = extractField(value);
+                data.push(field);
                 break;
             case 'EMPTY_LINE':
                 break;
         }
     }
 
+    const entity: DatasignEntity = {
+        id,
+        name,
+        data,
+    };
+
+    console.log(entity);
 
     // console.log('unparsedEntity', unparsedEntity);
 
