@@ -21,4 +21,12 @@ CLI for single source of truth data specificator
 
 ## Usage
 
-    datasign <filepath> --target ts,graphql,protobuf    convert file to typescript, graphql, protocol buffers files
+    datasign <files>
+
+## Options
+
+    -v, --version           output the version number
+    -t, --target <type>     compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
+    -o, --output <path>     output path (default: ".")
+    -r, --resolve <type>    resolve the output path relative to "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+    -h, --help              display help for command
