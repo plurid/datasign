@@ -47,6 +47,25 @@ export interface DatasignEntityData {
 
 
 
+export type TypeEntityAnnotation = 'ENTITY_ANNOTATION';
+export type TypeFieldAnnotation = 'FIELD_ANNOTATION';
+export type TypeDataStart = 'DATA_START';
+export type TypeDataEnd = 'DATA_END';
+export type TypeDataField = 'DATA_FIELD';
+export type TypeEmptyLine = 'EMPTY_LINE';
+export type TypedValue = TypeEntityAnnotation
+    | TypeFieldAnnotation
+    | TypeDataStart
+    | TypeDataEnd
+    | TypeDataField
+    | TypeEmptyLine;
+
+export interface TypedLine {
+    value: string;
+    type: TypedValue;
+}
+
+
 export type TargetTypescript = 'typescript';
 export type TargetGraphQL = 'graphql';
 export type TargetProtocolBuffers = 'protobuf';

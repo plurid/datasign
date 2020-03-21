@@ -1,5 +1,10 @@
 import {
+    lineTypes,
+} from '../../../data/constants';
+
+import {
     DatasignEntity,
+    TypedLine,
 } from '../../../data/interfaces';
 
 
@@ -51,7 +56,7 @@ const trimLeadingSpace = (
 
 
 const parseEntity = (
-    unparsedEntity: string[],
+    unparsedEntity: TypedLine[],
 ) => {
     const entity: DatasignEntity = {
         id: 'Item',
@@ -95,7 +100,7 @@ const parseEntity = (
 
 
 const parseEntities = (
-    unparsedEntities: (string[])[],
+    unparsedEntities: (TypedLine[])[],
 ) => {
     const entities: DatasignEntity[] = [];
 
@@ -114,7 +119,7 @@ const parseSource= (
 
     const unparsedEntities = [];
     let addingToEntity = false;
-    let unparsedEntity = [];
+    let unparsedEntity: TypedLine[] = [];
 
     for (let line of lines) {
         if (isComment(line)) {
@@ -125,19 +130,32 @@ const parseSource= (
         line = trimTrailingSpace(line);
 
         if (isAnnotation(line)) {
-            addingToEntity = true;
-            unparsedEntity.push(line);
+            const typedLine: TypedLine = {
+                value: line,
+                type: addingToEntity
+                    ? lineTypes.fieldAnnotation
+                    : lineTypes.entityAnnotation,
+            };
+            unparsedEntity.push(typedLine);
             continue;
         }
 
         if (isDatasignStart(line)) {
             addingToEntity = true;
-            unparsedEntity.push(line);
+            const typedLine: TypedLine = {
+                value: line,
+                type: lineTypes.dataStart,
+            };
+            unparsedEntity.push(typedLine);
             continue;
         }
 
         if (isDatasignEnd(line)) {
-            unparsedEntity.push(line);
+            const typedLine: TypedLine = {
+                value: line,
+                type: lineTypes.dataEnd,
+            };
+            unparsedEntity.push(typedLine);
             unparsedEntities.push(unparsedEntity);
             unparsedEntity = [];
             addingToEntity = false;
@@ -145,7 +163,13 @@ const parseSource= (
         }
 
         if (addingToEntity) {
-            unparsedEntity.push(line);
+            const typedLine: TypedLine = {
+                value: line,
+                type: line !== ''
+                    ? lineTypes.dataField
+                    : lineTypes.emptyLine,
+            };
+            unparsedEntity.push(typedLine);
             continue;
         }
     }
