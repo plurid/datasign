@@ -31,6 +31,24 @@ const isDatasignEnd = (
     return /^\s*}/.test(line);
 }
 
+const removeInlineComment = (
+    line: string,
+) => {
+    return line.replace(/\/\/.+$/, '');
+}
+
+const trimTrailingSpace = (
+    line: string,
+) => {
+    return line.replace(/\s+$/g, '');
+}
+
+const trimLeadingSpace = (
+    line: string,
+) => {
+    return line.replace(/^\s+/g, '');
+}
+
 
 const parseEntity = (
     unparsedEntity: string[],
@@ -98,10 +116,13 @@ const parseSource= (
     let addingToEntity = false;
     let unparsedEntity = [];
 
-    for (const line of lines) {
+    for (let line of lines) {
         if (isComment(line)) {
             continue;
         }
+
+        line = removeInlineComment(line);
+        line = trimTrailingSpace(line);
 
         if (isAnnotation(line)) {
             addingToEntity = true;
