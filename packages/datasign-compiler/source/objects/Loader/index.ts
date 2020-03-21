@@ -18,7 +18,11 @@ import {
     generateGraphql,
     generateProtobuf,
     generateTypescript,
-} from '../../logic';
+} from '../../services/logic';
+
+import {
+    isDatasignText,
+} from '../../services/utilities';
 
 
 
@@ -58,13 +62,6 @@ class Loader {
                 return generateTypescript(this.parsedSource);
         }
     }
-}
-
-
-const isDatasignText = (
-    value: string,
-) => {
-    return /data \w+ {/g.test(value);
 }
 
 
