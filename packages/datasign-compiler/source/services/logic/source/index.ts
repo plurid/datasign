@@ -68,7 +68,11 @@ const extractEntityName = (
 
 const extractField = (
     line: string,
+    fieldAnnotations: string[],
 ) => {
+    // TODO
+    // parse fieldAnnotations
+
     const split = line.split(':');
     const name = split[0].trim().replace('?', '');
     const type = split[1].trim().replace(';', '');
@@ -87,20 +91,11 @@ const extractField = (
 const parseEntity = (
     unparsedEntity: TypedLine[],
 ) => {
-    // const entity: DatasignEntity = {
-    //     id: 'Item',
-    //     name: 'Item',
-    //     data: [
-    //         {
-    //             name: 'id',
-    //             type: 'string',
-    //             required: true,
-    //         },
-    //     ],
-    // };
     let name = '';
     let id = '';
     const data = [];
+    let entityAnnotations = [];
+    let fieldAnnotations = [];
 
     for (const line of unparsedEntity) {
         const {
@@ -110,8 +105,10 @@ const parseEntity = (
 
         switch (type) {
             case 'ENTITY_ANNOTATION':
+                entityAnnotations.push(value);
                 break;
             case 'FIELD_ANNOTATION':
+                fieldAnnotations.push(value);
                 break;
             case 'DATA_START':
                 name = extractEntityName(value);
@@ -119,7 +116,8 @@ const parseEntity = (
             case 'DATA_END':
                 break;
             case 'DATA_FIELD':
-                const field = extractField(value);
+                const field = extractField(value, fieldAnnotations);
+                fieldAnnotations = [];
                 data.push(field);
                 break;
             case 'EMPTY_LINE':
@@ -127,40 +125,15 @@ const parseEntity = (
         }
     }
 
+    // TOOD
+    // parse entity annotations
+
     const entity: DatasignEntity = {
         id,
         name,
         data,
     };
-
     console.log(entity);
-
-    // console.log('unparsedEntity', unparsedEntity);
-
-
-
-    // TODO
-    // from such a data specificator
-        // data Item {
-        //     id: string;
-        // }
-    // generate the data entities
-    // const entities: DatasignEntity[] = [
-    //     {
-    //         id: 'Item',
-    //         name: 'Item',
-    //         data: [
-    //             {
-    //                 name: 'id',
-    //                 type: 'string',
-    //                 required: true,
-    //             },
-    //         ],
-    //     },
-    // ];
-    // console.log(source);
-    // console.log(entities);
-
     return entity;
 }
 
