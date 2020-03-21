@@ -61,7 +61,7 @@ message Item {
 }
         `;
 
-        // console.log('result', result);
+        console.log('result', result);
 
         // expect(result.typescript).toBe('');
         expect('').toBe('');

@@ -11,7 +11,7 @@ const generateTypescriptFields = (
     const fields: string[] = [];
 
     for (const field of data) {
-        const fieldText = `${field.name}${field.required ? '?' : ''}: ${field.type};`;
+        const fieldText = `    ${field.name}${field.required ? '' : '?'}: ${field.type};`;
         fields.push(fieldText);
     }
 
@@ -23,10 +23,11 @@ const generateTypescriptEntity = (
     entity: DatasignEntity,
 ) => {
     const fields = generateTypescriptFields(entity.data);
+    const stringedFields = fields.join('\n');
 
     const entityText = `
 export interface ${entity.name} {
-${fields.map(field => '    ' + field)}
+${stringedFields}
 }
 `;
     return entityText;
