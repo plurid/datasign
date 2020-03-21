@@ -11,6 +11,7 @@ import DatasignCompiler, {
 
 import {
     DATASIGN_EXTENSION,
+    resolveTypes,
 } from '../../data/constants';
 
 import {
@@ -63,21 +64,21 @@ const resolveOutputPath = (
     resolve: Resolve,
 ) => {
     switch (resolve) {
-        case 'file':
+        case resolveTypes.file:
             {
                 const relativePath = path.relative(process.cwd(), filepath);
                 const relativeDirectory = path.dirname(relativePath);
                 const outputPath = path.join(output, relativeDirectory);
                 return outputPath;
             }
-        case 'process':
+        case resolveTypes.process:
             {
                 const relativePath = path.relative(process.cwd(), filepath);
                 const relativeDirectory = path.dirname(relativePath);
                 const outputPath = path.join(output, relativeDirectory);
                 return outputPath;
             }
-        case 'flatten':
+        case resolveTypes.flatten:
             {
                 const outputPath = output;
                 return outputPath;
