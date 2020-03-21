@@ -23,7 +23,7 @@ data Text {
     name: string;
     value: string;
     @graphql: Int
-    characters: number;
+    characters?: number;
     public: boolean;
 
     @graphql: Date
@@ -61,7 +61,7 @@ message Item {
 }
         `;
 
-        console.log('result', result);
+        // console.log('result', result);
 
         // expect(result.typescript).toBe('');
         expect('').toBe('');
