@@ -54,23 +54,60 @@ const trimLeadingSpace = (
     return line.replace(/^\s+/g, '');
 }
 
+const extractEntityName = (
+    line: string,
+) => {
+    const nameRE = /^\s*data (\w+) {/;
+    const match = line.match(nameRE);
+    if (match) {
+        return match[1];
+    }
+    return '';
+}
+
 
 const parseEntity = (
     unparsedEntity: TypedLine[],
 ) => {
+    // const entity: DatasignEntity = {
+    //     id: 'Item',
+    //     name: 'Item',
+    //     data: [
+    //         {
+    //             name: 'id',
+    //             type: 'string',
+    //             required: true,
+    //         },
+    //     ],
+    // };
     const entity: DatasignEntity = {
-        id: 'Item',
-        name: 'Item',
-        data: [
-            {
-                name: 'id',
-                type: 'string',
-                required: true,
-            },
-        ],
+        id: '',
+        name: '',
+        data: [],
     };
+    const data = [];
 
-    console.log('unparsedEntity', unparsedEntity);
+    for (const line of unparsedEntity) {
+        switch (line.type) {
+            case 'ENTITY_ANNOTATION':
+                break;
+            case 'FIELD_ANNOTATION':
+                break;
+            case 'DATA_START':
+                entity.name = extractEntityName(line.value);
+                break;
+            case 'DATA_END':
+                break;
+            case 'DATA_FIELD':
+                break;
+            case 'EMPTY_LINE':
+                break;
+        }
+    }
+
+
+    // console.log('unparsedEntity', unparsedEntity);
+
 
 
     // TODO
