@@ -5,6 +5,7 @@ import {
     Targets,
 
     TypeEntityAnnotation,
+    TypeEntityComment,
     TypeFieldAnnotation,
     TypeDataStart,
     TypeDataEnd,
@@ -26,6 +27,7 @@ export const targets: Targets = {
 
 
 export const typeEntityAnnotation: TypeEntityAnnotation = 'ENTITY_ANNOTATION';
+export const typeEntityComment: TypeEntityComment = 'ENTITY_COMMENT';
 export const typeFieldAnnotation: TypeFieldAnnotation = 'FIELD_ANNOTATION';
 export const typeDataStart: TypeDataStart = 'DATA_START';
 export const typeDataEnd: TypeDataEnd = 'DATA_END';
@@ -34,6 +36,7 @@ export const typeEmptyLine: TypeEmptyLine = 'EMPTY_LINE';
 
 export const lineTypes = {
     entityAnnotation: typeEntityAnnotation,
+    entityComment: typeEntityComment,
     fieldAnnotation: typeFieldAnnotation,
     dataStart: typeDataStart,
     dataEnd: typeDataEnd,
