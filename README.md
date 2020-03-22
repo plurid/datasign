@@ -156,6 +156,9 @@ Command-Line Interface options:
 -t, --target <type>     compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
 -o, --output <path>     output path (default: ".")
 -r, --resolve <type>    resolve the output path relative to "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+-c, --comments          compile the comments into the target files (default: false)
+-s, --spacing <value>   spacing to be used in the compiled files (default: "4")
+-p, --preserve <value>  preserve new lines spacing of the datasign file (default: false)
 -h, --help              display help for command
 ```
 
