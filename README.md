@@ -198,3 +198,19 @@ async function main() {
 
 main();
 ```
+
+
+## Types
+
+### Primitives
+
+    number
+    boolean
+    string
+
+### Defaults
+
+`number` will default to:
+
+    `Int` for `GraphQL`
+    `int32` for `Protocol Buffers`
