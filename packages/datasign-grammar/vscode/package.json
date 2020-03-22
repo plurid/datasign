@@ -1,0 +1,52 @@
+{
+    "name": "datasign-grammar",
+    "version": "0.0.0",
+    "displayName": "datasign",
+    "publisher": "plurid",
+    "icon": "assets/icon.png",
+    "galleryBanner": {
+        "color": "#1f2533",
+        "theme": "dark"
+    },
+    "description": "Syntax highlighting for datasign files (.datasign).",
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com/)",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/datasign"
+    },
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.37.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "datasign",
+                "aliases": [],
+                "extensions": [
+                    ".datasign"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "datasign",
+                "scopeName": "source.plurid",
+                "path": "./syntaxes/datasign.tmLanguage.json",
+                "embeddedLanguages": {}
+            }
+        ]
+    },
+    "scripts": {
+        "yamlToJson": "js-yaml syntaxes/pluridoc.tmLanguage.yaml > syntaxes/pluridoc.tmLanguage.json",
+        "jsonToYaml": "js-yaml syntaxes/pluridoc.tmLanguage.json > syntaxes/pluridoc.tmLanguage.yaml",
+        "prepublishOnly": "yarn yamlToJson"
+    },
+    "dependencies": {
+        "js-yaml": "^3.13.1"
+    }
+}
