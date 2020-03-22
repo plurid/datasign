@@ -16,6 +16,20 @@
 File format specifying data signatures to be used as single source of (specified) truth in various pipelines.
 
 
++ [A Web-Oriented Example](#a-web-oriented-example)
++ [Usage](#usage)
+    + [One-Time Compilation](#one-time-compilation)
+    + [Script](#script)
+    + [Programmatic](#programmatic)
++ [Types](#types)
+    + [Primitives](#primitives)
+    + [Defaults](#defaults)
++ [Annotations](#annotations)
+    + [Entity](#entity)
+    + [Field](#field)
+
+
+
 ## A Web-Oriented Example
 
 ```
