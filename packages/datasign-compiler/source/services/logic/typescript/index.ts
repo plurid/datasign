@@ -51,9 +51,13 @@ const generateTypescriptEntity = (
 ) => {
     const fields = generateTypescriptFields(entity.data, options);
     const stringedFields = fields.join('\n');
+    const stringedComments = entity.comments !== ''
+        ? entity.comments + '\n'
+        : '';
 
+    console.log('entityttt', entity);
     const entityText = `
-export interface ${entity.name} {
+${stringedComments}export interface ${entity.name} {
 ${stringedFields}
 }
     `;

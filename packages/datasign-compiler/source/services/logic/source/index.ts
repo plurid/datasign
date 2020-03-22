@@ -19,7 +19,17 @@ import {
 const isComment = (
     line: string,
 ) => {
-    return /^\s*?\/\//.test(line);
+    const normalCommentRE = new RegExp('^\\s*?\\/\\/');
+    if (normalCommentRE.test(line)) {
+        return true;
+    }
+
+    const documentationCommentRE = new RegExp('^(\\s*\\/\\*\\*)|(\\s*\\*\\/?)');
+    if (documentationCommentRE.test(line)) {
+        return true;
+    }
+
+    return false;
 }
 
 
@@ -205,8 +215,8 @@ const parseEntity = (
             case 'EMPTY_LINE':
                 {
                     const emptyField: DatasignEntityData = {
-                        name,
-                        type,
+                        name: '',
+                        type: '',
                         required: false,
                         annotations: [],
                         comments: '',
