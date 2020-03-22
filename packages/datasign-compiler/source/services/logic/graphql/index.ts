@@ -1,10 +1,16 @@
 import {
+    ONE_NEW_LINE,
+    TWO_NEW_LINES,
+} from '../../../data/constants';
+
+import {
     DatasignEntity,
     DatasignEntityData,
 } from '../../../data/interfaces';
 
 import {
     capitalize,
+    trimSpace,
 } from '../../utilities';
 
 
@@ -15,6 +21,7 @@ const generateGraphqlFields = (
     const fields: string[] = [];
 
     const spacing = '    ';
+    const separator = ': ';
     for (const field of data) {
         const {
             name,
@@ -23,7 +30,7 @@ const generateGraphqlFields = (
         } = field;
         const requireString = required ? '!' : '';
         const typeString = capitalize(type);
-        const fieldText = spacing + name + ': ' + typeString + requireString;
+        const fieldText = spacing + name + separator + typeString + requireString;
         fields.push(fieldText);
     }
 
@@ -40,21 +47,21 @@ const generateGraphqlEntity = (
 type ${entity.name} {
 ${stringedFields}
 }
-`;
-    return entityText;
+    `;
+    return trimSpace(entityText);
 }
 
 const generateGraphql = (
     parsed: DatasignEntity[],
 ) => {
-    let graphqlText = '';
+    const graphqlText = [];
 
     for (const entity of parsed) {
         const entityText = generateGraphqlEntity(entity);
-        graphqlText += entityText;
+        graphqlText.push(entityText);
     }
 
-    return graphqlText;
+    return graphqlText.join(TWO_NEW_LINES) + ONE_NEW_LINE;
 }
 
 

@@ -1,7 +1,16 @@
 import {
+    ONE_NEW_LINE,
+    TWO_NEW_LINES,
+} from '../../../data/constants';
+
+import {
     DatasignEntity,
     DatasignEntityData,
 } from '../../../data/interfaces';
+
+import {
+    trimSpace,
+} from '../../utilities';
 
 
 
@@ -10,8 +19,16 @@ const generateTypescriptFields = (
 ) => {
     const fields: string[] = [];
 
+    const spacing = '    ';
+    const separator = ': ';
     for (const field of data) {
-        const fieldText = `    ${field.name}${field.required ? '' : '?'}: ${field.type};`;
+        const {
+            name,
+            type,
+            required,
+        } = field;
+        const requireString = required ? '' : '?';
+        const fieldText = spacing + name + requireString + separator + type;
         fields.push(fieldText);
     }
 
@@ -29,21 +46,21 @@ const generateTypescriptEntity = (
 export interface ${entity.name} {
 ${stringedFields}
 }
-`;
-    return entityText;
+    `;
+    return trimSpace(entityText);
 }
 
 const generateTypescript = (
     parsed: DatasignEntity[],
 ) => {
-    let typescriptText = '';
+    const typescriptText = [];
 
     for (const entity of parsed) {
         const entityText = generateTypescriptEntity(entity);
-        typescriptText += entityText;
+        typescriptText.push(entityText);
     }
 
-    return typescriptText;
+    return typescriptText.join(TWO_NEW_LINES) + ONE_NEW_LINE;
 }
 
 

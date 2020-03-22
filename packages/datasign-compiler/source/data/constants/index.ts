@@ -40,3 +40,8 @@ export const lineTypes = {
     dataField: typeDataField,
     emptyLine: typeEmptyLine,
 };
+
+
+
+export const ONE_NEW_LINE = '\n';
+export const TWO_NEW_LINES = '\n\n';
