@@ -97,6 +97,7 @@ const handleFile = async (
         output,
         resolve,
         targets,
+        comments,
     } = data;
 
     const filename = path.basename(filepath, DATASIGN_EXTENSION);
@@ -112,7 +113,7 @@ const handleFile = async (
         source,
         targets,
         options: {
-            comments: false,
+            comments,
         },
     };
     const compiler = new DatasignCompiler(compilerData);
