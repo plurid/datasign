@@ -64,6 +64,10 @@ const main = async (
             '-c, --comments',
             'compile the comments into the target files',
             false,
+        ).option(
+            '-s, --spacing <value>',
+            'spacing to be used in the compiled files',
+            '4',
         );
 
     program.parseAsync(process.argv);
