@@ -184,7 +184,7 @@ yarn add @plurid/datasign
 add a script in `package.json`
 
 ```
-    "datasign": "datasign /path/to/files"
+"datasign": "datasign /path/to/files"
 ```
 
 
@@ -251,18 +251,18 @@ default: `true`
 example:
 
 ```
-    @typescript: export: false;
-    data Message {
-        // fields
-    }
+@typescript: export: false;
+data Message {
+    // fields
+}
 ```
 
 compiles to
 
 ``` typescript
-    interface Message {
-        // fields
-    }
+interface Message {
+    // fields
+}
 ```
 
 
@@ -277,18 +277,18 @@ default: `type`
 example:
 
 ```
-    @graphql: type: input;
-    data Message {
-        // fields
-    }
+@graphql: type: input;
+data Message {
+    // fields
+}
 ```
 
 compiles to
 
 ``` graphql
-    input Message {
-        // fields
-    }
+input Message {
+    // fields
+}
 ```
 
 
@@ -303,27 +303,27 @@ The `GraphQL` type of the compiled `GraphQL` field.
 example:
 
 ```
-    data Message {
-        @graphql type: ID;
-        id: string;
-    }
+data Message {
+    @graphql type: ID;
+    id: string;
+}
 ```
 
 which is equivalent to
 
 ```
-    data Message {
-        @graphql ID;
-        id: string;
-    }
+data Message {
+    @graphql ID;
+    id: string;
+}
 ```
 
 compiles to
 
 ``` graphql
-    type Message {
-        id: ID!
-    }
+type Message {
+    id: ID!
+}
 ```
 
 
@@ -334,22 +334,22 @@ Adds the directive to the `GraphQL` field. The directive needs to be provided in
 example:
 
 ```
-    data Message {
-        newField: string;
+data Message {
+    newField: string;
 
-        // the `deprecated` directive needs to be provided to the graphql schema
-        @graphql: directive: deprecated: reason: "Use `newField`."
-        oldField: string;
-    }
+    // the `deprecated` directive needs to be provided to the graphql schema
+    @graphql: directive: deprecated: reason: "Use `newField`."
+    oldField: string;
+}
 ```
 
 compiles to
 
 ```
-    type Message {
-        newField: String!
-        oldField: String! @deprecated(reason: "Use `newField`.")
-    }
+type Message {
+    newField: String!
+    oldField: String! @deprecated(reason: "Use `newField`.")
+}
 ```
 
 
@@ -362,25 +362,25 @@ The `Protocol Buffers` type of the compiled `Protocol Buffers` field.
 example:
 
 ```
-    data Count {
-        @protobuf type: int64;
-        value: number;
-    }
+data Count {
+    @protobuf type: int64;
+    value: number;
+}
 ```
 
 which is equivalent to
 
 ```
-    data Count {
-        @protobuf int64;
-        value: number;
-    }
+data Count {
+    @protobuf int64;
+    value: number;
+}
 ```
 
 compiles to
 
 ``` protobuf
-    message Count {
-        required int64 value = 1;
-    }
+message Count {
+    required int64 value = 1;
+}
 ```
