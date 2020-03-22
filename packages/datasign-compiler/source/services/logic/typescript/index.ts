@@ -56,9 +56,9 @@ const generateTypescriptEntity = (
 
 
     const entityText = stringedComments
-        + `export interface ${entity.name} {`
+        + `export interface ${entity.name} {\n`
         + stringedFields
-        + '}';
+        + '\n}';
 
     return entityText;
 }
