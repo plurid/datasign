@@ -425,6 +425,6 @@ message Count {
 [datasign-compiler]: https://github.com/plurid/datasign/tree/master/packages/datasign-compiler
 
 
-[@plurid/datasign-grammar][datasign-grammar] • datasign grammar for text editors (syntax highlighting, syntax verification)
+[@plurid/datasign-grammar][datasign-grammar] • grammar for text editors (syntax highlighting, syntax verification)
 
 [datasign-grammar]: https://github.com/plurid/datasign/tree/master/packages/datasign-grammar
