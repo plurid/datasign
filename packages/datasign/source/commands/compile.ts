@@ -21,12 +21,14 @@ const compileCommand = async (
         targets,
         output,
         resolve,
+        comments,
     } = data;
 
     const processData: ProcessData = {
         targets: processTargets(targets),
         output: path.join(process.cwd(), output),
         resolve: processResolve(resolve),
+        comments,
     };
 
     for (const file of files) {

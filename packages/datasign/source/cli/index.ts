@@ -33,6 +33,7 @@ const main = async (
                 target,
                 output,
                 resolve,
+                comments,
             } = program;
             const targets = separateList(target);
 
@@ -41,6 +42,7 @@ const main = async (
                 targets,
                 output,
                 resolve,
+                comments,
             };
             await compileCommand(data);
         });
@@ -58,6 +60,10 @@ const main = async (
             '-r, --resolve <type>',
             'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
             'file',
+        ).option(
+            '-c, --comments',
+            'compile the comments into the target files',
+            false,
         );
 
     program.parseAsync(process.argv);

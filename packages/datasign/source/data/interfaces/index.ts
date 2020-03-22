@@ -9,6 +9,7 @@ export interface CompileData {
     targets: string[];
     output: string;
     resolve: string;
+    comments: boolean;
 }
 
 
@@ -16,6 +17,7 @@ export interface ProcessData {
     targets: Target[];
     output: string;
     resolve: Resolve;
+    comments: boolean;
 }
 
 
