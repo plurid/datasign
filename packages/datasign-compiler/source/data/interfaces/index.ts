@@ -1,11 +1,11 @@
 export interface DatasignCompilerData {
     source: string;
     targets: Target[];
-    options?: DatasignCompilerOption;
+    options?: Partial<DatasignCompilerOptions>;
 }
 
 
-export interface DatasignCompilerOption {
+export interface DatasignCompilerOptions {
     /**
      * Compile comments into target text.
      */

@@ -7,6 +7,7 @@ import {
     DatasignEntityData,
     DatasignAnnotation,
     TypedLine,
+    DatasignCompilerOptions,
 } from '../../../data/interfaces';
 
 import {
@@ -230,6 +231,7 @@ const parseEntities = (
 
 const parseSource= (
     source: string,
+    options: DatasignCompilerOptions,
 ) => {
     const lines = source.split('\n');
 

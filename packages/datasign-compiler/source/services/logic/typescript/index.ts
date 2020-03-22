@@ -1,6 +1,7 @@
 import {
     DatasignEntity,
     DatasignEntityData,
+    DatasignCompilerOptions,
 } from '../../../data/interfaces';
 
 import {
@@ -49,6 +50,7 @@ ${stringedFields}
 
 const generateTypescript = (
     parsed: DatasignEntity[],
+    options: DatasignCompilerOptions,
 ) => {
     const typescriptText = [];
 
