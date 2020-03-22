@@ -212,5 +212,5 @@ main();
 
 `number` will default to:
 
-    `Int` for `GraphQL`
-    `int32` for `Protocol Buffers`
++ `Int` for `GraphQL`
++ `int32` for `Protocol Buffers`
