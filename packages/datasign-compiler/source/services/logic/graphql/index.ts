@@ -7,6 +7,7 @@ import {
 import {
     capitalize,
     formatCode,
+    resolveSpacing,
 } from '../../utilities';
 
 
@@ -29,7 +30,7 @@ const generateGraphqlFields = (
 ) => {
     const fields: string[] = [];
 
-    const spacing = '    ';
+    const spacing = resolveSpacing(options.spacing);
     const separator = ': ';
 
     for (const field of data) {

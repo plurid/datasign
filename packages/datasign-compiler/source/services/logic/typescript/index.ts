@@ -6,6 +6,7 @@ import {
 
 import {
     formatCode,
+    resolveSpacing,
 } from '../../utilities';
 
 
@@ -16,7 +17,7 @@ const generateTypescriptFields = (
 ) => {
     const fields: string[] = [];
 
-    const spacing = '    ';
+    const spacing = resolveSpacing(options.spacing);
     const separator = ': ';
     const semicolon = ';';
 

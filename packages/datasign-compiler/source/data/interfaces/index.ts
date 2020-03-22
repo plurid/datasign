@@ -11,6 +11,7 @@ export interface DatasignCompilerOptions {
      */
     comments: boolean;
     preserveSpacing: boolean;
+    spacing: number;
 }
 
 

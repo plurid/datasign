@@ -21,10 +21,12 @@ const resolveCompilerOptions = (
     const preserveSpacingOptions = typeof options.preserveSpacing === 'boolean'
         ? options.preserveSpacing
         : false
+    const spacing = options.spacing || 4;
 
     const compilerOptions: DatasignCompilerOptions = {
         comments: commentsOptions,
         preserveSpacing: preserveSpacingOptions,
+        spacing,
     };
     return compilerOptions;
 }

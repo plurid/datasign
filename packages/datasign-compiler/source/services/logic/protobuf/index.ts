@@ -6,6 +6,7 @@ import {
 
 import {
     formatCode,
+    resolveSpacing,
 } from '../../utilities';
 
 
@@ -29,8 +30,7 @@ const generateProtobufFields = (
 ) => {
     const fields: string[] = [];
 
-    // required string id = 1
-    const spacing = '    ';
+    const spacing = resolveSpacing(options.spacing);
     const space = ' ';
     const equal = ' = ';
     const semicolon = ';';
