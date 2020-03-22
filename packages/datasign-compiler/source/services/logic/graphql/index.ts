@@ -6,7 +6,6 @@ import {
 
 import {
     capitalize,
-    trimSpace,
     formatCode,
 } from '../../utilities';
 
@@ -45,19 +44,35 @@ const generateGraphqlFields = (
     return fields;
 }
 
+
+const formatGraphqlComments = (
+    comments: string,
+) => {
+    comments = comments.replace(/\/\//g, '#');
+    comments = comments.replace(/\/\*\*/g, '#');
+    comments = comments.replace(/\s\*/g, '#');
+    comments = comments.replace(/\s\*\//g, '#');
+    return comments;
+}
+
+
 const generateGraphqlEntity = (
     entity: DatasignEntity,
     options: DatasignCompilerOptions,
 ) => {
     const fields = generateGraphqlFields(entity.data, options);
     const stringedFields = fields.join('\n');
+    const stringedComments = entity.comments !== ''
+        ? entity.comments + '\n'
+        : '';
+    const formattedComments = formatGraphqlComments(stringedComments);
 
-    const entityText = `
-type ${entity.name} {
-${stringedFields}
-}
-    `;
-    return trimSpace(entityText);
+    const entityText = formattedComments
+        + `type ${entity.name} {`
+        + stringedFields
+        + '}';
+
+    return entityText;
 }
 
 const generateGraphql = (
