@@ -168,15 +168,16 @@ add a script in `package.json`
 
 ### Programmatic
 
-For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and write the code
+For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and write a similar code
 
 ``` typescript
 import {
     DatasignLoader,
-} from '@plurid/datasign'
+} from '@plurid/datasign';
 
 async function main() {
     const datasignLoader = new DatasignLoader('/path/to/file');
+
     const graphql = await datasignLoader.load('graphql');
     // graphql contains the types string
 
@@ -189,4 +190,3 @@ async function main() {
 
 main();
 ```
-
