@@ -31,11 +31,10 @@ File format specifying data signatures to be used as single source of (specified
 ```
     // Text.datasign
 
+    /**
+     * Text Documentation
+     */
     @entityID: TextEntity; // assigns an ID to the type itself
-    // @annotationType: name: value; // or
-    // @annotationName: value // the value will change the type implicitly
-    // for example
-    // @graphql: input // will generate an 'input' type
     data Text {
         // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
         @graphql: ID;
@@ -66,6 +65,9 @@ File format specifying data signatures to be used as single source of (specified
     /**
      * @entityID: TextEntity
      */
+    /**
+     * Text Documentation
+     */
     export interface Text {
         id: string;
         name: string;
@@ -86,6 +88,9 @@ File format specifying data signatures to be used as single source of (specified
 ``` graphql
     # Text.graphql
 
+    #
+    # Text Documentation
+    #
     # @entityID: TextEntity
     type Text {
         id: ID!
@@ -108,6 +113,9 @@ File format specifying data signatures to be used as single source of (specified
     // Text.proto
 
     // @entityID: TextEntity
+    /**
+     * Text Documentation
+     */
     message Text {
         required string id = 1;
         required string name = 2;
