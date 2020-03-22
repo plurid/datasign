@@ -7,10 +7,11 @@ import {
 
 import {
     targets,
-    defaultDatasignCompilerOptions,
 } from '../../data/constants';
 
 import {
+    resolveCompilerOptions,
+
     parseSource,
 
     generateGraphql,
@@ -36,28 +37,7 @@ class DatasignCompiler {
 
         this.source = source;
         this.targets = targets;
-        this.options = this.resolveOptions(options);
-    }
-
-    resolveOptions(
-        options: Partial<DatasignCompilerOptions> | undefined
-    ) {
-        if (!options) {
-            return defaultDatasignCompilerOptions;
-        }
-
-        const commentsOptions = typeof options.comments === 'boolean'
-            ? options.comments
-            : false
-        const preserveSpacingOptions = typeof options.preserveSpacing === 'boolean'
-            ? options.preserveSpacing
-            : false
-
-        const compilerOptions: DatasignCompilerOptions = {
-            comments: commentsOptions,
-            preserveSpacing: preserveSpacingOptions,
-        };
-        return compilerOptions;
+        this.options = resolveCompilerOptions(options);
     }
 
     compile(): DatasignCompileResult {
