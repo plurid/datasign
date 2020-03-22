@@ -1,9 +1,4 @@
 import {
-    ONE_NEW_LINE,
-    TWO_NEW_LINES,
-} from '../../../data/constants';
-
-import {
     DatasignEntity,
     DatasignEntityData,
 } from '../../../data/interfaces';
@@ -11,6 +6,7 @@ import {
 import {
     capitalize,
     trimSpace,
+    formatCode,
 } from '../../utilities';
 
 
@@ -61,7 +57,7 @@ const generateGraphql = (
         graphqlText.push(entityText);
     }
 
-    return graphqlText.join(TWO_NEW_LINES) + ONE_NEW_LINE;
+    return formatCode(graphqlText);
 }
 
 
