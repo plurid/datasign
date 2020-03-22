@@ -7,6 +7,7 @@ import {
 
 import {
     targets,
+    defaultDatasignCompilerOptions,
 } from '../../data/constants';
 
 import {
@@ -41,20 +42,20 @@ class DatasignCompiler {
     resolveOptions(
         options: Partial<DatasignCompilerOptions> | undefined
     ) {
-        const defaultOptions: DatasignCompilerOptions = {
-            comments: false,
-        }
-
         if (!options) {
-            return defaultOptions;
+            return defaultDatasignCompilerOptions;
         }
 
         const commentsOptions = typeof options.comments === 'boolean'
             ? options.comments
             : false
+        const preserveSpacingOptions = typeof options.preserveSpacing === 'boolean'
+            ? options.preserveSpacing
+            : false
 
         const compilerOptions: DatasignCompilerOptions = {
             comments: commentsOptions,
+            preserveSpacing: preserveSpacingOptions,
         };
         return compilerOptions;
     }

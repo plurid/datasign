@@ -11,6 +11,8 @@ import {
     TypeDataEnd,
     TypeDataField,
     TypeEmptyLine,
+
+    DatasignCompilerOptions,
 } from '../interfaces';
 
 
@@ -48,3 +50,10 @@ export const lineTypes = {
 
 export const ONE_NEW_LINE = '\n';
 export const TWO_NEW_LINES = '\n\n';
+
+
+
+export const defaultDatasignCompilerOptions: DatasignCompilerOptions = {
+    comments: false,
+    preserveSpacing: false,
+}
