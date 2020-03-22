@@ -26,7 +26,7 @@ export interface DatasignEntity {
     name: string;
     data: DatasignEntityData[];
     annotations: DatasignAnnotation[];
-    comment: string;
+    comments: string;
 
     /**
      * Entities may be annotated with `@only` to allow compilation
@@ -43,7 +43,7 @@ export interface DatasignEntityData {
     type: string;
     required: boolean;
     annotations: DatasignAnnotation[];
-    comment: string;
+    comments: string;
 }
 
 export interface DatasignAnnotation {
@@ -53,6 +53,7 @@ export interface DatasignAnnotation {
 
 
 export type TypeEntityAnnotation = 'ENTITY_ANNOTATION';
+export type TypeEntityComment = 'ENTITY_COMMENT';
 export type TypeFieldAnnotation = 'FIELD_ANNOTATION';
 export type TypeDataStart = 'DATA_START';
 export type TypeDataEnd = 'DATA_END';
@@ -63,7 +64,8 @@ export type TypedValue = TypeEntityAnnotation
     | TypeDataStart
     | TypeDataEnd
     | TypeDataField
-    | TypeEmptyLine;
+    | TypeEmptyLine
+    | TypeEntityComment;
 
 export interface TypedLine {
     value: string;

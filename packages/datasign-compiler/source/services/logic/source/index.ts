@@ -119,7 +119,7 @@ const extractField = (
         type,
         required,
         annotations,
-        comment: '',
+        comments: '',
     };
 
     return field;
@@ -172,6 +172,7 @@ const parseEntity = (
     let unparsedEntityAnnotations = [];
     let unparsedFieldAnnotations = [];
     const data = [];
+    const commentsLines= [];
 
     for (const line of unparsedEntity) {
         const {
@@ -182,6 +183,9 @@ const parseEntity = (
         switch (type) {
             case 'ENTITY_ANNOTATION':
                 unparsedEntityAnnotations.push(value);
+                break;
+            case 'ENTITY_COMMENT':
+                commentsLines.push(value);
                 break;
             case 'FIELD_ANNOTATION':
                 unparsedFieldAnnotations.push(value);
@@ -204,12 +208,13 @@ const parseEntity = (
     }
 
     const entityAnnotations = parseEntityAnnotations(unparsedEntityAnnotations);
+    const comments = commentsLines.join('\n')
     const entity: DatasignEntity = {
         id,
         name,
         data,
         annotations: entityAnnotations,
-        comment: '',
+        comments,
     };
 
     return entity;
@@ -241,10 +246,19 @@ const parseSource= (
 
     for (let line of lines) {
         if (isComment(line)) {
+            if (options.comments && !addingToEntity) {
+                const typedLine: TypedLine = {
+                    value: line,
+                    type: lineTypes.entityComment,
+                };
+                unparsedEntity.push(typedLine);
+            }
             continue;
         }
 
-        line = removeInlineComment(line);
+        if (!options.comments) {
+            line = removeInlineComment(line);
+        }
         line = trimTrailingSpace(line);
 
         if (isAnnotation(line)) {
@@ -290,6 +304,16 @@ const parseSource= (
             unparsedEntity.push(typedLine);
             continue;
         }
+
+        // if (options.preserveSpacing) {
+        //     if (!addingToEntity && line === '') {
+        //         const typedLine: TypedLine = {
+        //             value: line,
+        //             type: lineTypes.emptyLine,
+        //         };
+        //         unparsedEntity.push(typedLine);
+        //     }
+        // }
     }
 
     return parseEntities(unparsedEntities);
