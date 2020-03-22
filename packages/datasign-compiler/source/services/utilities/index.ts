@@ -41,3 +41,10 @@ export const formatCode = (
 ) => {
     return text.join(TWO_NEW_LINES) + ONE_NEW_LINE;
 }
+
+
+export const resolveSpacing = (
+    spacing: number,
+) => {
+    return ' '.repeat(spacing);
+}
