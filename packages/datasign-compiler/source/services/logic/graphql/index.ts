@@ -14,17 +14,28 @@ import {
 
 const generateGraphqlFields = (
     data: DatasignEntityData[],
+    options: DatasignCompilerOptions,
 ) => {
     const fields: string[] = [];
 
     const spacing = '    ';
     const separator = ': ';
+
     for (const field of data) {
         const {
             name,
             type,
             required,
+            empty,
         } = field;
+
+        if (empty) {
+            if (options.preserveSpacing) {
+                fields.push('');
+            }
+            continue;
+        }
+
         const requireString = required ? '!' : '';
         const typeString = capitalize(type);
         const fieldText = spacing + name + separator + typeString + requireString;
@@ -36,8 +47,9 @@ const generateGraphqlFields = (
 
 const generateGraphqlEntity = (
     entity: DatasignEntity,
+    options: DatasignCompilerOptions,
 ) => {
-    const fields = generateGraphqlFields(entity.data);
+    const fields = generateGraphqlFields(entity.data, options);
     const stringedFields = fields.join('\n');
 
     const entityText = `
@@ -55,7 +67,7 @@ const generateGraphql = (
     const graphqlText = [];
 
     for (const entity of parsed) {
-        const entityText = generateGraphqlEntity(entity);
+        const entityText = generateGraphqlEntity(entity, options);
         graphqlText.push(entityText);
     }
 

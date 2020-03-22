@@ -10,6 +10,7 @@ export interface DatasignCompilerOptions {
      * Compile comments into target text.
      */
     comments: boolean;
+    preserveSpacing: boolean;
 }
 
 
@@ -44,6 +45,7 @@ export interface DatasignEntityData {
     required: boolean;
     annotations: DatasignAnnotation[];
     comments: string;
+    empty?: boolean;
 }
 
 export interface DatasignAnnotation {

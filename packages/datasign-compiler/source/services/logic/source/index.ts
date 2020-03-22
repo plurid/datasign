@@ -203,7 +203,18 @@ const parseEntity = (
                     break;
                 }
             case 'EMPTY_LINE':
-                break;
+                {
+                    const emptyField: DatasignEntityData = {
+                        name,
+                        type,
+                        required: false,
+                        annotations: [],
+                        comments: '',
+                        empty: true,
+                    };
+                    data.push(emptyField);
+                    break;
+                }
         }
     }
 
@@ -305,15 +316,15 @@ const parseSource= (
             continue;
         }
 
-        // if (options.preserveSpacing) {
-        //     if (!addingToEntity && line === '') {
-        //         const typedLine: TypedLine = {
-        //             value: line,
-        //             type: lineTypes.emptyLine,
-        //         };
-        //         unparsedEntity.push(typedLine);
-        //     }
-        // }
+        if (options.preserveSpacing) {
+            if (!addingToEntity && line === '') {
+                const typedLine: TypedLine = {
+                    value: line,
+                    type: lineTypes.emptyLine,
+                };
+                unparsedEntity.push(typedLine);
+            }
+        }
     }
 
     return parseEntities(unparsedEntities);
