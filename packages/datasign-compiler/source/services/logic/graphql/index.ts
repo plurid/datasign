@@ -68,9 +68,9 @@ const generateGraphqlEntity = (
     const formattedComments = formatGraphqlComments(stringedComments);
 
     const entityText = formattedComments
-        + `type ${entity.name} {`
+        + `type ${entity.name} {\n`
         + stringedFields
-        + '}';
+        + '\n}';
 
     return entityText;
 }

@@ -58,9 +58,9 @@ const generateProtobufEntity = (
         : '';
 
     const entityText = stringedComments
-        + `message ${entity.name} {`
+        + `message ${entity.name} {\n`
         + stringedFields
-        + '}';
+        + '\n}';
 
     return entityText;
 }
