@@ -5,7 +5,6 @@ import {
 } from '../../../data/interfaces';
 
 import {
-    trimSpace,
     formatCode,
 } from '../../utilities';
 
@@ -55,13 +54,13 @@ const generateTypescriptEntity = (
         ? entity.comments + '\n'
         : '';
 
-    console.log('entityttt', entity);
-    const entityText = `
-${stringedComments}export interface ${entity.name} {
-${stringedFields}
-}
-    `;
-    return trimSpace(entityText);
+
+    const entityText = stringedComments
+        + `export interface ${entity.name} {`
+        + stringedFields
+        + '}';
+
+    return entityText;
 }
 
 const generateTypescript = (

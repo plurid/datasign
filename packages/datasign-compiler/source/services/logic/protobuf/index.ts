@@ -5,7 +5,6 @@ import {
 } from '../../../data/interfaces';
 
 import {
-    trimSpace,
     formatCode,
 } from '../../utilities';
 
@@ -54,14 +53,16 @@ const generateProtobufEntity = (
 ) => {
     const fields = generateProtobufFields(entity.data, options);
     const stringedFields = fields.join('\n');
+    const stringedComments = entity.comments !== ''
+        ? entity.comments + '\n'
+        : '';
 
-    const entityText = `
-message ${entity.name} {
-${stringedFields}
-}
-    `;
+    const entityText = stringedComments
+        + `message ${entity.name} {`
+        + stringedFields
+        + '}';
 
-    return trimSpace(entityText);
+    return entityText;
 }
 
 const generateProtobuf = (
