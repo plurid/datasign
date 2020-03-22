@@ -11,6 +11,18 @@ import {
 
 
 
+const resolveGraphqlType = (
+    type: string,
+) => {
+    switch (type) {
+        case 'number':
+            return 'Int';
+        default:
+            return capitalize(type);
+    }
+}
+
+
 const generateGraphqlFields = (
     data: DatasignEntityData[],
     options: DatasignCompilerOptions,
@@ -36,8 +48,8 @@ const generateGraphqlFields = (
         }
 
         const requireString = required ? '!' : '';
-        const typeString = capitalize(type);
-        const fieldText = spacing + name + separator + typeString + requireString;
+        const resolvedType = resolveGraphqlType(type);
+        const fieldText = spacing + name + separator + resolvedType + requireString;
         fields.push(fieldText);
     }
 

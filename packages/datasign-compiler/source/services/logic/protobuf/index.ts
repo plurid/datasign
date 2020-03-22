@@ -10,6 +10,19 @@ import {
 
 
 
+const resolveProtobufType = (
+    type: string,
+) => {
+    switch (type) {
+        case 'number':
+            return 'int32';
+        case 'boolean':
+            return 'bool';
+        default:
+            return type;
+    }
+}
+
 const generateProtobufFields = (
     data: DatasignEntityData[],
     options: DatasignCompilerOptions,
@@ -37,9 +50,11 @@ const generateProtobufFields = (
             continue;
         }
 
+        const resolvedType = resolveProtobufType(type);
+
         const requiredString = required ? 'required ' : '';
         const fieldIndex = index + 1;
-        const fieldText = spacing + requiredString + type + space + name + equal + fieldIndex + semicolon;
+        const fieldText = spacing + requiredString + resolvedType + space + name + equal + fieldIndex + semicolon;
         fields.push(fieldText);
     }
 
