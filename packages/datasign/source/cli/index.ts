@@ -34,6 +34,8 @@ const main = async (
                 output,
                 resolve,
                 comments,
+                spacing,
+                preserve,
             } = program;
             const targets = separateList(target);
 
@@ -43,6 +45,8 @@ const main = async (
                 output,
                 resolve,
                 comments,
+                spacing,
+                preserve,
             };
             await compileCommand(data);
         });
@@ -68,6 +72,10 @@ const main = async (
             '-s, --spacing <value>',
             'spacing to be used in the compiled files',
             '4',
+        ).option(
+            '-p, --preserve <value>',
+            'preserve new lines spacing of the datasign file',
+            false,
         );
 
     program.parseAsync(process.argv);

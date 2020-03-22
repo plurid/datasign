@@ -22,13 +22,22 @@ const compileCommand = async (
         output,
         resolve,
         comments,
+        spacing,
+        preserve,
     } = data;
+
+    const parsedSpacing = parseInt(spacing);
+    const spacingValue = isNaN(parsedSpacing)
+        ? 4
+        : parsedSpacing;
 
     const processData: ProcessData = {
         targets: processTargets(targets),
         output: path.join(process.cwd(), output),
         resolve: processResolve(resolve),
         comments,
+        spacing: spacingValue,
+        preserve,
     };
 
     for (const file of files) {
