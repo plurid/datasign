@@ -10,6 +10,8 @@ export interface CompileData {
     output: string;
     resolve: string;
     comments: boolean;
+    spacing: string;
+    preserve: boolean;
 }
 
 
@@ -18,6 +20,8 @@ export interface ProcessData {
     output: string;
     resolve: Resolve;
     comments: boolean;
+    spacing: number;
+    preserve: boolean;
 }
 
 

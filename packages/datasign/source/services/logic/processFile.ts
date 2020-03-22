@@ -5,6 +5,7 @@ import {
 } from 'fs';
 
 import DatasignCompiler, {
+    DatasignCompilerData,
     DatasignCompileResult,
     Target,
     targets,
@@ -98,6 +99,8 @@ const handleFile = async (
         resolve,
         targets,
         comments,
+        spacing,
+        preserve,
     } = data;
 
     const filename = path.basename(filepath, DATASIGN_EXTENSION);
@@ -109,11 +112,13 @@ const handleFile = async (
         resolve,
     );
 
-    const compilerData = {
+    const compilerData: DatasignCompilerData = {
         source,
         targets,
         options: {
             comments,
+            spacing,
+            preserveSpacing: preserve,
         },
     };
     const compiler = new DatasignCompiler(compilerData);
