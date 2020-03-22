@@ -14,6 +14,11 @@ describe('DatasignCompiler', () => {
 // }
 //             `,
             source: `
+/**
+ * Documentation comments
+ */
+// entity comment
+// on multiline
 @entityID: TextEntity // assigns an ID to the type itself
 data Text {
     // type the 'id' field to 'ID' in GraphQL, and 'string' for TypeScript/Protocol Buffers/gRPC
@@ -42,6 +47,10 @@ data User {
                 'graphql',
                 'protobuf',
             ],
+            options: {
+                comments: true,
+                preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
