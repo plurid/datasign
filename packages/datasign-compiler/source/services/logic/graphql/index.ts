@@ -3,6 +3,10 @@ import {
     DatasignEntityData,
 } from '../../../data/interfaces';
 
+import {
+    capitalize,
+} from '../../utilities';
+
 
 
 const generateGraphqlFields = (
@@ -18,7 +22,7 @@ const generateGraphqlFields = (
             required,
         } = field;
         const requireString = required ? '!' : '';
-        const typeString = type; // capitalize
+        const typeString = capitalize(type);
         const fieldText = spacing + name + ': ' + typeString + requireString;
         fields.push(fieldText);
     }
