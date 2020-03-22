@@ -1,6 +1,6 @@
 {
     "name": "@plurid/datasign",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "CLI for single source of truth data specificator",
     "keywords": [
         "datasign"
