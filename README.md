@@ -31,20 +31,24 @@ File format specifying data signatures to be used as single source of (specified
 ```
     // Text.datasign
 
-    @entityID: TextEntity // assigns an ID to the type itself
+    @entityID: TextEntity; // assigns an ID to the type itself
+    // @annotationType: name: value; // or
+    // @annotationName: value // the value will change the type implicitly
+    // for example
+    // @graphql: input // will generate an 'input' type
     data Text {
         // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-        @graphql: ID
+        @graphql: ID;
         id: string;
 
         name: string;
         value: string;
-        @graphql: Int
+        @graphql: Int;
         characters: number;
         public: boolean;
 
-        @graphql: Date
-        @protobuf: number
+        @graphql: Date;
+        @protobuf: number;
         generatedAt: Date;
         generatedBy: User;
     }
