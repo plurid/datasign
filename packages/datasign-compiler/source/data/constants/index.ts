@@ -56,4 +56,5 @@ export const TWO_NEW_LINES = '\n\n';
 export const defaultDatasignCompilerOptions: DatasignCompilerOptions = {
     comments: false,
     preserveSpacing: false,
+    spacing: 4,
 }
