@@ -1,3 +1,10 @@
+import {
+    ONE_NEW_LINE,
+    TWO_NEW_LINES,
+} from '../../data/constants';
+
+
+
 export const isDatasignText = (
     value: string,
 ) => {
@@ -26,4 +33,11 @@ export const trimSpace = (
     line: string,
 ) => {
     return trimTrailingSpace(trimLeadingSpace(line));
+}
+
+
+export const formatCode = (
+    text: string[],
+) => {
+    return text.join(TWO_NEW_LINES) + ONE_NEW_LINE;
 }
