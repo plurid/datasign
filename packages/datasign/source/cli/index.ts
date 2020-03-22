@@ -70,7 +70,7 @@ const main = async (
             false,
         ).option(
             '-s, --spacing <value>',
-            'spacing to be used in the compiled files',
+            'indentation spacing to be used in the compiled files',
             '4',
         ).option(
             '-p, --preserve <value>',
