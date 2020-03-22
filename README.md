@@ -149,7 +149,7 @@ File format specifying data signatures to be used as single source of (specified
 
 ## Usage
 
-Command-Line Interface Options:
+Command-Line Interface options:
 
 ```
 -v, --version           output the version number
