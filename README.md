@@ -149,6 +149,17 @@ File format specifying data signatures to be used as single source of (specified
 
 ## Usage
 
+Command-Line Interface Options:
+
+```
+-v, --version           output the version number
+-t, --target <type>     compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
+-o, --output <path>     output path (default: ".")
+-r, --resolve <type>    resolve the output path relative to "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+-h, --help              display help for command
+```
+
+
 ### One-Time Compilation
 
 For a simple compilation, create a `.datasign` file, e.g. `Message.datasign`:
