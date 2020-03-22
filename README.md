@@ -201,7 +201,7 @@ add a script in `package.json`
 
 ### Programmatic
 
-For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and write a similar code
+For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and use in a similar manner
 
 ``` typescript
 import {
