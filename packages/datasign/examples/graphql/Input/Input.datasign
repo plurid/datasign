@@ -1,0 +1,6 @@
+@graphql input;
+data ExampleInputType {
+    @graphql ID;
+    id: string;
+    name: string;
+}
