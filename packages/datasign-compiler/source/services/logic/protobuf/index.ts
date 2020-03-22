@@ -23,6 +23,7 @@ const generateProtobufFields = (
     const spacing = '    ';
     const space = ' ';
     const equal = ' = ';
+    const semicolon = ';';
     for (const [index, field] of data.entries()) {
         const {
             name,
@@ -31,7 +32,7 @@ const generateProtobufFields = (
         } = field;
         const requiredString = required ? 'required ' : '';
         const fieldIndex = index + 1;
-        const fieldText = spacing + requiredString + type + space + name + equal + fieldIndex;
+        const fieldText = spacing + requiredString + type + space + name + equal + fieldIndex + semicolon;
         fields.push(fieldText);
     }
 
