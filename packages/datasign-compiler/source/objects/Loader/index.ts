@@ -10,9 +10,12 @@ import {
 import {
     Target,
     DatasignEntity,
+    DatasignCompilerOptions,
 } from '../../data/interfaces';
 
 import {
+    resolveCompilerOptions,
+
     parseSource,
 
     generateGraphql,
@@ -29,11 +32,14 @@ import {
 class Loader {
     private source: string;
     private parsedSource: DatasignEntity[] = [];
+    private options: DatasignCompilerOptions;
 
     constructor(
         source: string,
+        options: Partial<DatasignCompilerOptions>
     ) {
         this.source = source;
+        this.options = resolveCompilerOptions(options);
     }
 
     async load(
@@ -44,23 +50,23 @@ class Loader {
                 const filepath = path.join(process.cwd(), this.source);
                 const content = await fs.readFile(filepath, 'utf-8');
                 this.source = content;
-                this.parsedSource = parseSource(this.source);
+                this.parsedSource = parseSource(this.source, this.options);
             } catch (error) {
                 console.log('File not found.');
             }
         }
 
         if (this.parsedSource === []) {
-            this.parsedSource = parseSource(this.source);
+            this.parsedSource = parseSource(this.source, this.options);
         }
 
         switch (target) {
             case targets.graphql:
-                return generateGraphql(this.parsedSource);
+                return generateGraphql(this.parsedSource, this.options);
             case targets.protobuf:
-                return generateProtobuf(this.parsedSource);
+                return generateProtobuf(this.parsedSource, this.options);
             case targets.typescript:
-                return generateTypescript(this.parsedSource);
+                return generateTypescript(this.parsedSource, this.options);
         }
     }
 }
