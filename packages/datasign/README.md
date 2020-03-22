@@ -16,7 +16,7 @@
 </h1>
 
 
-CLI for single source of truth data specificator
+CLI for the single source of truth data specificator [datasign](https://github.com/plurid/datasign).
 
 
 ## Usage
