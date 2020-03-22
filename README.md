@@ -123,3 +123,70 @@ File format specifying data signatures to be used as single source of (specified
         required string name = 2;
     }
 ```
+
+
+## Usage
+
+### One-Time Compilation
+
+For a simple compilation, create a `.datasign` file, e.g. `Message.datasign`:
+
+```
+data Message {
+    id: string;
+    value: string;
+}
+```
+
+and run the command pointing to the file's location
+
+```
+npx @plurid/datasign ./Message.datasign
+```
+
+
+### Script
+
+For scripting usage, run in your package the command
+
+```
+npm install @plurid/datasign
+```
+
+or
+
+```
+yarn add @plurid/datasign
+```
+
+add a script in `package.json`
+
+```
+    "datasign": "datasign /path/to/files"
+```
+
+
+### Programmatic
+
+For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and write the code
+
+``` typescript
+import {
+    DatasignLoader,
+} from '@plurid/datasign'
+
+async function main() {
+    const datasignLoader = new DatasignLoader('/path/to/file');
+    const graphql = await datasignLoader.load('graphql');
+    // graphql contains the types string
+
+    const protobuf = await datasignLoader.load('protobuf');
+    // protobuf contains the messages string
+
+    const typescript = await datasignLoader.load('typescript');
+    // typescript contains the types namespace
+}
+
+main();
+```
+
