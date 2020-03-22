@@ -39,8 +39,8 @@ data User {
             `,
             targets: [
                 'typescript',
-                // 'graphql',
-                // 'protobuf',
+                'graphql',
+                'protobuf',
             ],
         };
         const compiler = new DatasignCompiler(data);
