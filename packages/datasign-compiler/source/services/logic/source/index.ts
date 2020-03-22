@@ -9,6 +9,10 @@ import {
     TypedLine,
 } from '../../../data/interfaces';
 
+import {
+    trimTrailingSpace,
+} from '../../../services/utilities';
+
 
 
 const isComment = (
@@ -44,17 +48,6 @@ const removeInlineComment = (
     return line.replace(/\/\/.+$/, '');
 }
 
-const trimTrailingSpace = (
-    line: string,
-) => {
-    return line.replace(/\s+$/g, '');
-}
-
-const trimLeadingSpace = (
-    line: string,
-) => {
-    return line.replace(/^\s+/g, '');
-}
 
 const extractEntityName = (
     line: string,
@@ -66,6 +59,7 @@ const extractEntityName = (
     }
     return '';
 }
+
 
 const allowedFieldAnnotations = [
     'graphql',
