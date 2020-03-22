@@ -21,6 +21,7 @@ const generateTypescriptFields = (
 
     const spacing = '    ';
     const separator = ': ';
+    const semicolon = ';';
     for (const field of data) {
         const {
             name,
@@ -28,7 +29,7 @@ const generateTypescriptFields = (
             required,
         } = field;
         const requireString = required ? '' : '?';
-        const fieldText = spacing + name + requireString + separator + type;
+        const fieldText = spacing + name + requireString + separator + type + semicolon;
         fields.push(fieldText);
     }
 
