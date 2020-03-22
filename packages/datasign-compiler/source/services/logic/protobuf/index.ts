@@ -1,6 +1,7 @@
 import {
     DatasignEntity,
     DatasignEntityData,
+    DatasignCompilerOptions,
 } from '../../../data/interfaces';
 
 import {
@@ -53,6 +54,7 @@ ${stringedFields}
 
 const generateProtobuf = (
     parsed: DatasignEntity[],
+    options: DatasignCompilerOptions,
 ) => {
     let protobufText = [];
 
