@@ -214,3 +214,159 @@ main();
 
 + `Int` for `GraphQL`
 + `int32` for `Protocol Buffers`
+
+
+
+## Annotations
+
+### Entity
+
+#### `entityID`
+
+The ID of the entity
+
+
+#### `@typescript`
+
+##### `export`
+
+To export or no the compiled interface.
+
+default: `true`
+
+example:
+
+```
+    @typescript: export: false;
+    data Message {
+        // fields
+    }
+```
+
+compiles to
+
+``` typescript
+    interface Message {
+        // fields
+    }
+```
+
+
+#### `@graphql`
+
+##### `type`
+
+The `GraphQL` type of the compiled `GraphQL` data structure.
+
+default: `type`
+
+example:
+
+```
+    @graphql: type: input;
+    data Message {
+        // fields
+    }
+```
+
+compiles to
+
+``` graphql
+    input Message {
+        // fields
+    }
+```
+
+
+### Field
+
+#### `@graphql`
+
+##### `type`
+
+The `GraphQL` type of the compiled `GraphQL` field.
+
+example:
+
+```
+    data Message {
+        @graphql type: ID;
+        id: string;
+    }
+```
+
+which is equivalent to
+
+```
+    data Message {
+        @graphql ID;
+        id: string;
+    }
+```
+
+compiles to
+
+``` graphql
+    type Message {
+        id: ID!
+    }
+```
+
+
+##### `directive`
+
+Adds the directive to the `GraphQL` field. The directive needs to be provided in the `GraphQL` schema.
+
+example:
+
+```
+    data Message {
+        newField: string;
+
+        // the `deprecated` directive needs to be provided to the graphql schema
+        @graphql: directive: deprecated: reason: "Use `newField`."
+        oldField: string;
+    }
+```
+
+compiles to
+
+```
+    type Message {
+        newField: String!
+        oldField: String! @deprecated(reason: "Use `newField`.")
+    }
+```
+
+
+#### `@graphql`
+
+##### `type`
+
+The `Protocol Buffers` type of the compiled `Protocol Buffers` field.
+
+example:
+
+```
+    data Count {
+        @protobuf type: int64;
+        value: number;
+    }
+```
+
+which is equivalent to
+
+```
+    data Count {
+        @protobuf int64;
+        value: number;
+    }
+```
+
+compiles to
+
+``` protobuf
+    message Count {
+        required int64 value = 1;
+    }
+```
