@@ -25,6 +25,8 @@ export interface DatasignEntity {
     id: string;
     name: string;
     data: DatasignEntityData[];
+    annotations: DatasignAnnotation[];
+    comment: string;
 
     /**
      * Entities may be annotated with `@only` to allow compilation
@@ -34,17 +36,20 @@ export interface DatasignEntity {
      * Default: `[]`.
      */
     only?: Target[];
-    comment?: string;
 }
 
 export interface DatasignEntityData {
     name: string;
     type: string;
     required: boolean;
-    annotations?: any;
-    comment?: string;
+    annotations: DatasignAnnotation[];
+    comment: string;
 }
 
+export interface DatasignAnnotation {
+    name: string;
+    value: string;
+}
 
 
 export type TypeEntityAnnotation = 'ENTITY_ANNOTATION';

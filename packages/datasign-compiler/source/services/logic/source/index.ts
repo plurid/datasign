@@ -5,6 +5,7 @@ import {
 import {
     DatasignEntity,
     DatasignEntityData,
+    DatasignAnnotation,
     TypedLine,
 } from '../../../data/interfaces';
 
@@ -66,36 +67,116 @@ const extractEntityName = (
     return '';
 }
 
+const allowedFieldAnnotations = [
+    'graphql',
+    'protobuf',
+    'typescript',
+];
+
+const extractFieldAnnotations = (
+    line: string,
+): DatasignAnnotation | undefined => {
+    const split = line.split(':');
+
+    const name = split[0].trim().replace('@', '');
+    if (!allowedFieldAnnotations.includes(name)) {
+        return;
+    }
+
+    const value = split[1].trim().replace(';', '');
+
+    const annotation: DatasignAnnotation = {
+        name,
+        value,
+    };
+    return annotation;
+}
+
+const parseFieldAnnotations = (
+    fieldAnnotations: string[]
+) => {
+    const annotations = [];
+
+    for (const fieldAnnotation of fieldAnnotations) {
+        const annotation = extractFieldAnnotations(fieldAnnotation);
+        if (annotation) {
+            annotations.push(annotation);
+        }
+    }
+
+    return annotations;
+}
+
 const extractField = (
     line: string,
     fieldAnnotations: string[],
 ) => {
-    // TODO
-    // parse fieldAnnotations
-
     const split = line.split(':');
     const name = split[0].trim().replace('?', '');
     const type = split[1].trim().replace(';', '');
-    const required = !/\?/.test(line);
+    const requiredRE = new RegExp('\\?');
+    const required = !requiredRE.test(line);
+
+    const annotations = parseFieldAnnotations(fieldAnnotations);
 
     const field: DatasignEntityData = {
         name,
         type,
         required,
+        annotations,
+        comment: '',
     };
 
     return field;
 }
 
 
+const allowedEntityAnnotations = [
+    'entityID',
+];
+
+const extractEntityAnnotations = (
+    line: string,
+): DatasignAnnotation | undefined => {
+    const split = line.split(':');
+
+    const name = split[0].trim().replace('@', '');
+    if (!allowedEntityAnnotations.includes(name)) {
+        return;
+    }
+
+    const value = split[1].trim().replace(';', '');
+
+    const annotation: DatasignAnnotation = {
+        name,
+        value,
+    };
+    return annotation;
+}
+
+const parseEntityAnnotations = (
+    entityAnnotations: string[],
+): DatasignAnnotation[] => {
+    const annotations = [];
+
+    for (const entityAnnotation of entityAnnotations) {
+        const annotation = extractEntityAnnotations(entityAnnotation);
+        if (annotation) {
+            annotations.push(annotation);
+        }
+    }
+
+    return annotations;
+}
+
 const parseEntity = (
     unparsedEntity: TypedLine[],
 ) => {
     let name = '';
     let id = '';
+    let unparsedEntityAnnotations = [];
+    let unparsedFieldAnnotations = [];
     const data = [];
-    let entityAnnotations = [];
-    let fieldAnnotations = [];
 
     for (const line of unparsedEntity) {
         const {
@@ -105,10 +186,10 @@ const parseEntity = (
 
         switch (type) {
             case 'ENTITY_ANNOTATION':
-                entityAnnotations.push(value);
+                unparsedEntityAnnotations.push(value);
                 break;
             case 'FIELD_ANNOTATION':
-                fieldAnnotations.push(value);
+                unparsedFieldAnnotations.push(value);
                 break;
             case 'DATA_START':
                 name = extractEntityName(value);
@@ -117,8 +198,8 @@ const parseEntity = (
                 break;
             case 'DATA_FIELD':
                 {
-                    const field = extractField(value, fieldAnnotations);
-                    fieldAnnotations = [];
+                    const field = extractField(value, unparsedFieldAnnotations);
+                    unparsedFieldAnnotations = [];
                     data.push(field);
                     break;
                 }
@@ -127,15 +208,15 @@ const parseEntity = (
         }
     }
 
-    // TOOD
-    // parse entity annotations
-
+    const entityAnnotations = parseEntityAnnotations(unparsedEntityAnnotations);
     const entity: DatasignEntity = {
         id,
         name,
         data,
+        annotations: entityAnnotations,
+        comment: '',
     };
-    console.log(entity);
+
     return entity;
 }
 
