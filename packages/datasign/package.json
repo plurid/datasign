@@ -1,6 +1,6 @@
 {
     "name": "@plurid/datasign",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "CLI for single source of truth data specificator",
     "keywords": [
         "datasign"
@@ -47,7 +47,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@plurid/datasign-compiler": "^0.0.5",
+        "@plurid/datasign-compiler": "^0.0.6",
         "commander": "^5.0.0"
     },
     "devDependencies": {
