@@ -47,7 +47,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@plurid/datasign-compiler": "^0.0.11",
+        "@plurid/datasign-compiler": "^0.0.12",
         "commander": "^5.0.0"
     },
     "devDependencies": {
