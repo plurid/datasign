@@ -40,7 +40,7 @@ data Message {
         expect(compilation).toStrictEqual(result.graphql);
     });
 
-    it('compiles with input annotation', () => {
+    it('compiles with input entity annotation', () => {
         const source = `
 @graphql: input;
 data Message {
@@ -64,6 +64,38 @@ data Message {
             '    value: String!\n' +
             '    length: Int!\n' +
             '    read: Boolean!\n' +
+            '}\n';
+
+        // console.log('----');
+        // console.log('result', result);
+        // console.log('----');
+        // console.log('compilation', compilation);
+        // console.log('----');
+
+        expect(compilation).toStrictEqual(result.graphql);
+    });
+
+    it.only('compiles with directive field annotation', () => {
+        const source = `
+data Message {
+    newField: string;
+
+    @graphql: directive: deprecated: reason: "Use \`newField\`.";
+    oldField: string;
+}`;
+        const data: DatasignCompilerData = {
+            source,
+            targets: ['graphql'],
+            // options: {
+            //     preserveSpacing: true,
+            // },
+        };
+        const compiler = new DatasignCompiler(data);
+        const result = compiler.compile();
+        const compilation =
+            'type Message {\n' +
+            '    newField: String!\n' +
+            '    oldField: String! @deprecated(reason: "Use `newField`.")\n' +
             '}\n';
 
         // console.log('----');
