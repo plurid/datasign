@@ -67,7 +67,7 @@ const main = async (
             'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
             'file',
         ).option(
-            '-c, --comments',
+            '-c, --comments <value>',
             'compile the comments into the target files',
             false,
         ).option(
@@ -79,7 +79,7 @@ const main = async (
             'preserve new lines spacing of the datasign file',
             false,
         ).option(
-            '-g, --generated',
+            '-g, --generated <value>',
             'inject a header in each generated file mentioning the source',
             true,
         );
