@@ -14,6 +14,9 @@
           "include": "#keywords"
         },
         {
+          "include": "#fields"
+        },
+        {
           "include": "#data-dividers"
         }
       ]
@@ -22,11 +25,27 @@
       "patterns": [
         {
           "name": "keyword.control.datasign",
-          "match": "^\\s*?(data)\\s"
+          "match": "\\b(data)\\b"
         },
         {
-          "name": "entity.name.type.datasign",
+          "name": "keyword.control.datasign",
           "match": "^\\s*?(\\w+):"
+        },
+        {
+          "name": "keyword.control.datasign",
+          "match": "^\\s*?(@\\w+):"
+        }
+      ]
+    },
+    "fields": {
+      "patterns": [
+        {
+          "name": "constant.language",
+          "match": "^\\s*?(\\w+):"
+        },
+        {
+          "name": "constant.language",
+          "match": "^\\s*?(@\\w+):"
         }
       ]
     },

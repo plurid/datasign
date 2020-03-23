@@ -7,14 +7,21 @@ repository:
   core:
     patterns:
       - include: '#keywords'
+      - include: '#fields'
       - include: '#data-dividers'
   keywords:
     patterns:
-      - name: keyword.control
-        match: '^\s*?(data)\s'
-      - name: entity.name.type
+      - name: keyword.control.datasign
+        match: '\b(data)\b'
+      - name: keyword.control.datasign
         match: '^\s*?(\w+):'
-      - name: entity.name.tag
+      - name: keyword.control.datasign
+        match: '^\s*?(@\w+):'
+  fields:
+    patterns:
+      - name: constant.language
+        match: '^\s*?(\w+):'
+      - name: constant.language
         match: '^\s*?(@\w+):'
   data-dividers:
     begin: '{'
@@ -28,4 +35,3 @@ repository:
     name: expression.group
     patterns:
       - include: '#keywords'
-      # - include: '#expression'
