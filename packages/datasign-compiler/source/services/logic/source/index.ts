@@ -94,7 +94,7 @@ const extractFieldAnnotations = (
      * else simply store the single word.
      */
     const value = split.length > 2
-        ? split.slice(1).join(':').trim()
+        ? split.slice(1).join(':').trim().replace(';', '')
         : split[1].trim().replace(';', '');
 
     const annotation: DatasignAnnotation = {
@@ -158,7 +158,14 @@ const extractEntityAnnotations = (
         return;
     }
 
-    const value = split[1].trim().replace(';', '');
+    /**
+     * If value is not a single word, e.g. 'ID', 'input',
+     * recombine the line without the name,
+     * else simply store the single word.
+     */
+    const value = split.length > 2
+        ? split.slice(1).join(':').trim().replace(';', '')
+        : split[1].trim().replace(';', '');
 
     const annotation: DatasignAnnotation = {
         name,
