@@ -36,6 +36,7 @@ const main = async (
                 comments,
                 spacing,
                 preserve,
+                generated,
             } = program;
             const targets = separateList(target);
 
@@ -47,6 +48,7 @@ const main = async (
                 comments,
                 spacing,
                 preserve,
+                generated,
             };
             await compileCommand(data);
         });
@@ -76,6 +78,10 @@ const main = async (
             '-p, --preserve <value>',
             'preserve new lines spacing of the datasign file',
             false,
+        ).option(
+            '-g, --generated',
+            'inject a header in each generated file mentioning the source',
+            true,
         );
 
     program.parseAsync(process.argv);
