@@ -7,7 +7,7 @@ import {
 import {
     formatCode,
     resolveSpacing,
-    injectGeneratedMessage,
+    constructGeneratedNotice,
 } from '../../utilities';
 
 
@@ -69,7 +69,7 @@ const generateTypescript = (
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = injectGeneratedMessage('Foo.datasign', 'typescript');
+    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'typescript');
 
     const typescriptText = options.generatedNotice
         ? [generatedMessage]

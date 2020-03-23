@@ -70,7 +70,7 @@ export const extractAnnotationsByType = (
 
 
 
-export const injectGeneratedMessage = (
+export const constructGeneratedNotice = (
     filename: string,
     type: string,
 ) => {
@@ -78,10 +78,10 @@ export const injectGeneratedMessage = (
         ? '#'
         : '//';
 
-    const message = `${commentMark} ---`
+    const notice = `${commentMark} ---`
         + `${commentMark} This file has been generated from ${filename}.\n`
         + `${commentMark} Do not edit directly.`;
         + `${commentMark} ---`
 
-    return message;
+    return notice;
 }

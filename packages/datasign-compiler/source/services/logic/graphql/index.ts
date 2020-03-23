@@ -10,7 +10,7 @@ import {
     formatCode,
     resolveSpacing,
     extractAnnotationsByType,
-    injectGeneratedMessage,
+    constructGeneratedNotice,
 } from '../../utilities';
 
 
@@ -161,7 +161,7 @@ const generateGraphql = (
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = injectGeneratedMessage('Foo.datasign', 'graphql');
+    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'graphql');
 
     const graphqlText = options.generatedNotice
         ? [generatedMessage]

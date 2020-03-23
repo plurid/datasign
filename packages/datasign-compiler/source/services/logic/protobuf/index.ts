@@ -7,7 +7,7 @@ import {
 import {
     formatCode,
     resolveSpacing,
-    injectGeneratedMessage,
+    constructGeneratedNotice,
 } from '../../utilities';
 
 
@@ -85,7 +85,7 @@ const generateProtobuf = (
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = injectGeneratedMessage('Foo.datasign', 'protobuf');
+    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'protobuf');
 
     const protobufText = options.generatedNotice
         ? [generatedMessage]
