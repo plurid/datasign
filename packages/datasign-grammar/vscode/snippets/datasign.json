@@ -1,0 +1,30 @@
+{
+	"sign": {
+		"prefix": "@s",
+		"body": [
+			"@sign"
+		],
+		"description": "sign"
+	},
+	"graphql": {
+		"prefix": "@g",
+		"body": [
+			"@graphql"
+		],
+		"description": "graphql"
+	},
+	"protobuf": {
+		"prefix": "@p",
+		"body": [
+			"@protobuf"
+		],
+		"description": "protobuf"
+	},
+	"typescript": {
+		"prefix": "@t",
+		"body": [
+			"@typescript"
+		],
+		"description": "typescript"
+	}
+}
