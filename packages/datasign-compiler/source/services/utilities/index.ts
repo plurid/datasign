@@ -79,13 +79,13 @@ export const constructGeneratedNotice = (
         : '//';
 
     const generatedFrom = filename
-        ? `${commentMark} This file has been generated from ${filename}.\n`
+        ? `${commentMark} This file has been generated from ${filename}.datasign.\n`
         : `${commentMark} This file has been generated from a .datasign file.\n`;
 
-    const notice = `${commentMark} ---`
+    const notice = `${commentMark} ---\n`
         + generatedFrom
-        + `${commentMark} Do not edit directly.`;
-        + `${commentMark} ---`
+        + `${commentMark} Do not edit directly.\n`;
+        + `${commentMark} ---\n\n\n`;
 
     return notice;
 }
