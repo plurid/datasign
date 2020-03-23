@@ -79,8 +79,7 @@ const resolveGraphqlFieldAnnotations = (
             const directiveName = directiveNameMatch[1];
 
             const directiveArguments = directiveValue
-                .replace(`${directiveName}: `, '')
-                .replace(';', '');
+                .replace(`${directiveName}: `, '');
 
             const directiveText = ` @${directiveName}(${directiveArguments})`;
             fieldAnnotation += directiveText;
