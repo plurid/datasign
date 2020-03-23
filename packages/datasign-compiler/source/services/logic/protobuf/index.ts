@@ -87,10 +87,11 @@ const generateProtobuf = (
     options: DatasignCompilerOptions,
 ) => {
     const generatedMessage = constructGeneratedNotice(filename, 'protobuf');
+    const syntaxProtobuf = 'syntax = "proto3";\n\n';
 
     const protobufText = options.generatedNotice
-        ? [generatedMessage]
-        : [];
+        ? [generatedMessage, syntaxProtobuf,]
+        : [syntaxProtobuf];
 
     for (const entity of parsed) {
         const entityText = generateProtobufEntity(entity, options);
