@@ -84,8 +84,8 @@ export const constructGeneratedNotice = (
 
     const notice = `${commentMark} ---\n`
         + generatedFrom
-        + `${commentMark} Do not edit directly.\n`;
-        + `${commentMark} ---\n\n\n`;
+        + `${commentMark} Do not edit directly.\n`
+        + `${commentMark} ---\n\n`;
 
     return notice;
 }
