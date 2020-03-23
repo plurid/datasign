@@ -3,6 +3,10 @@ import {
     TWO_NEW_LINES,
 } from '../../data/constants';
 
+import {
+    DatasignAnnotation,
+} from '../../data/interfaces';
+
 
 
 export const isDatasignText = (
@@ -47,4 +51,19 @@ export const resolveSpacing = (
     spacing: number,
 ) => {
     return ' '.repeat(spacing);
+}
+
+
+
+export const extractAnnotationsByType = (
+    annotations: DatasignAnnotation[],
+    type: string,
+): DatasignAnnotation[] => {
+    const typedAnnotations = [];
+    for (const annotation of annotations) {
+        if (annotation.name === type) {
+            typedAnnotations.push(annotation);
+        }
+    }
+    return typedAnnotations;
 }

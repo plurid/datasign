@@ -9,7 +9,9 @@ import {
     capitalize,
     formatCode,
     resolveSpacing,
+    extractAnnotationsByType,
 } from '../../utilities';
+
 
 
 
@@ -27,20 +29,13 @@ const resolveGraphqlType = (
 const resolveGraphqlEntityType = (
     annotations: DatasignAnnotation[],
 ) => {
-    const graphqlAnnotations = [];
     for (const annotation of annotations) {
-        if (annotation.name === 'graphql') {
-            graphqlAnnotations.push(annotation);
-        }
-    }
-
-    for (const graphqlAnnotation of graphqlAnnotations) {
-        if (graphqlAnnotation.value.split(' ').length === 1) {
-            return graphqlAnnotation.value;
+        if (annotation.value.split(' ').length === 1) {
+            return annotation.value;
         }
 
-        if (graphqlAnnotation.value.includes('type:')) {
-            return graphqlAnnotation.value.replace('type: ', '');
+        if (annotation.value.includes('type:')) {
+            return annotation.value.replace('type: ', '');
         }
     }
 
@@ -103,10 +98,11 @@ const generateGraphqlEntity = (
         ? entity.comments + '\n'
         : '';
     const formattedComments = formatGraphqlComments(stringedComments);
-    const graphqlType = resolveGraphqlEntityType(entity.annotations);
+    const graphqlAnnotations = extractAnnotationsByType(entity.annotations, 'graphql');
+    const graphqlEntityType = resolveGraphqlEntityType(graphqlAnnotations);
 
     const entityText = formattedComments
-        + `${graphqlType} ${entity.name} {\n`
+        + `${graphqlEntityType} ${entity.name} {\n`
         + stringedFields
         + '\n}';
 
