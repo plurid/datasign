@@ -12,6 +12,7 @@ export interface CompileData {
     comments: boolean;
     spacing: string;
     preserve: boolean;
+    generated: boolean;
 }
 
 
@@ -22,6 +23,7 @@ export interface ProcessData {
     comments: boolean;
     spacing: number;
     preserve: boolean;
+    generated: boolean;
 }
 
 

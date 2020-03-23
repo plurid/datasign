@@ -101,6 +101,7 @@ const handleFile = async (
         comments,
         spacing,
         preserve,
+        generated,
     } = data;
 
     const filename = path.basename(filepath, DATASIGN_EXTENSION);
@@ -120,6 +121,7 @@ const handleFile = async (
             comments,
             spacing,
             preserveSpacing: preserve,
+            generatedNotice: generated,
         },
     };
     const compiler = new DatasignCompiler(compilerData);

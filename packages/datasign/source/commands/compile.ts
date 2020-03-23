@@ -24,6 +24,7 @@ const compileCommand = async (
         comments,
         spacing,
         preserve,
+        generated,
     } = data;
 
     const parsedSpacing = parseInt(spacing);
@@ -38,6 +39,7 @@ const compileCommand = async (
         comments,
         spacing: spacingValue,
         preserve,
+        generated,
     };
 
     for (const file of files) {
