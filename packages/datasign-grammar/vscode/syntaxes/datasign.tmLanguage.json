@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "datasign",
-  "scopeName": "source.plurid",
+  "scopeName": "source.datasign",
   "patterns": [
     {
       "include": "#core"
@@ -14,9 +14,6 @@
           "include": "#keywords"
         },
         {
-          "include": "#fields"
-        },
-        {
           "include": "#data-dividers"
         }
       ]
@@ -24,28 +21,40 @@
     "keywords": {
       "patterns": [
         {
-          "name": "keyword.control.datasign",
-          "match": "\\b(data)\\b"
+          "match": "^\\s*?(\\w+):",
+          "captures": {
+            "1": {
+              "name": "constant.other.object.key.datasign"
+            }
+          }
         },
         {
-          "name": "keyword.control.datasign",
-          "match": "^\\s*?(\\w+):"
+          "match": "\\b(\\w+)\\s*{",
+          "captures": {
+            "1": {
+              "name": "variable.other.constant.datasign"
+            }
+          }
         },
         {
-          "name": "keyword.control.datasign",
-          "match": "^\\s*?(@\\w+):"
-        }
-      ]
-    },
-    "fields": {
-      "patterns": [
-        {
-          "name": "constant.language",
-          "match": "^\\s*?(\\w+):"
+          "name": "storage.type.datasign",
+          "match": "^\\b(data)\\b"
         },
         {
-          "name": "constant.language",
-          "match": "^\\s*?(@\\w+):"
+          "match": "^\\s*@(sign|graphql|protobuf|typescript):",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.datasign"
+            }
+          }
+        },
+        {
+          "name": "comment.datasign",
+          "match": "\\/\\/.+"
+        },
+        {
+          "name": "comment.datasign",
+          "match": "^(\\/\\*\\*(.+)?)|((\\s+)?\\*(.+)?\\/?)"
         }
       ]
     },

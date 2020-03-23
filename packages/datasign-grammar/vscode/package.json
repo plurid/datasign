@@ -34,7 +34,7 @@
         "grammars": [
             {
                 "language": "datasign",
-                "scopeName": "source.plurid",
+                "scopeName": "source.datasign",
                 "path": "./syntaxes/datasign.tmLanguage.json"
             }
         ]
