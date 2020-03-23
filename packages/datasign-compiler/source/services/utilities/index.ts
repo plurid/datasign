@@ -67,3 +67,21 @@ export const extractAnnotationsByType = (
     }
     return typedAnnotations;
 }
+
+
+
+export const injectGeneratedMessage = (
+    filename: string,
+    type: string,
+) => {
+    const commentMark = type === 'graphql'
+        ? '#'
+        : '//';
+
+    const message = `${commentMark} ---`
+        + `${commentMark} This file has been generated from ${filename}.\n`
+        + `${commentMark} Do not edit directly.`;
+        + `${commentMark} ---`
+
+    return message;
+}
