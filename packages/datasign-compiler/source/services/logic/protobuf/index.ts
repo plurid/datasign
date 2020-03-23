@@ -82,10 +82,11 @@ const generateProtobufEntity = (
 }
 
 const generateProtobuf = (
+    filename: string,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'protobuf');
+    const generatedMessage = constructGeneratedNotice(filename, 'protobuf');
 
     const protobufText = options.generatedNotice
         ? [generatedMessage]
