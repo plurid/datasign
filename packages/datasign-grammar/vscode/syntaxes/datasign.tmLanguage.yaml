@@ -10,10 +10,12 @@ repository:
       - include: '#data-dividers'
   keywords:
     patterns:
-      - name: keyword.control.datasign
+      - name: keyword.control
         match: '^\s*?(data)\s'
-      - name: entity.name.type.datasign
+      - name: entity.name.type
         match: '^\s*?(\w+):'
+      - name: entity.name.tag
+        match: '^\s*?(@\w+):'
   data-dividers:
     begin: '{'
     end: '}'
