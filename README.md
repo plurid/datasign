@@ -364,7 +364,7 @@ data Message {
     newField: string;
 
     // the `deprecated` directive needs to be provided to the graphql schema
-    @graphql: directive: deprecated: reason: "Use `newField`."
+    @graphql: directive: deprecated: reason: "Use `newField`.";
     oldField: string;
 }
 ```
