@@ -115,6 +115,7 @@ const handleFile = async (
     const compilerData: DatasignCompilerData = {
         source,
         targets,
+        filename,
         options: {
             comments,
             spacing,
