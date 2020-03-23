@@ -8,7 +8,7 @@
         "color": "#1f2533",
         "theme": "dark"
     },
-    "description": "Syntax highlighting for datasign files (.datasign).",
+    "description": "Syntax highlighting for .datasign files.",
     "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com/)",
     "repository": {
         "type": "git",
