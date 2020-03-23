@@ -62,11 +62,11 @@ class Loader {
 
         switch (target) {
             case targets.graphql:
-                return generateGraphql(this.parsedSource, this.options);
+                return generateGraphql(undefined, this.parsedSource, this.options);
             case targets.protobuf:
-                return generateProtobuf(this.parsedSource, this.options);
+                return generateProtobuf(undefined, this.parsedSource, this.options);
             case targets.typescript:
-                return generateTypescript(this.parsedSource, this.options);
+                return generateTypescript(undefined, this.parsedSource, this.options);
         }
     }
 }
