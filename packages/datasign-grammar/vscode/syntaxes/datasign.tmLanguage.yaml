@@ -1,28 +1,37 @@
 $schema: 'https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json'
 name: datasign
-scopeName: source.plurid
+scopeName: source.datasign
 patterns:
   - include: '#core'
 repository:
   core:
     patterns:
       - include: '#keywords'
-      - include: '#fields'
       - include: '#data-dividers'
   keywords:
     patterns:
-      - name: keyword.control.datasign
-        match: '\b(data)\b'
-      - name: keyword.control.datasign
-        match: '^\s*?(\w+):'
-      - name: keyword.control.datasign
-        match: '^\s*?(@\w+):'
-  fields:
-    patterns:
-      - name: constant.language
-        match: '^\s*?(\w+):'
-      - name: constant.language
-        match: '^\s*?(@\w+):'
+      - match: '^\s*?(\w+):'
+        captures:
+          1:
+            name: constant.other.object.key.datasign
+      - match: '\b(\w+)\s*{'
+        captures:
+          1:
+            name: variable.other.constant.datasign
+      # - match: ':\s(\w+);'
+      #   captures:
+      #     1:
+      #       name: variable.other.constant.datasign
+      - name: storage.type.datasign
+        match: '^\b(data)\b'
+      - match: '^\s*@(sign|graphql|protobuf|typescript):'
+        captures:
+          1:
+            name: entity.name.function.datasign
+      - name: comment.datasign
+        match: '\/\/.+'
+      - name: comment.datasign
+        match: '^(\/\*\*(.+)?)|((\s+)?\*(.+)?\/?)'
   data-dividers:
     begin: '{'
     end: '}'
