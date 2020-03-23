@@ -71,9 +71,9 @@ const generateTypescript = (
 ) => {
     const generatedMessage = injectGeneratedMessage('Foo.datasign', 'typescript');
 
-    const typescriptText = [
-        generatedMessage,
-    ];
+    const typescriptText = options.generatedNotice
+        ? [generatedMessage]
+        : [];
 
     for (const entity of parsed) {
         const entityText = generateTypescriptEntity(entity, options);

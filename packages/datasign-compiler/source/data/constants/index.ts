@@ -57,4 +57,5 @@ export const defaultDatasignCompilerOptions: DatasignCompilerOptions = {
     comments: false,
     preserveSpacing: false,
     spacing: 4,
+    generatedNotice: true,
 }

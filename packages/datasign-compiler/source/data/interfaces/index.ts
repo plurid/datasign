@@ -12,6 +12,12 @@ export interface DatasignCompilerOptions {
     comments: boolean;
     preserveSpacing: boolean;
     spacing: number;
+
+    /**
+     * Inject a header in each generated file
+     * mentioning it is a generated file.
+     */
+    generatedNotice: boolean;
 }
 
 
