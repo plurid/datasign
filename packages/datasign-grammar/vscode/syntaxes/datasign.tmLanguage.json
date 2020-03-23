@@ -22,7 +22,11 @@
       "patterns": [
         {
           "name": "keyword.control.datasign",
-          "match": "\\b(data)\\b"
+          "match": "^\\s*?(data)\\s"
+        },
+        {
+          "name": "entity.name.type.datasign",
+          "match": "^\\s*?(\\w+):"
         }
       ]
     },
