@@ -12,6 +12,7 @@ import {
 
 import {
     separateList,
+    stringToBoolean,
 } from '../services/utilities';
 
 
@@ -47,8 +48,12 @@ const main = async (
                 resolve,
                 comments,
                 spacing,
-                preserve,
-                generated,
+                preserve: typeof preserve === 'string'
+                    ? stringToBoolean(preserve)
+                    : preserve,
+                generated: typeof generated === 'string'
+                    ? stringToBoolean(generated)
+                    : generated,
             };
             await compileCommand(data);
         });
@@ -67,7 +72,7 @@ const main = async (
             'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
             'file',
         ).option(
-            '-c, --comments <value>',
+            '-c, --comments [value]',
             'compile the comments into the target files',
             false,
         ).option(
@@ -75,11 +80,11 @@ const main = async (
             'indentation spacing to be used in the compiled files',
             '4',
         ).option(
-            '-p, --preserve <value>',
+            '-p, --preserve [value]',
             'preserve new lines spacing of the datasign file',
             false,
         ).option(
-            '-g, --generated <value>',
+            '-g, --generated [value]',
             'inject a header in each generated file mentioning the source',
             true,
         );
