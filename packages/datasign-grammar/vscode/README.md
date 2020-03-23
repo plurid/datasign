@@ -14,7 +14,7 @@
 
 
 
-Syntax highlighting for datasign files (.datasign).
+Syntax highlighting for `.datasign` files.
 
 
 File format specifying data signatures to be used as single source of (specified) truth in various pipelines.
