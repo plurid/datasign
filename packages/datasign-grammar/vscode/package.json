@@ -40,9 +40,9 @@
         ]
     },
     "scripts": {
-        "yamlToJson": "js-yaml syntaxes/datasign.tmLanguage.yaml > syntaxes/datasign.tmLanguage.json",
-        "jsonToYaml": "js-yaml syntaxes/datasign.tmLanguage.json > syntaxes/datasign.tmLanguage.yaml",
-        "prepublishOnly": "yarn yamlToJson"
+        "compile": "js-yaml syntaxes/datasign.tmLanguage.yaml > syntaxes/datasign.tmLanguage.json",
+        "package": "vsce package",
+        "publish": "vsce publish"
     },
     "dependencies": {
         "js-yaml": "^3.13.1"

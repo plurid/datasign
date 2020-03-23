@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "datasign",
+  "scopeName": "source.plurid",
+  "patterns": [
+    {
+      "include": "#core"
+    }
+  ],
+  "repository": {
+    "core": {
+      "patterns": [
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#data-dividers"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.datasign",
+          "match": "\\b(data)\\b"
+        }
+      ]
+    },
+    "data-dividers": {
+      "begin": "{",
+      "end": "}",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.paren.open"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.paren.close"
+        }
+      },
+      "name": "expression.group",
+      "patterns": [
+        {
+          "include": "#keywords"
+        }
+      ]
+    }
+  }
+}
