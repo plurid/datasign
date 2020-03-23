@@ -14,10 +14,32 @@ import {
 
 
 
-
-const resolveGraphqlType = (
-    type: string,
+export const resolveAnnotationTypedField = (
+    annotation: DatasignAnnotation,
 ) => {
+    if (annotation.value.split(' ').length === 1) {
+        return annotation.value;
+    }
+
+    if (annotation.value.includes('type:')) {
+        return annotation.value.replace('type: ', '');
+    }
+
+    return;
+}
+
+
+const resolveGraphqlFieldType = (
+    type: string,
+    annotations: DatasignAnnotation[],
+) => {
+    for (const annotation of annotations) {
+        const type = resolveAnnotationTypedField(annotation);
+        if (type) {
+            return type;
+        }
+    }
+
     switch (type) {
         case 'number':
             return 'Int';
@@ -30,18 +52,43 @@ const resolveGraphqlEntityType = (
     annotations: DatasignAnnotation[],
 ) => {
     for (const annotation of annotations) {
-        if (annotation.value.split(' ').length === 1) {
-            return annotation.value;
-        }
-
-        if (annotation.value.includes('type:')) {
-            return annotation.value.replace('type: ', '');
+        const type = resolveAnnotationTypedField(annotation);
+        if (type) {
+            return type;
         }
     }
 
     return 'type';
 }
 
+
+const resolveGraphqlFieldAnnotations = (
+    annotations: DatasignAnnotation[],
+) => {
+    let fieldAnnotation = '';
+
+    for (const annotation of annotations) {
+        if (annotation.value.includes('directive:')) {
+            const directiveValue = annotation.value.replace('directive:', '').trim();
+
+            const directiveNameRE = new RegExp(/^(\w+)/);
+            const directiveNameMatch = directiveValue.match(directiveNameRE);
+            if (!directiveNameMatch) {
+                continue;
+            }
+            const directiveName = directiveNameMatch[1];
+
+            const directiveArguments = directiveValue
+                .replace(`${directiveName}: `, '')
+                .replace(';', '');
+
+            const directiveText = ` @${directiveName}(${directiveArguments})`;
+            fieldAnnotation += directiveText;
+        }
+    }
+
+    return fieldAnnotation;
+}
 
 const generateGraphqlFields = (
     data: DatasignEntityData[],
@@ -67,9 +114,10 @@ const generateGraphqlFields = (
             continue;
         }
 
-        const requireString = required ? '!' : '';
-        const resolvedType = resolveGraphqlType(type);
-        const fieldText = spacing + name + separator + resolvedType + requireString;
+        const requiredMark = required ? '!' : '';
+        const fieldType = resolveGraphqlFieldType(type, field.annotations);
+        const fieldAnnotation = resolveGraphqlFieldAnnotations(field.annotations);
+        const fieldText = spacing + name + separator + fieldType + requiredMark + fieldAnnotation;
         fields.push(fieldText);
     }
 

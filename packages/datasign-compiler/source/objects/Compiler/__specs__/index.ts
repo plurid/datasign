@@ -75,7 +75,7 @@ data Message {
         expect(compilation).toStrictEqual(result.graphql);
     });
 
-    it.only('compiles with directive field annotation', () => {
+    it('compiles with directive field annotation', () => {
         const source = `
 data Message {
     newField: string;
