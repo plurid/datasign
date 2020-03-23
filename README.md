@@ -21,6 +21,7 @@ File format specifying data signatures to be used as single source of (specified
     + [One-Time Compilation](#one-time-compilation)
     + [Script](#script)
     + [Programmatic](#programmatic)
++ [Syntax](#syntax)
 + [Types](#types)
     + [Primitives](#primitives)
     + [Defaults](#defaults)
@@ -49,7 +50,7 @@ File format specifying data signatures to be used as single source of (specified
     /**
      * Text Documentation
      */
-    @entityID: TextEntity; // assigns an ID to the type itself
+    @sign: TextEntity; // assigns an identification sign to the data type
     data Text {
         // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
         @graphql: ID;
@@ -78,7 +79,7 @@ File format specifying data signatures to be used as single source of (specified
     // Text.ts
 
     /**
-     * @entityID: TextEntity
+     * @sign: TextEntity
      */
     /**
      * Text Documentation
@@ -106,7 +107,7 @@ File format specifying data signatures to be used as single source of (specified
     #
     # Text Documentation
     #
-    # @entityID: TextEntity
+    # @sign: TextEntity
     type Text {
         id: ID!
         name: String!
@@ -127,7 +128,7 @@ File format specifying data signatures to be used as single source of (specified
 ``` protobuf
     // Text.proto
 
-    // @entityID: TextEntity
+    // @sign: TextEntity
     /**
      * Text Documentation
      */
@@ -197,7 +198,7 @@ or
 yarn add @plurid/datasign
 ```
 
-add a script in `package.json`
+and add a script in `package.json`
 
 ```
 "datasign": "datasign /path/to/files"
@@ -231,30 +232,93 @@ main();
 
 
 
+## Syntax
+
+A `datasign` file uses the `.datasign` extension, is conventionally named using `PascalCase`, and is composed of one or more `Datasign Entities`.
+
+A `Datasign Entity` is constituted by the `data` keyword, a `Name`, and a pair of braces `{`, `}`, signifying the start, respectively, the end, of the `Datasign Fields` section.
+
+A `Datasign Field` is a `key: type` pair, incremented with `2` or `4` spaces.
+
+Each `Datasign Field` should be on a new line. A `Datasign Field` should end with a semicolon (`;`);
+
+example:
+
+```
+data Name {
+    namedKeyOne: string;
+    namedKeyTwo: number;
+}
+```
+
+The `Datasign Entities` and the `Data Fields` can be annotated using the `@` symbol.
+
+The [annotations](#annotations) allow for target-specific alterations of the compiled files.
+
+Each `Datasign Annotation` should be on a new line. A `Datasign Annotation` should end with a semicolon (`;`);
+
+`Datasign Annotations` 'stack' on top of each other and affect the next available `Datasign Entity` or `Datasign Field`.
+
+
+
 ## Types
 
 ### Primitives
 
-    number
-    boolean
-    string
++ `number`
++ `boolean`
++ `string`
 
 ### Defaults
 
-`number` will default to:
++ `number` will default to:
+    + `Int` for `GraphQL`
+    + `int32` for `Protocol Buffers`
+    + `number` for `Typescript`
 
-+ `Int` for `GraphQL`
-+ `int32` for `Protocol Buffers`
++ `boolean` will default to:
+    + `Boolean` for `GraphQL`
+    + `bool` for `Protocol Buffers`
+    + `boolean` for `Typescript`
+
++ `string` will default to:
+    + `String` for `GraphQL`
+    + `string` for `Protocol Buffers`
+    + `string` for `Typescript`
 
 
 
 ## Annotations
 
+
+Allowed `Datasign Entity` annotations:
+
++ `sign`
++ `graphql`
++ `protobuf`
++ `typescript`
+
+Allowed `Datasign Field` annotations:
+
++ `graphql`
++ `protobuf`
++ `typescript`
+
+
 ### Entity
 
-#### `entityID`
+#### `sign`
 
-The ID of the entity
+The identification `sign` of the entity. If not specified, the `sign` is generated at compile-time.
+
+example:
+
+```
+@sign: random-generated-string
+data AnEntity {
+    // datasign fields
+}
+```
 
 
 #### `@typescript`
