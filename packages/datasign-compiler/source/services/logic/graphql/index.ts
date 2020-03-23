@@ -10,6 +10,7 @@ import {
     formatCode,
     resolveSpacing,
     extractAnnotationsByType,
+    injectGeneratedMessage,
 } from '../../utilities';
 
 
@@ -160,7 +161,11 @@ const generateGraphql = (
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const graphqlText = [];
+    const generatedMessage = injectGeneratedMessage('Foo.datasign', 'graphql');
+
+    const graphqlText = options.generatedNotice
+        ? [generatedMessage]
+        : [];
 
     for (const entity of parsed) {
         const entityText = generateGraphqlEntity(entity, options);

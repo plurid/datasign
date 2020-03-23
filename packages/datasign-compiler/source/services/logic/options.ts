@@ -22,11 +22,15 @@ const resolveCompilerOptions = (
         ? options.preserveSpacing
         : false
     const spacing = options.spacing || 4;
+    const generatedNoticeOptions = typeof options.generatedNotice === 'boolean'
+        ? options.generatedNotice
+        : true;
 
     const compilerOptions: DatasignCompilerOptions = {
         comments: commentsOptions,
         preserveSpacing: preserveSpacingOptions,
         spacing,
+        generatedNotice: generatedNoticeOptions,
     };
     return compilerOptions;
 }
