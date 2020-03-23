@@ -25,7 +25,6 @@
         "languages": [
             {
                 "id": "datasign",
-                "aliases": [],
                 "extensions": [
                     ".datasign"
                 ],
@@ -36,14 +35,13 @@
             {
                 "language": "datasign",
                 "scopeName": "source.plurid",
-                "path": "./syntaxes/datasign.tmLanguage.json",
-                "embeddedLanguages": {}
+                "path": "./syntaxes/datasign.tmLanguage.json"
             }
         ]
     },
     "scripts": {
-        "yamlToJson": "js-yaml syntaxes/pluridoc.tmLanguage.yaml > syntaxes/pluridoc.tmLanguage.json",
-        "jsonToYaml": "js-yaml syntaxes/pluridoc.tmLanguage.json > syntaxes/pluridoc.tmLanguage.yaml",
+        "yamlToJson": "js-yaml syntaxes/datasign.tmLanguage.yaml > syntaxes/datasign.tmLanguage.json",
+        "jsonToYaml": "js-yaml syntaxes/datasign.tmLanguage.json > syntaxes/datasign.tmLanguage.yaml",
         "prepublishOnly": "yarn yamlToJson"
     },
     "dependencies": {
