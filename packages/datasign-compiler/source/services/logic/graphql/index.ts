@@ -2,6 +2,7 @@ import {
     DatasignEntity,
     DatasignEntityData,
     DatasignCompilerOptions,
+    DatasignAnnotation,
 } from '../../../data/interfaces';
 
 import {
@@ -21,6 +22,29 @@ const resolveGraphqlType = (
         default:
             return capitalize(type);
     }
+}
+
+const resolveGraphqlEntityType = (
+    annotations: DatasignAnnotation[],
+) => {
+    const graphqlAnnotations = [];
+    for (const annotation of annotations) {
+        if (annotation.name === 'graphql') {
+            graphqlAnnotations.push(annotation);
+        }
+    }
+
+    for (const graphqlAnnotation of graphqlAnnotations) {
+        if (graphqlAnnotation.value.split(' ').length === 1) {
+            return graphqlAnnotation.value;
+        }
+
+        if (graphqlAnnotation.value.includes('type:')) {
+            return graphqlAnnotation.value.replace('type: ', '');
+        }
+    }
+
+    return 'type';
 }
 
 
@@ -79,9 +103,10 @@ const generateGraphqlEntity = (
         ? entity.comments + '\n'
         : '';
     const formattedComments = formatGraphqlComments(stringedComments);
+    const graphqlType = resolveGraphqlEntityType(entity.annotations);
 
     const entityText = formattedComments
-        + `type ${entity.name} {\n`
+        + `${graphqlType} ${entity.name} {\n`
         + stringedFields
         + '\n}';
 

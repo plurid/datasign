@@ -138,6 +138,7 @@ const extractField = (
 
 const allowedEntityAnnotations = [
     'entityID',
+    'graphql',
 ];
 
 const extractEntityAnnotations = (
@@ -237,6 +238,7 @@ const parseEntity = (
         annotations: entityAnnotations,
         comments,
     };
+    console.log('entity', entity);
 
     return entity;
 }
