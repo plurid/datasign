@@ -1,17 +1,22 @@
-@entityID: TextEntity // assigns an ID to the type itself
+/**
+ * Documentation Comment
+ *
+ */
+@sign: TextEntity; // assigns an ID to the type itself
+@graphql: type: input;
 data Text {
     // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-    @graphql: ID
+    @graphql: ID;
     id: string;
 
     name: string;
     value: string;
-    @graphql: Int
+    @graphql: Int;
     characters: number;
     public: boolean;
 
-    @graphql: Date
-    @protobuf: number
+    @graphql: Date;
+    @protobuf: number;
     generatedAt: Date;
     generatedBy: User;
 }
