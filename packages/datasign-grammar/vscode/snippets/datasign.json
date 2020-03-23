@@ -1,4 +1,14 @@
 {
+	"data": {
+		"prefix": "da",
+		"body": [
+            "data $1 {",
+            "    $2",
+            "}",
+            ""
+		],
+		"description": "data"
+	},
 	"sign": {
 		"prefix": "@s",
 		"body": [
