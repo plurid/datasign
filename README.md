@@ -22,6 +22,9 @@ File format specifying data signatures to be used as single source of (specified
     + [Script](#script)
     + [Programmatic](#programmatic)
 + [Syntax](#syntax)
+    + [General](#general)
+    + [Annotating](#annotating)
+    + [Commenting](#commenting)
 + [Types](#types)
     + [Primitives](#primitives)
     + [Defaults](#defaults)
@@ -234,6 +237,8 @@ main();
 
 ## Syntax
 
+### General
+
 A `datasign` file uses the `.datasign` extension, is conventionally named using `PascalCase`, and is composed of one or more `Datasign Entities`.
 
 A `Datasign Entity` is constituted by the `data` keyword, a `Name`, and a pair of braces `{`, `}`, signifying the start, respectively, the end, of the `Datasign Fields` section.
@@ -251,6 +256,8 @@ data Name {
 }
 ```
 
+### Annotating
+
 The `Datasign Entities` and the `Data Fields` can be annotated using the `@` symbol.
 
 The [annotations](#annotations) allow for target-specific alterations of the compiled files.
@@ -258,6 +265,39 @@ The [annotations](#annotations) allow for target-specific alterations of the com
 Each `Datasign Annotation` should be on a new line. A `Datasign Annotation` should end with a semicolon (`;`);
 
 `Datasign Annotations` 'stack' on top of each other and affect the next available `Datasign Entity` or `Datasign Field`.
+
+
+### Commenting
+
+A comment is specified using the double slash (`//`) and can be on it's own line or either inlined.
+
+example:
+
+```
+// this is a valid comment
+data Message { // this is also valid
+    id: string;
+    // other fields
+}
+```
+
+For documentation purposes the documentation comment symbols `/**` paired with `*/` can be used.
+
+example:
+
+```
+/**
+ * Documentation for the Message Entity.
+ */
+// this is a valid comment
+data Message { // this is also valid
+    /**
+    * Documentation for the id field.
+    */
+    id: string;
+    // other fields
+}
+```
 
 
 
