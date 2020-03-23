@@ -39,6 +39,41 @@ data Message {
 
         expect(compilation).toStrictEqual(result.graphql);
     });
+
+    it('compiles with input annotation', () => {
+        const source = `
+@graphql: input;
+data Message {
+    id: string;
+    value: string;
+    length: number;
+    read: boolean;
+}`;
+        const data: DatasignCompilerData = {
+            source,
+            targets: ['graphql'],
+            // options: {
+            //     preserveSpacing: true,
+            // },
+        };
+        const compiler = new DatasignCompiler(data);
+        const result = compiler.compile();
+        const compilation =
+            'input Message {\n' +
+            '    id: String!\n' +
+            '    value: String!\n' +
+            '    length: Int!\n' +
+            '    read: Boolean!\n' +
+            '}\n';
+
+        // console.log('----');
+        // console.log('result', result);
+        // console.log('----');
+        // console.log('compilation', compilation);
+        // console.log('----');
+
+        expect(compilation).toStrictEqual(result.graphql);
+    });
 });
 
 
