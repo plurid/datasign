@@ -6,7 +6,42 @@ import {
 
 
 describe('DatasignCompiler', () => {
-    it('basic', () => {
+    it('compiles to typescript', () => {
+        const source = `
+data Message {
+    id: string;
+    value: string;
+    length: number;
+    read: boolean;
+}`;
+        const data: DatasignCompilerData = {
+            source,
+            targets: ['typescript'],
+            // options: {
+            //     preserveSpacing: true,
+            // },
+        };
+        const compiler = new DatasignCompiler(data);
+        const result = compiler.compile();
+        const compilation =
+            'export interface Message {\n' +
+            '    id: string;\n' +
+            '    value: string;\n' +
+            '    length: number;\n' +
+            '    read: boolean;\n' +
+            '}\n';
+
+        // console.log('----');
+        // console.log('result', result);
+        // console.log('----');
+        // console.log('compilation', compilation);
+        // console.log('----');
+
+        expect(compilation).toStrictEqual(result.typescript);
+    });
+
+
+    xit('basic', () => {
         const data: DatasignCompilerData = {
 //             source: `
 // data Item {
