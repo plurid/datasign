@@ -37,6 +37,12 @@
                 "scopeName": "source.datasign",
                 "path": "./syntaxes/datasign.tmLanguage.json"
             }
+        ],
+        "snippets": [
+            {
+                "language": "datasign",
+                "path": "./snippets/datasign.json"
+            }
         ]
     },
     "scripts": {
