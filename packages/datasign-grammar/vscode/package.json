@@ -41,7 +41,7 @@
     },
     "scripts": {
         "compile": "js-yaml syntaxes/datasign.tmLanguage.yaml > syntaxes/datasign.tmLanguage.json",
-        "package": "yarn compile && vsce package",
+        "package": "yarn compile && vsce package --yarn",
         "publish": "yarn package && vsce publish"
     },
     "dependencies": {
