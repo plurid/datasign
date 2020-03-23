@@ -158,7 +158,7 @@ const generateGraphqlEntity = (
 }
 
 const generateGraphql = (
-    filename: string,
+    filename: string | undefined,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {

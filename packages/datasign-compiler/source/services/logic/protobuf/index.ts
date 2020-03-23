@@ -82,7 +82,7 @@ const generateProtobufEntity = (
 }
 
 const generateProtobuf = (
-    filename: string,
+    filename: string | undefined,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
