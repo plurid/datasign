@@ -18,10 +18,14 @@ repository:
         captures:
           1:
             name: variable.other.constant.datasign
-      # - match: ':\s(\w+);'
-      #   captures:
-      #     1:
-      #       name: variable.other.constant.datasign
+      - match: '\b([a-z]\w+);'
+        captures:
+          1:
+            name: support.type.primitive.datasign
+      - match: '\b([A-Z]\w+);'
+        captures:
+          1:
+            name: variable.other.constant.datasign
       - name: storage.type.datasign
         match: '^\b(data)\b'
       - match: '^\s*@(sign|graphql|protobuf|typescript):'
