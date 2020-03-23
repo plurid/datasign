@@ -300,6 +300,15 @@ data Message {
 }
 ```
 
+which is equivalent to
+
+```
+@graphql: input;
+data Message {
+    // fields
+}
+```
+
 compiles to
 
 ``` graphql
