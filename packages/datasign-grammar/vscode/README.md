@@ -56,7 +56,7 @@ Datasign is a file format to specify data signatures to be used as a single sour
 ```
 
 
-```
+``` datasign
     // Text.datasign
 
     /**
@@ -182,7 +182,7 @@ Command-Line Interface options:
 
 For a simple compilation, create a `.datasign` file, e.g. `Message.datasign`:
 
-```
+``` datasign
 data Message {
     id: string;
     value: string;
@@ -191,7 +191,7 @@ data Message {
 
 and run the command pointing to the file's location
 
-```
+``` bash
 npx @plurid/datasign ./Message.datasign
 ```
 
@@ -200,19 +200,19 @@ npx @plurid/datasign ./Message.datasign
 
 For scripting usage, run in your package the command
 
-```
+``` bash
 npm install @plurid/datasign
 ```
 
 or
 
-```
+``` bash
 yarn add @plurid/datasign
 ```
 
 and add a script in `package.json`
 
-```
+``` json
 "datasign": "datasign /path/to/files"
 ```
 
@@ -258,7 +258,7 @@ Each `Datasign Field` should be on a new line. A `Datasign Field` should end wit
 
 example:
 
-```
+``` datasign
 data Name {
     namedKeyOne: string;
     namedKeyTwo: number;
@@ -282,7 +282,7 @@ A comment is specified using the double slash (`//`) and can be on it's own line
 
 example:
 
-```
+``` datasign
 // this is a valid comment
 data Message { // this is also valid
     id: string;
@@ -294,7 +294,7 @@ For documentation purposes the documentation comment symbols `/**` paired with `
 
 example:
 
-```
+``` datasign
 /**
  * Documentation for the Message Entity.
  */
@@ -362,7 +362,7 @@ The identification `sign` of the entity. If not specified, the `sign` is generat
 
 example:
 
-```
+``` datasign
 @sign: random-generated-string
 data AnEntity {
     // datasign fields
@@ -380,7 +380,7 @@ default: `true`
 
 example:
 
-```
+``` datasign
 @typescript: export: false;
 data Message {
     // fields
@@ -406,7 +406,7 @@ default: `type`
 
 example:
 
-```
+``` datasign
 @graphql: type: input;
 data Message {
     // fields
@@ -415,7 +415,7 @@ data Message {
 
 which is equivalent to
 
-```
+``` datasign
 @graphql: input;
 data Message {
     // fields
@@ -441,7 +441,7 @@ The `GraphQL` type of the compiled `GraphQL` field.
 
 example:
 
-```
+``` datasign
 data Message {
     @graphql type: ID;
     id: string;
@@ -450,7 +450,7 @@ data Message {
 
 which is equivalent to
 
-```
+``` datasign
 data Message {
     @graphql ID;
     id: string;
@@ -472,7 +472,7 @@ Adds the directive to the `GraphQL` field. The directive needs to be provided in
 
 example:
 
-```
+``` datasign
 data Message {
     newField: string;
 
@@ -484,7 +484,7 @@ data Message {
 
 compiles to
 
-```
+``` graphql
 type Message {
     newField: String!
     oldField: String! @deprecated(reason: "Use `newField`.")
@@ -500,7 +500,7 @@ The `Protocol Buffers` type of the compiled `Protocol Buffers` field.
 
 example:
 
-```
+``` datasign
 data Count {
     @protobuf type: int64;
     value: number;
@@ -509,7 +509,7 @@ data Count {
 
 which is equivalent to
 
-```
+``` datasign
 data Count {
     @protobuf int64;
     value: number;
