@@ -16,8 +16,7 @@
 
 Syntax highlighting for `.datasign` files.
 
-
-File format specifying data signatures to be used as single source of (specified) truth in various pipelines.
+Datasign is a file format specifying data signatures to be used as single source of (specified) truth in various pipelines.
 
 
 + [A Web-Oriented Example](#a-web-oriented-example)
