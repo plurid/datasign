@@ -252,7 +252,7 @@ const parseEntity = (
         annotations: entityAnnotations,
         comments,
     };
-    console.log('entity', entity);
+    // console.log('entity', entity);
 
     return entity;
 }
