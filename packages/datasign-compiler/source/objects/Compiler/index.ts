@@ -22,9 +22,9 @@ import {
 
 
 class DatasignCompiler {
-    private filename: string;
     private source: string;
     private targets: Target[];
+    private filename: string | undefined;
     private options: DatasignCompilerOptions;
 
     constructor(

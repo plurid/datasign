@@ -71,15 +71,19 @@ export const extractAnnotationsByType = (
 
 
 export const constructGeneratedNotice = (
-    filename: string,
+    filename: string | undefined,
     type: string,
 ) => {
     const commentMark = type === 'graphql'
         ? '#'
         : '//';
 
+    const generatedFrom = filename
+        ? `${commentMark} This file has been generated from ${filename}.\n`
+        : `${commentMark} This file has been generated from a .datasign file.\n`;
+
     const notice = `${commentMark} ---`
-        + `${commentMark} This file has been generated from ${filename}.\n`
+        + generatedFrom
         + `${commentMark} Do not edit directly.`;
         + `${commentMark} ---`
 
