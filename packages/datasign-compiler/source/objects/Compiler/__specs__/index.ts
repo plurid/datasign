@@ -5,8 +5,82 @@ import {
 
 
 
-describe('DatasignCompiler', () => {
-    it('compiles to typescript', () => {
+describe('DatasignCompiler - compile to graphql', () => {
+    it('simply compiles to graphql', () => {
+        const source = `
+data Message {
+    id: string;
+    value: string;
+    length: number;
+    read: boolean;
+}`;
+        const data: DatasignCompilerData = {
+            source,
+            targets: ['graphql'],
+            // options: {
+            //     preserveSpacing: true,
+            // },
+        };
+        const compiler = new DatasignCompiler(data);
+        const result = compiler.compile();
+        const compilation =
+            'type Message {\n' +
+            '    id: String!\n' +
+            '    value: String!\n' +
+            '    length: Int!\n' +
+            '    read: Boolean!\n' +
+            '}\n';
+
+        // console.log('----');
+        // console.log('result', result);
+        // console.log('----');
+        // console.log('compilation', compilation);
+        // console.log('----');
+
+        expect(compilation).toStrictEqual(result.graphql);
+    });
+});
+
+
+describe('DatasignCompiler - compile to protobuf', () => {
+    it('simply compiles to protobuf', () => {
+        const source = `
+data Message {
+    id: string;
+    value: string;
+    length: number;
+    read: boolean;
+}`;
+        const data: DatasignCompilerData = {
+            source,
+            targets: ['protobuf'],
+            // options: {
+            //     preserveSpacing: true,
+            // },
+        };
+        const compiler = new DatasignCompiler(data);
+        const result = compiler.compile();
+        const compilation =
+            'message Message {\n' +
+            '    required string id = 1;\n' +
+            '    required string value = 2;\n' +
+            '    required int32 length = 3;\n' +
+            '    required bool read = 4;\n' +
+            '}\n';
+
+        // console.log('----');
+        // console.log('result', result);
+        // console.log('----');
+        // console.log('compilation', compilation);
+        // console.log('----');
+
+        expect(compilation).toStrictEqual(result.protobuf);
+    });
+});
+
+
+describe('DatasignCompiler - compile to typescript', () => {
+    it('simply compiles to typescript', () => {
         const source = `
 data Message {
     id: string;
@@ -39,7 +113,6 @@ data Message {
 
         expect(compilation).toStrictEqual(result.typescript);
     });
-
 
     xit('basic', () => {
         const data: DatasignCompilerData = {
