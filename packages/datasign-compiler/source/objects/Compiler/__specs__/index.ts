@@ -17,9 +17,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['graphql'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -52,9 +53,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['graphql'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -86,9 +88,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['graphql'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -119,9 +122,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['graphql'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -154,9 +158,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['protobuf'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -191,9 +196,10 @@ data Message {
         const data: DatasignCompilerData = {
             source,
             targets: ['typescript'],
-            // options: {
-            //     preserveSpacing: true,
-            // },
+            options: {
+                generatedNotice: false,
+                // preserveSpacing: true,
+            },
         };
         const compiler = new DatasignCompiler(data);
         const result = compiler.compile();
@@ -258,6 +264,7 @@ data User {
             options: {
                 comments: true,
                 preserveSpacing: true,
+                generatedNotice: false,
             },
         };
         const compiler = new DatasignCompiler(data);
