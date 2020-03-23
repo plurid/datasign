@@ -66,10 +66,11 @@ const generateTypescriptEntity = (
 }
 
 const generateTypescript = (
+    filename: string,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'typescript');
+    const generatedMessage = constructGeneratedNotice(filename, 'typescript');
 
     const typescriptText = options.generatedNotice
         ? [generatedMessage]

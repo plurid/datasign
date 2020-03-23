@@ -22,6 +22,7 @@ import {
 
 
 class DatasignCompiler {
+    private filename: string;
     private source: string;
     private targets: Target[];
     private options: DatasignCompilerOptions;
@@ -30,11 +31,13 @@ class DatasignCompiler {
         data: DatasignCompilerData,
     ) {
         const {
+            filename,
             source,
             targets,
             options,
         } = data;
 
+        this.filename = filename;
         this.source = source;
         this.targets = targets;
         this.options = resolveCompilerOptions(options);
@@ -44,13 +47,13 @@ class DatasignCompiler {
         const parsedSource = parseSource(this.source, this.options);
 
         const graphql = this.targets.includes(targets.graphql)
-            ? generateGraphql(parsedSource, this.options)
+            ? generateGraphql(this.filename, parsedSource, this.options)
             : '';
         const protobuf = this.targets.includes(targets.protobuf)
-            ? generateProtobuf(parsedSource, this.options)
+            ? generateProtobuf(this.filename, parsedSource, this.options)
             : '';
         const typescript = this.targets.includes(targets.typescript)
-            ? generateTypescript(parsedSource, this.options)
+            ? generateTypescript(this.filename, parsedSource, this.options)
             : '';
 
         return {

@@ -1,4 +1,5 @@
 export interface DatasignCompilerData {
+    filename: string;
     source: string;
     targets: Target[];
     options?: Partial<DatasignCompilerOptions>;

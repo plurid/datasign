@@ -158,10 +158,11 @@ const generateGraphqlEntity = (
 }
 
 const generateGraphql = (
+    filename: string,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = constructGeneratedNotice('Foo.datasign', 'graphql');
+    const generatedMessage = constructGeneratedNotice(filename, 'graphql');
 
     const graphqlText = options.generatedNotice
         ? [generatedMessage]
