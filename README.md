@@ -13,7 +13,14 @@
 </h1>
 
 
-Datasign is a file format to specify data signatures to be used as a single source of (specified) truth in various pipelines.
+Datasign is a file format to specify data signatures to be used as a single source of (specified) truth to generate files for various pipelines.
+
+Supported generator targets:
+
++ `GraphQL`
++ `Protocol Buffers`
++ `TypeScript`
+
 
 
 + [A Web-Oriented Example](#a-web-oriented-example)
