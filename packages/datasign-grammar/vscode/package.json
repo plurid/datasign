@@ -1,5 +1,5 @@
 {
-    "name": "datasign-grammar",
+    "name": "@plurid/datasign-grammar-vscode",
     "version": "0.0.4",
     "displayName": "datasign",
     "publisher": "plurid",
