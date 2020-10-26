@@ -57,107 +57,107 @@ Supported generator targets:
 
 
 ``` datasign
-    // Text.datasign
+// Text.datasign
 
-    /**
-     * Text Documentation
-     */
-    @sign: TextEntity; // assigns an identification sign to the data type
-    data Text {
-        // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-        @graphql: ID;
-        id: string;
+/**
+    * Text Documentation
+    */
+@sign: TextEntity; // assigns an identification sign to the data type
+data Text {
+    // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
+    @graphql: ID;
+    id: string;
 
-        name: string;
-        value: string;
-        @graphql: Int;
-        characters: number;
-        public: boolean;
+    name: string;
+    value: string;
+    @graphql: Int;
+    characters: number;
+    public: boolean;
 
-        @graphql: Date;
-        @protobuf: number;
-        generatedAt: Date;
-        generatedBy: User;
-    }
+    @graphql: Date;
+    @protobuf: number;
+    generatedAt: Date;
+    generatedBy: User;
+}
 
-    data User {
-        id: string;
-        name: string;
-    }
+data User {
+    id: string;
+    name: string;
+}
 ```
 
 
 ``` typescript
-    // Text.ts
+// Text.ts
 
-    /**
-     * @sign: TextEntity
-     */
-    /**
-     * Text Documentation
-     */
-    export interface Text {
-        id: string;
-        name: string;
-        value: string;
-        characters: number;
-        public: boolean;
-        generatedAt: Date;
-        generatedBy: User;
-    }
+/**
+    * @sign: TextEntity
+    */
+/**
+    * Text Documentation
+    */
+export interface Text {
+    id: string;
+    name: string;
+    value: string;
+    characters: number;
+    public: boolean;
+    generatedAt: Date;
+    generatedBy: User;
+}
 
-    export interface User {
-        id: string;
-        name: string;
-    }
+export interface User {
+    id: string;
+    name: string;
+}
 ```
 
 
 ``` graphql
-    # Text.graphql
+# Text.graphql
 
-    #
-    # Text Documentation
-    #
-    # @sign: TextEntity
-    type Text {
-        id: ID!
-        name: String!
-        value: String!
-        characters: Int!
-        public: Boolean!
-        generatedAt: Date!
-        generatedBy: User!
-    }
+#
+# Text Documentation
+#
+# @sign: TextEntity
+type Text {
+    id: ID!
+    name: String!
+    value: String!
+    characters: Int!
+    public: Boolean!
+    generatedAt: Date!
+    generatedBy: User!
+}
 
-    type User {
-        id: String!
-        name: String!
-    }
+type User {
+    id: String!
+    name: String!
+}
 ```
 
 
 ``` protobuf
-    // Text.proto
+// Text.proto
 
-    // @sign: TextEntity
-    /**
-     * Text Documentation
-     */
-    message Text {
-        required string id = 1;
-        required string name = 2;
-        required string value = 3;
-        required number characters = 4;
-        required boolean public = 5;
-        required number generatedAt = 6;
-        required User generatedBy = 7;
-    }
+// @sign: TextEntity
+/**
+    * Text Documentation
+    */
+message Text {
+    required string id = 1;
+    required string name = 2;
+    required string value = 3;
+    required number characters = 4;
+    required boolean public = 5;
+    required number generatedAt = 6;
+    required User generatedBy = 7;
+}
 
-    message User {
-        required string id = 1;
-        required string name = 2;
-    }
+message User {
+    required string id = 1;
+    required string name = 2;
+}
 ```
 
 
@@ -548,6 +548,10 @@ message Count {
 
 [datasign-compiler]: https://github.com/plurid/datasign/tree/master/packages/datasign-compiler
 
+
+<a target="_blank" href="https://github.com/plurid/datasign/tree/master/packages/datasign-grammar/vscode">
+    <img src="https://img.shields.io/badge/vscode-v.0.0.4-1380C3?style=for-the-badge" alt="Version">
+</a>
 
 [@plurid/datasign-grammar][datasign-grammar] • grammar for text editors (syntax highlighting, syntax verification)
 
