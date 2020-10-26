@@ -60,8 +60,8 @@ Supported generator targets:
 // Text.datasign
 
 /**
-    * Text Documentation
-    */
+ * Text Documentation
+ */
 @sign: TextEntity; // assigns an identification sign to the data type
 data Text {
     // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
