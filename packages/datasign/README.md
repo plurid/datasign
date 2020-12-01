@@ -62,12 +62,12 @@ Supported generator targets:
 ## A Web-Oriented Example
 
 ```
-                                                Text.datasign
-                                                    |
-        _____________________________________________________________________________________
-        |                                           |                                       |
-    to TypeScript                               to GraphQL                              to Protocol Buffers/gRPC
-    Text.ts                                     Text.graphql                            Text.proto
+                                        Text.datasign
+                                            |
+    _________________________________________________________________________________
+    |                                       |                                       |
+    to TypeScript                        to GraphQL                              to Protocol Buffers/gRPC
+    Text.ts                              Text.graphql                            Text.proto
 ```
 
 
