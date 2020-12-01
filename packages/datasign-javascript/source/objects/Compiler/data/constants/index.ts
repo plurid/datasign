@@ -15,7 +15,7 @@
         TypeEmptyLine,
 
         DatasignCompilerOptions,
-    } from '../interfaces';
+    } from '#Compiler/data/interfaces';
     // #endregion external
 // #endregion imports
 

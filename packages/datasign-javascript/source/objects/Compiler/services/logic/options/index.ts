@@ -2,11 +2,11 @@
     // #region external
     import {
         DatasignCompilerOptions,
-    } from '../../../data/interfaces';
+    } from '#Compiler/data/interfaces';
 
     import {
         defaultDatasignCompilerOptions,
-    } from '../../../data/constants';
+    } from '#Compiler/data/constants';
     // #endregion external
 // #endregion imports
 

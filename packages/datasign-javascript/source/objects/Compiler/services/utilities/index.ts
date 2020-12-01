@@ -3,11 +3,11 @@
     import {
         ONE_NEW_LINE,
         TWO_NEW_LINES,
-    } from '../../data/constants';
+    } from '#Compiler/data/constants';
 
     import {
         DatasignAnnotation,
-    } from '../../data/interfaces';
+    } from '#Compiler/data/interfaces';
     // #endregion external
 // #endregion imports
 

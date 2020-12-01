@@ -11,13 +11,13 @@
     // #region exports
     import {
         targets,
-    } from '../../data/constants';
+    } from '#Compiler/data/constants';
 
     import {
         Target,
         DatasignEntity,
         DatasignCompilerOptions,
-    } from '../../data/interfaces';
+    } from '#Compiler/data/interfaces';
 
     import {
         resolveCompilerOptions,
@@ -27,11 +27,11 @@
         generateGraphql,
         generateProtobuf,
         generateTypescript,
-    } from '../../services/logic';
+    } from '#Compiler/services/logic';
 
     import {
         isDatasignText,
-    } from '../../services/utilities';
+    } from '#Compiler/services/utilities';
     // #endregion exports
 // #endregion imports
 
