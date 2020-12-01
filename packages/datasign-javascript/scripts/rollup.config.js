@@ -26,6 +26,8 @@ const datasign = {
         },
     ],
     external: [
+        'fs',
+        'path',
         'commander',
     ],
     watch: {
