@@ -208,11 +208,9 @@ and add a script in `package.json`
 // .json
 
 {
-    // ...
     "scripts": {
         "datasign": "datasign /path/to/files"
     }
-    // ...
 }
 ```
 
