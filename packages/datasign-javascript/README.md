@@ -39,15 +39,17 @@ Supported specification targets:
 + [Usage](#usage)
     + [Command-Line Interface](#command-line-interface)
     + [One-Time Compilation](#one-time-compilation)
-    + [Script](#script)
     + [Programmatic](#programmatic)
 + [Syntax](#syntax)
     + [General](#general)
     + [Annotating](#annotating)
     + [Commenting](#commenting)
+    + [Importing](#importing)
+    + [Metas](#metas)
 + [Types](#types)
     + [Primitives](#primitives)
     + [Defaults](#defaults)
+    + [Composed](#composed)
 + [Annotations](#annotations)
     + [Entity](#entity)
     + [Field](#field)
@@ -71,30 +73,29 @@ Supported specification targets:
 ``` datasign
 // Text.datasign
 
-/**
+/*
  * Text Documentation
  */
-@sign: TextEntity; // assigns an identification sign to the data type
-data Text {
+Text {
     // type the `id` field to `ID` for GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-    @graphql ID;
-    id: string;
+    @graphql ID
+    id string
 
-    name: string;
-    value: string;
-    @graphql Int;
-    characters: number;
-    public: boolean;
+    name string
+    value string
+    @graphql Int
+    characters number
+    public boolean
 
-    @graphql Date;
-    @protobuf number;
-    generatedAt: Date;
-    generatedBy: User;
+    @graphql Date
+    @proto number
+    generatedAt Date // assumes Date is already defined somewhere else/globally
+    generatedBy User
 }
 
-data User {
-    id: string;
-    name: string;
+User {
+    id string
+    name string
 }
 ```
 
@@ -102,7 +103,6 @@ data User {
 ``` typescript
 // Text.ts
 
-// @sign: TextEntity
 /**
  * Text Documentation
  */
@@ -126,7 +126,6 @@ export interface User {
 ``` graphql
 # Text.graphql
 
-### @sign: TextEntity
 #
 # Text Documentation
 #
@@ -147,10 +146,9 @@ type User {
 ```
 
 
-``` protobuf
+``` proto
 // Text.proto
 
-// @sign: TextEntity
 /**
  * Text Documentation
  */
@@ -181,7 +179,7 @@ Usage: datasign <files>
 
 Options:
   -v, --version            output the version number
-  -t, --target <type>      compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
+  -t, --target <type>      compilation targets: typescript, graphql, proto (default: "typescript,graphql,proto")
   -o, --output <path>      output path (default: ".")
   -r, --resolve <type>     resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
   -c, --comments [value]   compile the comments into the target files (default: false)
@@ -191,26 +189,6 @@ Options:
   -h, --help               display help for command
 ```
 
-
-### One-Time Compilation
-
-For a simple compilation, create a `.datasign` file, e.g. `Message.datasign`:
-
-``` datasign
-data Message {
-    id: string;
-    value: string;
-}
-```
-
-and run the command pointing to the file's location
-
-``` bash
-npx @plurid/datasign ./Message.datasign
-```
-
-
-### Script
 
 For scripting usage, run in your package the command
 
@@ -227,7 +205,35 @@ yarn add @plurid/datasign
 and add a script in `package.json`
 
 ``` json
-"datasign": "datasign /path/to/files"
+// .json
+
+{
+    // ...
+    "scripts": {
+        "datasign": "datasign /path/to/files"
+    }
+    // ...
+}
+```
+
+
+### One-Time Compilation
+
+For a simple compilation, create the `.datasign` files, e.g. `Message.datasign`:
+
+``` datasign
+// .datasign
+
+Message {
+    id string
+    value string
+}
+```
+
+and run the command pointing to the files location
+
+``` bash
+npx @plurid/datasign ./Message.datasign
 ```
 
 
@@ -236,6 +242,8 @@ and add a script in `package.json`
 For programmatic usage, install the `@plurid/datasign` package with `npm` or `yarn` and use in a similar manner
 
 ``` typescript
+// .ts
+
 import {
     DatasignLoader,
 } from '@plurid/datasign';
@@ -246,8 +254,8 @@ async function main() {
     const graphql = await datasignLoader.load('graphql');
     // `graphql` contains the types string
 
-    const protobuf = await datasignLoader.load('protobuf');
-    // `protobuf` contains the messages string
+    const proto = await datasignLoader.load('proto');
+    // `proto` contains the messages string
 
     const typescript = await datasignLoader.load('typescript');
     // `typescript` contains the types namespace
@@ -264,20 +272,23 @@ main();
 
 A `datasign` file uses the `.datasign` extension, is conventionally named using `PascalCase`, and is composed of one or more `Datasign Entities`.
 
-A `Datasign Entity` is constituted by the `data` keyword, a `Name`, and a pair of braces `{`, `}`, signifying the start, respectively, the end, of the `Datasign Fields` section.
+A `Datasign Entity` is constituted by a `Name`, and a pair of braces `{`, `}`, signifying the start, respectively, the end, of the `Datasign Fields` section.
 
-A `Datasign Field` is a `key: type` pair, incremented with `2` or `4` spaces.
+A `Datasign Field` is a `key type` pair, incremented with `2` or `4` spaces.
 
-Each `Datasign Field` should be on a new line. A `Datasign Field` should end with a semicolon (`;`);
+Each `Datasign Field` should be on a new line.
 
 example:
 
 ``` datasign
-data Name {
-    namedKeyOne: string;
-    namedKeyTwo: number;
+// .datasign
+
+Name {
+    namedKeyOne string
+    namedKeyTwo number
 }
 ```
+
 
 ### Annotating
 
@@ -285,7 +296,7 @@ The `Datasign Entities` and the `Data Fields` can be annotated using the `@` sym
 
 The [annotations](#annotations) allow for target-specific alterations of the compiled files.
 
-Each `Datasign Annotation` should be on a new line. A `Datasign Annotation` should end with a semicolon (`;`);
+Each `Datasign Annotation` should be on a new line.
 
 `Datasign Annotations` 'stack' on top of each other and affect the next available `Datasign Entity` or `Datasign Field`.
 
@@ -297,29 +308,83 @@ A comment is specified using the double slash (`//`) and can be on it's own line
 example:
 
 ``` datasign
+// .datasign
+
 // this is a valid comment
-data Message { // this is also valid
-    id: string;
+Message { // this is also valid
+    id string
     // other fields
 }
 ```
 
-For documentation purposes the documentation comment symbols `/**` paired with `*/` can be used.
+For documentation purposes the documentation comment symbols `/*` paired with `*/` can be used.
 
 example:
 
 ``` datasign
-/**
+// .datasign
+
+/*
  * Documentation for the Message Entity.
  */
 // this is a valid comment
-data Message { // this is also valid
-    /**
+Message { // this is also valid
+    /*
      * Documentation for the id field.
      */
-    id: string;
+    id string
     // other fields
 }
+```
+
+
+### Importing
+
+A `.datasign` file can import data signatures from another `.datasign` file. The import can be namespaced or extracted. The `.datasign` filename extension is not required in the import statement.
+
+``` datasign
+// a.datasign
+SomeData {
+    one string
+}
+```
+
+``` datasign
+// b.datasign
+
+// namespaced import
+import A from ./path/to/a
+
+// extracted import
+import {
+    SomeData
+} from ./path/to/a
+
+SomeOtherData {
+    two A.SomeData
+    three SomeData
+}
+```
+
+
+### Metas
+
+Metas allow the insertion of specific data for each individual target.
+
+``` datasign
+// .datasign
+
+!proto `
+    // this text will be inserted only in the compiled .proto file
+`
+
+!graphql `
+    // this text will be inserted only in the compiled .graphql file
+`
+
+!typescript `
+    // this text will be inserted only in the compiled .ts file
+`
 ```
 
 
@@ -349,6 +414,27 @@ data Message { // this is also valid
     + `string` for `Protocol Buffers`
     + `string` for `Typescript`
 
+### Composed
+
+A type can be composed with another using parantheses, `(` and `)`, and, `&`, or, `|`, equal, `=`, operators.
+
+``` datasign
+// .datasign
+
+A {
+    b string
+}
+
+B = A & {
+    c string
+}
+
+C = A | B
+
+D = (A | B) & {
+    e string
+}
+```
 
 
 ## Annotations
@@ -356,33 +442,18 @@ data Message { // this is also valid
 
 Allowed `Datasign Entity` annotations:
 
-+ `sign`
 + `graphql`
-+ `protobuf`
++ `proto`
 + `typescript`
 
 Allowed `Datasign Field` annotations:
 
 + `graphql`
-+ `protobuf`
++ `proto`
 + `typescript`
 
 
 ### Entity
-
-#### `sign`
-
-The identification `sign` of the entity. If not specified, the `sign` is generated at compile-time.
-
-example:
-
-``` datasign
-@sign random-generated-string
-data AnEntity {
-    // datasign fields
-}
-```
-
 
 #### `@typescript`
 
@@ -395,8 +466,9 @@ default: `true`
 example:
 
 ``` datasign
-@typescript export: false;
-data Message {
+// .datasign
+@typescript export false
+Message {
     // fields
 }
 ```
@@ -404,6 +476,7 @@ data Message {
 compiles to
 
 ``` typescript
+// .ts
 interface Message {
     // fields
 }
@@ -423,8 +496,9 @@ default: `type`
 example:
 
 ``` datasign
-@graphql kind: input;
-data Message {
+// .datasign
+@graphql kind input
+Message {
     // fields
 }
 ```
@@ -432,8 +506,9 @@ data Message {
 which is equivalent to
 
 ``` datasign
-@graphql input;
-data Message {
+// .datasign
+@graphql input
+Message {
     // fields
 }
 ```
@@ -441,6 +516,7 @@ data Message {
 compiles to
 
 ``` graphql
+# .graphql
 input Message {
     # fields
 }
@@ -449,8 +525,9 @@ input Message {
 or multi-kind
 
 ``` datasign
-@graphql type-input;
-data Message {
+// .datasign
+@graphql type-input
+Message {
     // fields
 }
 ```
@@ -458,7 +535,9 @@ data Message {
 compiles to
 
 ``` graphql
-data Message {
+# .graphql
+
+type Message {
     # fields
 }
 
@@ -480,18 +559,18 @@ The `GraphQL` type of the compiled `GraphQL` field.
 example:
 
 ``` datasign
-data Message {
-    @graphql type: ID;
-    id: string;
+Message {
+    @graphql type ID
+    id string
 }
 ```
 
 which is equivalent to
 
 ``` datasign
-data Message {
-    @graphql ID;
-    id: string;
+Message {
+    @graphql ID
+    id string
 }
 ```
 
@@ -511,12 +590,12 @@ Adds the directive to the `GraphQL` field. The directive needs to be provided in
 example:
 
 ``` datasign
-data Message {
-    newField: string;
+Message {
+    newField string
 
     // the `deprecated` directive needs to be provided to the graphql schema
-    @graphql directive: deprecated: reason: "Use `newField`.";
-    oldField: string;
+    @graphql directive deprecated reason "Use `newField`."
+    oldField string
 }
 ```
 
@@ -530,7 +609,7 @@ type Message {
 ```
 
 
-#### `@protobuf`
+#### `@proto`
 
 ##### `type`
 
@@ -539,24 +618,24 @@ The `Protocol Buffers` type of the compiled `Protocol Buffers` field.
 example:
 
 ``` datasign
-data Count {
-    @protobuf type: int64;
-    value: number;
+Count {
+    @proto type int64
+    value number
 }
 ```
 
 which is equivalent to
 
 ``` datasign
-data Count {
-    @protobuf int64;
-    value: number;
+Count {
+    @proto int64
+    value number
 }
 ```
 
 compiles to
 
-``` protobuf
+``` proto
 message Count {
     required int64 value = 1;
 }
