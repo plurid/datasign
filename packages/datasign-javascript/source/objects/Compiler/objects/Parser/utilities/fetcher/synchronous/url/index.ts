@@ -17,7 +17,6 @@
 const fetchFromURL = (
     url: string,
     token?: string,
-    type?: any,
 ) => {
     const {
         headers,
@@ -25,7 +24,6 @@ const fetchFromURL = (
     } = resolveFetchURL(
         url,
         token,
-        type,
     );
 
     const response = fetch(

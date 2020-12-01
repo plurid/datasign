@@ -3,8 +3,6 @@
     import {
         promises as fs,
     } from 'fs';
-
-    import path from 'path';
     // #endregion libraries
 
 
@@ -25,7 +23,6 @@
 const fetchFromFile = async (
     file: string,
     options: DatasignInterpreterOptions,
-    type?: any,
 ) => {
     const {
         filepath,
@@ -34,7 +31,6 @@ const fetchFromFile = async (
     } = resolveFetchFile(
         file,
         options,
-        type,
     );
 
     const data = await fs.readFile(

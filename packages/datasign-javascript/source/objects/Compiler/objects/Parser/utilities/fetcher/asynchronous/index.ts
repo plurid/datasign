@@ -28,7 +28,6 @@ const fetcher = async (
     file: string,
     options: DatasignInterpreterOptions,
     token?: string,
-    type?: any,
 ) => {
     try {
         const fileIsUrl = isURL(file);
@@ -44,7 +43,6 @@ const fetcher = async (
             } = await fetchFromURL(
                 file,
                 token,
-                type,
             );
 
             return {
@@ -64,7 +62,6 @@ const fetcher = async (
         } = await fetchFromFile(
             file,
             options,
-            type,
         );
 
         return {

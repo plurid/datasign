@@ -21,7 +21,6 @@
 const fetchFromFile = (
     file: string,
     options: DatasignInterpreterOptions,
-    type?: any,
 ) => {
     const {
         filepath,
@@ -30,7 +29,6 @@ const fetchFromFile = (
     } = resolveFetchFile(
         file,
         options,
-        type,
     );
 
     const data = fs.readFileSync(

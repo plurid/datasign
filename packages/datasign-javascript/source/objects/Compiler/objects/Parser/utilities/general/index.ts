@@ -35,40 +35,18 @@ const isURL = (
 
 
 const solveExtensionName = (
-    type: string,
     extname: string,
 ) => {
-    if (type === 'inject') {
+    if (extname === DATASIGN_FILENAME_EXTENSION) {
         return {
-            filetype: extname,
+            filetype: DATASIGN_FILENAME_EXTENSION,
             concatenate: false,
         };
     }
 
-    if (type === 'import') {
-        if (extname === '.deon') {
-            return {
-                filetype: extname,
-                concatenate: false,
-            };
-        }
-
-        if (extname === '.json') {
-            return {
-                filetype: extname,
-                concatenate: false,
-            };
-        }
-
-        return {
-            filetype: DATASIGN_FILENAME_EXTENSION,
-            concatenate: true,
-        };
-    }
-
     return {
-        filetype: extname,
-        concatenate: false,
+        filetype: DATASIGN_FILENAME_EXTENSION,
+        concatenate: true,
     };
 }
 

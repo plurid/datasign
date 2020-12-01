@@ -17,7 +17,6 @@
 const fetchFromURL = async (
     url: string,
     token?: string,
-    type?: any,
 ) => {
     const {
         headers,
@@ -25,7 +24,6 @@ const fetchFromURL = async (
     } = resolveFetchURL(
         url,
         token,
-        type,
     );
 
     const response = await fetch(

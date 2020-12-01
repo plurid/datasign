@@ -46,7 +46,6 @@ const resolveBasePath = (
 const resolveFetchFile = (
     file: string,
     options: DatasignInterpreterOptions,
-    type?: any,
 ) => {
     const {
         file: parsedFile,
@@ -67,7 +66,6 @@ const resolveFetchFile = (
         filetype,
         concatenate,
     } = solveExtensionName(
-        type || 'import',
         extname,
     );
 
@@ -92,7 +90,6 @@ const resolveFetchFile = (
 const resolveFetchURL = (
     url: string,
     token?: string,
-    type?: any,
 ) => {
     const defaultHeaders = fetcherDefaultImportHeaders;
 
@@ -108,7 +105,6 @@ const resolveFetchURL = (
     const {
         filetype,
     } = solveExtensionName(
-        type || 'import',
         extname,
     );
 

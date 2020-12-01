@@ -28,7 +28,6 @@ const fetcher = (
     file: string,
     options: DatasignInterpreterOptions,
     token?: string,
-    type?: any,
 ) => {
     try {
         const fileIsUrl = isURL(file);
@@ -44,7 +43,6 @@ const fetcher = (
             } = fetchFromURL(
                 file,
                 token,
-                type,
             );
 
             return {
@@ -64,7 +62,6 @@ const fetcher = (
         } = fetchFromFile(
             file,
             options,
-            type,
         );
 
         return {
