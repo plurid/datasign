@@ -18,6 +18,21 @@ export const DATASIGN_FILENAME_EXTENSION = '.datasign';
 export const DATASIGN_MEDIA_TYPE = 'application/datasign';
 
 
+
+export const fetcherDefaultImportHeaders = {
+    Accept: 'text/plain,application/json,' + DATASIGN_MEDIA_TYPE,
+};
+
+
+export const datasignParseOptions: any = {
+    filebase: '',
+    absolutePaths: {},
+    authorization: {},
+    allowFilesystem: true,
+    allowNetwork: true,
+};
+
+
 export const resolveFile: ResolveFile = 'file';
 export const resolveProcess: ResolveProcess = 'process';
 export const resolveFlatten: ResolveFlatten = 'flatten';

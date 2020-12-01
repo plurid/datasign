@@ -2,16 +2,14 @@
     // #region external
     import {
     } from '../../data/interfaces';
-    // import Token from '../Token';
+
+    import Token from '../Token';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-export type LocatorStatements = (CollectionStatement | DocumentStatement)[];
-
-
 export abstract class Statement {
     abstract accept<T>(
         visitor: Visitor<T>,
@@ -20,16 +18,69 @@ export abstract class Statement {
 
 
 export interface Visitor<T> {
-    visitCollectionStatement: (collectionStatement: CollectionStatement) => T;
-    visitDocumentStatement: (documentStatement: DocumentStatement) => T;
+    visitImportStatement: (importStatement: ImportStatement) => T;
+    visitDatatypeStatement: (datatypeStatement: DatatypeStatement) => T;
+    visitFieldStatement: (fieldStatement: FieldStatement) => T;
 }
 
 
-export class CollectionStatement extends Statement {
-    public name: string;
+export type ImportType = 'namespace' | 'extract';
+
+export class ImportStatement extends Statement {
+    public type: ImportType;
+    public name: Token | Token[];
+    public path: Token;
+    public authenticator: Token | undefined;
 
     constructor(
-        name: string,
+        type: ImportType,
+        name: Token | Token[],
+        path: Token,
+        authenticator: Token | undefined,
+    ) {
+        super();
+
+        this.type = type;
+        this.name = name;
+        this.path = path;
+        this.authenticator = authenticator;
+    }
+
+    accept<T>(
+        visitor: Visitor<T>,
+    ) {
+        return visitor.visitImportStatement(this);
+    }
+}
+
+
+export class DatatypeStatement extends Statement {
+    private name: Token;
+    private fields: any;
+
+    constructor(
+        name: Token,
+        fields: any,
+    ) {
+        super();
+
+        this.name = name;
+        this.fields = fields;
+    }
+
+    accept<T>(
+        visitor: Visitor<T>,
+    ) {
+        return visitor.visitDatatypeStatement(this);
+    }
+}
+
+
+export class FieldStatement extends Statement {
+    private name: Token;
+
+    constructor(
+        name: Token,
     ) {
         super();
 
@@ -39,26 +90,7 @@ export class CollectionStatement extends Statement {
     accept<T>(
         visitor: Visitor<T>,
     ) {
-        return visitor.visitCollectionStatement(this);
-    }
-}
-
-
-export class DocumentStatement extends Statement {
-    public keys: any[];
-
-    constructor(
-        keys: any[],
-    ) {
-        super();
-
-        this.keys = keys;
-    }
-
-    accept<T>(
-        visitor: Visitor<T>,
-    ) {
-        return visitor.visitDocumentStatement(this);
+        return visitor.visitFieldStatement(this);
     }
 }
 // #endregion module
