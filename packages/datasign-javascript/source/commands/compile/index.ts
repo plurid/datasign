@@ -8,13 +8,13 @@
     import {
         CompileData,
         ProcessData,
-    } from '../data/interfaces';
+    } from '#data/interfaces';
 
     import {
         processFile,
         processTargets,
         processResolve,
-    } from '../services/logic';
+    } from '#services/logic';
     // #endregion external
 // #endregion imports
 

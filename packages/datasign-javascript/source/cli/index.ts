@@ -9,16 +9,16 @@
     // #region external
     import {
         compileCommand,
-    } from '../commands';
+    } from '#commands/index';
 
     import {
         CompileData,
-    } from '../data/interfaces';
+    } from '#data/interfaces';
 
     import {
         separateList,
         stringToBoolean,
-    } from '../services/utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
