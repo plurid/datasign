@@ -2,7 +2,7 @@
     // #region external
     import {
         lineTypes,
-    } from '#Compiler/data/constants';
+    } from '#data/constants';
 
     import {
         DatasignEntity,
@@ -10,11 +10,11 @@
         DatasignAnnotation,
         TypedLine,
         DatasignCompilerOptions,
-    } from '#Compiler/data/interfaces';
+    } from '#data/interfaces';
 
     import {
         trimTrailingSpace,
-    } from '#Compiler/services/utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 

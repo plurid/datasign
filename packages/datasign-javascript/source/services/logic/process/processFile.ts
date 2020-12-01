@@ -1,6 +1,7 @@
 // #region imports
     // #region libraries
     import path from 'path';
+
     import {
         statSync,
         promises as fs,
@@ -9,12 +10,17 @@
 
 
     // #region external
-    import DatasignCompiler, {
+    import {
         DatasignCompilerData,
         DatasignCompileResult,
         Target,
+    } from '#data/interfaces';
+
+    import {
         targets,
-    } from '#objects/Compiler';
+    } from '#data/constants';
+
+    import DatasignCompiler from '#objects/Compiler';
 
     import {
         DATASIGN_FILENAME_EXTENSION,

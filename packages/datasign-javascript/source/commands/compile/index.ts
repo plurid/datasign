@@ -4,7 +4,7 @@
         ProcessData,
     } from '#data/interfaces';
 
-    import Metacompiler from '#objects/Compiler/objects/Metacompiler';
+    import Metacompiler from '#objects/Metacompiler';
     // #endregion external
 // #endregion imports
 

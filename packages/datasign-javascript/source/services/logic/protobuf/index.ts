@@ -4,35 +4,49 @@
         DatasignEntity,
         DatasignEntityData,
         DatasignCompilerOptions,
-    } from '#Compiler/data/interfaces';
+    } from '#data/interfaces';
 
     import {
         formatCode,
         resolveSpacing,
         constructGeneratedNotice,
-    } from '#Compiler/services/utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-const generateTypescriptFields = (
+const resolveProtobufType = (
+    type: string,
+) => {
+    switch (type) {
+        case 'number':
+            return 'int32';
+        case 'boolean':
+            return 'bool';
+        default:
+            return type;
+    }
+}
+
+const generateProtobufFields = (
     data: DatasignEntityData[],
     options: DatasignCompilerOptions,
 ) => {
     const fields: string[] = [];
 
     const spacing = resolveSpacing(options.spacing);
-    const separator = ': ';
+    const space = ' ';
+    const equal = ' = ';
     const semicolon = ';';
 
-    for (const field of data) {
+    for (const [index, field] of data.entries()) {
         const {
             name,
             type,
             required,
-            empty,
+            empty
         } = field;
 
         if (empty) {
@@ -42,8 +56,11 @@ const generateTypescriptFields = (
             continue;
         }
 
-        const requireString = required ? '' : '?';
-        const fieldText = spacing + name + requireString + separator + type + semicolon;
+        const resolvedType = resolveProtobufType(type);
+
+        const requiredString = required ? 'required ' : '';
+        const fieldIndex = index + 1;
+        const fieldText = spacing + requiredString + resolvedType + space + name + equal + fieldIndex + semicolon;
         fields.push(fieldText);
     }
 
@@ -51,47 +68,47 @@ const generateTypescriptFields = (
 }
 
 
-const generateTypescriptEntity = (
+const generateProtobufEntity = (
     entity: DatasignEntity,
     options: DatasignCompilerOptions,
 ) => {
-    const fields = generateTypescriptFields(entity.data, options);
+    const fields = generateProtobufFields(entity.data, options);
     const stringedFields = fields.join('\n');
     const stringedComments = entity.comments !== ''
         ? entity.comments + '\n'
         : '';
 
-
     const entityText = stringedComments
-        + `export interface ${entity.name} {\n`
+        + `message ${entity.name} {\n`
         + stringedFields
         + '\n}';
 
     return entityText;
 }
 
-const generateTypescript = (
+const generateProtobuf = (
     filename: string | undefined,
     parsed: DatasignEntity[],
     options: DatasignCompilerOptions,
 ) => {
-    const generatedMessage = constructGeneratedNotice(filename, 'typescript');
+    const generatedMessage = constructGeneratedNotice(filename, 'protobuf');
+    const syntaxProtobuf = 'syntax = "proto3";\n\n';
 
-    const typescriptText = options.generatedNotice
-        ? [generatedMessage]
-        : [];
+    const protobufText = options.generatedNotice
+        ? [generatedMessage, syntaxProtobuf,]
+        : [syntaxProtobuf];
 
     for (const entity of parsed) {
-        const entityText = generateTypescriptEntity(entity, options);
-        typescriptText.push(entityText);
+        const entityText = generateProtobufEntity(entity, options);
+        protobufText.push(entityText);
     }
 
-    return formatCode(typescriptText);
+    return formatCode(protobufText);
 }
 // #endregion module
 
 
 
 // #region exports
-export default generateTypescript;
+export default generateProtobuf;
 // #endregion exports

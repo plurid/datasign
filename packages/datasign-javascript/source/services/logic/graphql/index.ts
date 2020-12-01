@@ -5,7 +5,7 @@
         DatasignEntityData,
         DatasignCompilerOptions,
         DatasignAnnotation,
-    } from '#Compiler/data/interfaces';
+    } from '#data/interfaces';
 
     import {
         capitalize,
@@ -13,7 +13,7 @@
         resolveSpacing,
         extractAnnotationsByType,
         constructGeneratedNotice,
-    } from '#Compiler/services/utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
