@@ -567,18 +567,9 @@ message Count {
     <img src="https://img.shields.io/npm/v/@plurid/datasign.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/datasign][datasign] • the CLI application and package to be imported for scripting/programmatic usage
+[@plurid/datasign-javascript][datasign-javascript] • `JavaScript`/`TypeScript` implementation
 
-[datasign]: https://github.com/plurid/datasign/tree/master/packages/datasign
-
-
-<a target="_blank" href="https://www.npmjs.com/package/@plurid/datasign-compiler">
-    <img src="https://img.shields.io/npm/v/@plurid/datasign-compiler.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
-</a>
-
-[@plurid/datasign-compiler][datasign-compiler] • the compiler used in the main `datasign` package
-
-[datasign-compiler]: https://github.com/plurid/datasign/tree/master/packages/datasign-compiler
+[datasign-javascript]: https://github.com/plurid/datasign/tree/master/packages/datasign-javascript
 
 
 <a target="_blank" href="https://github.com/plurid/datasign/tree/master/packages/datasign-grammar/vscode">
