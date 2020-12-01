@@ -2,13 +2,6 @@
     <img src="https://raw.githubusercontent.com/plurid/datasign/master/about/identity/datasign-logo.png" height="250px">
     <br />
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/@plurid/datasign">
-        <img src="https://img.shields.io/npm/v/@plurid/datasign.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
-    </a>
-    <a target="_blank" href="https://github.com/plurid/datasign">
-        <img src="https://img.shields.io/badge/code-git-blue.svg?colorB=1380C3&style=for-the-badge&logo=github" alt="GIT">
-    </a>
-    <br />
     <a target="_blank" href="https://github.com/plurid/datasign/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-DEL-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: DEL">
     </a>
@@ -44,6 +37,7 @@ Supported specification targets:
 
 + [A Web-Oriented Example](#a-web-oriented-example)
 + [Usage](#usage)
+    + [Command-Line Interface](#command-line-interface)
     + [One-Time Compilation](#one-time-compilation)
     + [Script](#script)
     + [Programmatic](#programmatic)
@@ -180,19 +174,21 @@ message User {
 
 ## Usage
 
-Command-Line Interface options:
+### Command-Line Interface
 
 ```
--v, --version               output the version number
--t, --target <type>         compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
--o, --output <path>         output path (default: ".")
--r, --resolve <type>        resolve the output path relative to "file" directory, "process" directory,
-                            or "flatten" into the output path (default: "file")
--c, --comments [value]      compile the comments into the target files (default: false)
--s, --spacing <value>       indentation spacing to be used in the compiled files (default: "4")
--p, --preserve [value]      preserve new lines spacing of the datasign file (default: false)
--g, --generated [value]     inject a header in each generated file mentioning the source (default: true)
--h, --help                  display help for command
+Usage: datasign <files>
+
+Options:
+  -v, --version            output the version number
+  -t, --target <type>      compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
+  -o, --output <path>      output path (default: ".")
+  -r, --resolve <type>     resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+  -c, --comments [value]   compile the comments into the target files (default: false)
+  -s, --spacing <value>    indentation spacing to be used in the compiled files (default: "4")
+  -p, --preserve [value]   preserve new lines spacing of the datasign file (default: false)
+  -g, --generated [value]  inject a header in each generated file mentioning the source (default: true)
+  -h, --help               display help for command
 ```
 
 
