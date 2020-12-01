@@ -4,9 +4,7 @@
         ProcessData,
     } from '#data/interfaces';
 
-    import {
-        processFile,
-    } from '#services/logic';
+    import Metacompiler from '#objects/Compiler/objects/Metacompiler';
     // #endregion external
 // #endregion imports
 
@@ -17,9 +15,11 @@ const compileCommand = async (
     files: string[],
     data: ProcessData,
 ) => {
-    for (const file of files) {
-        await processFile(file, data);
-    }
+    const metacompiler = new Metacompiler(
+        files,
+        data,
+    );
+    await metacompiler.emit();
 }
 // #endregion module
 
