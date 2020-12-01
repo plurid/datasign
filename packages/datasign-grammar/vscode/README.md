@@ -31,9 +31,9 @@
 
 
 
-Datasign is a file format to specify data signatures to be used as a single source of (specified) truth to generate files for various pipelines.
+`datasign` is a file format to describe data contract signatures to be used as a single source of (specified) truth to generate files for various pipelines.
 
-Supported generator targets:
+Supported specification targets:
 
 + `GraphQL`
 + `Protocol Buffers`
@@ -66,12 +66,12 @@ Supported generator targets:
 ## A Web-Oriented Example
 
 ```
-                                        Text.datasign
-                                            |
-    _________________________________________________________________________________
-    |                                       |                                       |
-    to TypeScript                        to GraphQL                              to Protocol Buffers/gRPC
-    Text.ts                              Text.graphql                            Text.proto
+                                    Text.datasign
+                                        |
+    _________________________________________________________________________
+    |                                   |                                   |
+    to TypeScript                     to GraphQL                          to Protocol Buffers/gRPC
+    Text.ts                           Text.graphql                        Text.proto
 ```
 
 
@@ -83,18 +83,18 @@ Supported generator targets:
  */
 @sign: TextEntity; // assigns an identification sign to the data type
 data Text {
-    // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-    @graphql: ID;
+    // type the `id` field to `ID` for GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
+    @graphql ID;
     id: string;
 
     name: string;
     value: string;
-    @graphql: Int;
+    @graphql Int;
     characters: number;
     public: boolean;
 
-    @graphql: Date;
-    @protobuf: number;
+    @graphql Date;
+    @protobuf number;
     generatedAt: Date;
     generatedBy: User;
 }
@@ -109,12 +109,10 @@ data User {
 ``` typescript
 // Text.ts
 
+// @sign: TextEntity
 /**
-    * @sign: TextEntity
-    */
-/**
-    * Text Documentation
-    */
+ * Text Documentation
+ */
 export interface Text {
     id: string;
     name: string;
@@ -135,10 +133,10 @@ export interface User {
 ``` graphql
 # Text.graphql
 
+### @sign: TextEntity
 #
 # Text Documentation
 #
-# @sign: TextEntity
 type Text {
     id: ID!
     name: String!
@@ -161,8 +159,8 @@ type User {
 
 // @sign: TextEntity
 /**
-    * Text Documentation
-    */
+ * Text Documentation
+ */
 message Text {
     required string id = 1;
     required string name = 2;
@@ -251,13 +249,13 @@ async function main() {
     const datasignLoader = new DatasignLoader('/path/to/file');
 
     const graphql = await datasignLoader.load('graphql');
-    // graphql contains the types string
+    // `graphql` contains the types string
 
     const protobuf = await datasignLoader.load('protobuf');
-    // protobuf contains the messages string
+    // `protobuf` contains the messages string
 
     const typescript = await datasignLoader.load('typescript');
-    // typescript contains the types namespace
+    // `typescript` contains the types namespace
 }
 
 main();
@@ -322,8 +320,8 @@ example:
 // this is a valid comment
 data Message { // this is also valid
     /**
-    * Documentation for the id field.
-    */
+     * Documentation for the id field.
+     */
     id: string;
     // other fields
 }
@@ -384,7 +382,7 @@ The identification `sign` of the entity. If not specified, the `sign` is generat
 example:
 
 ``` datasign
-@sign: random-generated-string
+@sign random-generated-string
 data AnEntity {
     // datasign fields
 }
@@ -402,7 +400,7 @@ default: `true`
 example:
 
 ``` datasign
-@typescript: export: false;
+@typescript export: false;
 data Message {
     // fields
 }
@@ -419,16 +417,18 @@ interface Message {
 
 #### `@graphql`
 
-##### `type`
+##### `kind`
 
-The `GraphQL` type of the compiled `GraphQL` data structure.
+The `GraphQL` kind of the compiled `GraphQL` data structure.
+
+values: `type` | `input` | `type-input`
 
 default: `type`
 
 example:
 
 ``` datasign
-@graphql: type: input;
+@graphql kind: input;
 data Message {
     // fields
 }
@@ -437,7 +437,7 @@ data Message {
 which is equivalent to
 
 ``` datasign
-@graphql: input;
+@graphql input;
 data Message {
     // fields
 }
@@ -447,9 +447,31 @@ compiles to
 
 ``` graphql
 input Message {
+    # fields
+}
+```
+
+or multi-kind
+
+``` datasign
+@graphql type-input;
+data Message {
     // fields
 }
 ```
+
+compiles to
+
+``` graphql
+data Message {
+    # fields
+}
+
+input Message {
+    # fields
+}
+```
+
 
 
 ### Field
@@ -498,7 +520,7 @@ data Message {
     newField: string;
 
     // the `deprecated` directive needs to be provided to the graphql schema
-    @graphql: directive: deprecated: reason: "Use `newField`.";
+    @graphql directive: deprecated: reason: "Use `newField`.";
     oldField: string;
 }
 ```
@@ -513,7 +535,7 @@ type Message {
 ```
 
 
-#### `@graphql`
+#### `@protobuf`
 
 ##### `type`
 
