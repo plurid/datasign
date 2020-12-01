@@ -14,6 +14,7 @@ export interface CompileData {
     targets: string[];
     output: string;
     resolve: string;
+    merge: boolean | string | undefined;
     comments: boolean;
     spacing: string;
     preserve: boolean;
@@ -25,6 +26,7 @@ export interface ProcessData {
     targets: Target[];
     output: string;
     resolve: Resolve;
+    merge: boolean | string | undefined;
     comments: boolean;
     spacing: number;
     preserve: boolean;

@@ -54,6 +54,10 @@ const main = async (
             'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
             'file',
         ).option(
+            '-m, --merge [name]',
+            'merge the output into a single file',
+            undefined,
+        ).option(
             '-c, --comments [value]',
             'compile the comments into the target files',
             true,
@@ -78,6 +82,7 @@ const main = async (
                 target,
                 output,
                 resolve,
+                merge,
                 comments,
                 spacing,
                 preserve,
@@ -90,6 +95,7 @@ const main = async (
                 targets,
                 output,
                 resolve,
+                merge,
                 comments,
                 spacing,
                 preserve: typeof preserve === 'string'
