@@ -7,11 +7,17 @@
             "#data/*": [
                 "./source/data/*"
             ],
+            "#commands/*": [
+                "./source/commands/*"
+            ],
             "#objects/*": [
                 "./source/objects/*"
             ],
             "#services/*": [
                 "./source/services/*"
+            ],
+            "#Compiler/*": [
+                "./source/objects/Compiler/*"
             ]
         },
 
