@@ -1,4 +1,4 @@
-import DatasignCompiler from '../';
+import DatasignCompiler from '..';
 import {
     DatasignCompilerData,
 } from '../../../data/interfaces';

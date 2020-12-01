@@ -5,6 +5,6 @@ module.exports = function (api) {
     ];
 
     return {
-        plugins
+        plugins,
     };
 }
