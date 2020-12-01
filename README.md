@@ -182,6 +182,7 @@ Options:
     -t, --target <type>           compilation targets: typescript, graphql, proto (default: "typescript,graphql,proto")
     -o, --output <path>           output path (default: ".")
     -r, --resolve <type>          resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+    -m, --merge [name]            merge the output into a single file (named or not) for each target
     -c, --comments [value]        compile the comments into the target files (default: false)
     -s, --spacing <value>         indentation spacing to be used in the compiled files (default: "4")
     -p, --preserve [value]        preserve new lines spacing of the datasign file (default: false)
