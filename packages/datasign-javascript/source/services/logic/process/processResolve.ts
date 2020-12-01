@@ -10,15 +10,15 @@
 
 // #region module
 const processResolve = (
-    argResolve: string,
+    resolve: string,
 ): Resolve => {
-    switch (argResolve) {
+    const value = resolve.toLowerCase();
+
+    switch (value) {
         case 'file':
-            return argResolve;
         case 'process':
-            return argResolve;
         case 'flatten':
-            return argResolve;
+            return value;
         default:
             return 'file';
     }
