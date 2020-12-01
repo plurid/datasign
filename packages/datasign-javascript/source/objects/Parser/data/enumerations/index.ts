@@ -4,7 +4,7 @@ export enum TokenType {
     ALPHASAND,
     QUESTION_MARK,
     AMPERSAND, PIPE,
-    DOT,
+    DOT, COMMA,
     LEFT_CURLY_BRACKET, RIGHT_CURLY_BRACKET,
     LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET,
     LEFT_PARANTHESIS, RIGHT_PARANTHESIS,
@@ -13,12 +13,19 @@ export enum TokenType {
     // Entities.
     SIGNIFIER,
 
-    KEY, VALUE,
+    DATATYPE,
+    FIELD, TYPE,
 
     ANNOTATE_GRAPHQL,
     ANNOTATE_PROTOBUF,
     ANNOTATE_TYPESCRIPT,
 
+
+    // Operators
+    AND, OR, OPTIONAL,
+
+
+    // Keywords
     IMPORT,
 
 
