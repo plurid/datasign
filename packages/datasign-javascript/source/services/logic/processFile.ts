@@ -9,7 +9,7 @@ import DatasignCompiler, {
     DatasignCompileResult,
     Target,
     targets,
-} from '@plurid/datasign-compiler';
+} from '#objects/Compiler';
 
 import {
     DATASIGN_EXTENSION,

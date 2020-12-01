@@ -1,6 +1,6 @@
 import {
     Target,
-} from '@plurid/datasign-compiler';
+} from '#objects/Compiler';
 
 
 

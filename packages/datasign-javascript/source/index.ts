@@ -1,6 +1,6 @@
 import DatasignCompiler, {
     DatasignLoader,
-} from '@plurid/datasign-compiler';
+} from '#objects/Compiler';
 
 import cli from './cli';
 
@@ -10,4 +10,4 @@ export {
     cli,
     DatasignCompiler,
     DatasignLoader,
-}
+};

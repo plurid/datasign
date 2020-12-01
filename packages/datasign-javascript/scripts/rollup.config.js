@@ -1,7 +1,5 @@
 // #region imports
     // #region libraries
-    import resolve from '@rollup/plugin-node-resolve';
-    import external from 'rollup-plugin-peer-deps-external';
     import commonjs from '@rollup/plugin-commonjs';
     import sourceMaps from 'rollup-plugin-sourcemaps';
     import typescript from 'rollup-plugin-typescript2';
@@ -11,45 +9,35 @@
 
 
 // #region module
-const pkg = require('../package.json');
-
-const globals = {
-    'commander': 'program',
-};
-
-const build =  {
+const datasign = {
     input: `source/index.ts`,
     output: [
         {
-            file: pkg.main,
+            file: './distribution/index.js',
             format: 'cjs',
-            globals,
             sourcemap: true,
+            exports: 'named',
         },
         {
-            file: pkg.module,
+            file: './distribution/index.es.js',
             format: 'es',
-            globals,
             sourcemap: true,
+            exports: 'named',
         },
     ],
     external: [
+        'commander',
     ],
     watch: {
         include: 'source/**',
     },
     plugins: [
-        typescript({
-            useTsconfigDeclarationDir: true,
-        }),
-        external({
-            includeDependencies: true,
-        }),
-        resolve({
-            preferBuiltins: true,
-        }),
         commonjs(),
         sourceMaps(),
+        typescript({
+            file: '../tsconfig.json',
+            useTsconfigDeclarationDir: true,
+        }),
     ],
 };
 // #endregion module
@@ -57,5 +45,5 @@ const build =  {
 
 
 // #region exports
-export default build;
+export default datasign;
 // #endregion exports
