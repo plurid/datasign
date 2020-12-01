@@ -17,11 +17,7 @@ const processTargets = (
     for (const argTarget of argTargets) {
         switch (argTarget) {
             case 'typescript':
-                targets.push(argTarget);
-                break;
             case 'graphql':
-                targets.push(argTarget);
-                break;
             case 'protobuf':
                 targets.push(argTarget);
                 break;

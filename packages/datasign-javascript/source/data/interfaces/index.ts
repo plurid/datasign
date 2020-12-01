@@ -9,19 +9,6 @@
 
 
 // #region module
-export interface CompileData {
-    files: string[];
-    targets: string[];
-    output: string;
-    resolve: string;
-    merge: boolean | string | undefined;
-    comments: boolean;
-    spacing: string;
-    preserve: boolean;
-    generated: boolean;
-}
-
-
 export interface ProcessData {
     targets: Target[];
     output: string;

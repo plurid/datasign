@@ -12,17 +12,12 @@
     } from '#commands/index';
 
     import {
-        CompileData,
-    } from '#data/interfaces';
-
-    import {
         DATASIGN_CLI_VERSION,
     } from '#data/constants';
 
     import {
-        separateList,
-        stringToBoolean,
-    } from '#services/utilities';
+        processOptions,
+    } from '#services/logic';
     // #endregion external
 // #endregion imports
 
@@ -78,34 +73,14 @@ const main = async (
             files: string[],
             options,
         ) => {
-            const {
-                target,
-                output,
-                resolve,
-                merge,
-                comments,
-                spacing,
-                preserve,
-                generated,
-            } = options;
-            const targets = separateList(target);
+            const data = processOptions(
+                options,
+            );
 
-            const data: CompileData = {
+            await compileCommand(
                 files,
-                targets,
-                output,
-                resolve,
-                merge,
-                comments,
-                spacing,
-                preserve: typeof preserve === 'string'
-                    ? stringToBoolean(preserve)
-                    : preserve,
-                generated: typeof generated === 'string'
-                    ? stringToBoolean(generated)
-                    : generated,
-            };
-            await compileCommand(data);
+                data,
+            );
         });
 
 
