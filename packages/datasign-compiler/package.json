@@ -1,13 +1,13 @@
 {
     "name": "@plurid/datasign-compiler",
-    "version": "0.0.12",
+    "version": "0.0.0-0",
     "description": "datasign-compiler",
     "keywords": [
         "datasign",
         "compiler"
     ],
     "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE",
     "repository": {
         "type": "git",
         "url": "https://github.com/plurid/datasign"
@@ -27,17 +27,17 @@
     "module": "distribution/index.es.js",
     "types": "distribution/index.d.ts",
     "engines": {
-        "node": ">=8",
+        "node": ">=12",
         "npm": ">=6"
     },
     "scripts": {
         "clean": "rm -rf ./distribution",
-        "spec": "jest ./source",
+        "test": "jest ./source",
         "lint": "eslint ./source --ext .ts,.tsx",
-        "start": "yarn clean && rollup -c rollup.config.development.js -w --environment MODE_ENV:local",
-        "build.development": "yarn clean && rollup -c rollup.config.development.js --environment MODE_ENV:development",
-        "build.production": "yarn clean && rollup -c --environment MODE_ENV:production",
-        "build": "yarn clean && yarn lint && yarn spec && yarn build.production",
+        "start": "yarn clean && rollup -c rollup.config.development.js -w --environment ENV_MODE:local",
+        "build.development": "yarn clean && rollup -c rollup.config.development.js --environment ENV_MODE:development",
+        "build.production": "yarn clean && rollup -c --environment ENV_MODE:production",
+        "build": "yarn clean && yarn lint && yarn test && yarn build.production",
         "prepublishOnly": "yarn build"
     },
     "devDependencies": {

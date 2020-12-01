@@ -1,6 +1,7 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/datasign/master/about/identity/datasign-logo.png" height="250px">
     <br />
+    <br />
     <a target="_blank" href="https://www.npmjs.com/package/@plurid/datasign">
         <img src="https://img.shields.io/npm/v/@plurid/datasign.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
     </a>
@@ -9,18 +10,25 @@
     </a>
     <br />
     <a target="_blank" href="https://github.com/plurid/datasign/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
+        <img src="https://img.shields.io/badge/license-DEL-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: DEL">
     </a>
 </p>
 
 
 
 <h1 align="center">
-    datasign grammar
+    datasign
 </h1>
 
 
-Syntax highlighting for `.datasign` files.
+<h3 align="center">
+    Single Source of Truth Data Contract Specifier
+</h3>
+
+
+
+<br />
+
 
 
 Datasign is a file format to specify data signatures to be used as a single source of (specified) truth to generate files for various pipelines.
@@ -30,7 +38,6 @@ Supported generator targets:
 + `GraphQL`
 + `Protocol Buffers`
 + `TypeScript`
-
 
 
 ### Contents
@@ -50,7 +57,9 @@ Supported generator targets:
 + [Annotations](#annotations)
     + [Entity](#entity)
     + [Field](#field)
++ [Usage](#usage)
 + [Packages](#packages)
++ [Codeophon](#codeophon)
 
 
 
@@ -67,107 +76,107 @@ Supported generator targets:
 
 
 ``` datasign
-    // Text.datasign
+// Text.datasign
 
-    /**
-     * Text Documentation
-     */
-    @sign: TextEntity; // assigns an identification sign to the data type
-    data Text {
-        // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
-        @graphql: ID;
-        id: string;
+/**
+ * Text Documentation
+ */
+@sign: TextEntity; // assigns an identification sign to the data type
+data Text {
+    // type the `id` field to `ID` in GraphQL, and `string` for TypeScript/Protocol Buffers/gRPC
+    @graphql: ID;
+    id: string;
 
-        name: string;
-        value: string;
-        @graphql: Int;
-        characters: number;
-        public: boolean;
+    name: string;
+    value: string;
+    @graphql: Int;
+    characters: number;
+    public: boolean;
 
-        @graphql: Date;
-        @protobuf: number;
-        generatedAt: Date;
-        generatedBy: User;
-    }
+    @graphql: Date;
+    @protobuf: number;
+    generatedAt: Date;
+    generatedBy: User;
+}
 
-    data User {
-        id: string;
-        name: string;
-    }
+data User {
+    id: string;
+    name: string;
+}
 ```
 
 
 ``` typescript
-    // Text.ts
+// Text.ts
 
-    /**
-     * @sign: TextEntity
-     */
-    /**
-     * Text Documentation
-     */
-    export interface Text {
-        id: string;
-        name: string;
-        value: string;
-        characters: number;
-        public: boolean;
-        generatedAt: Date;
-        generatedBy: User;
-    }
+/**
+    * @sign: TextEntity
+    */
+/**
+    * Text Documentation
+    */
+export interface Text {
+    id: string;
+    name: string;
+    value: string;
+    characters: number;
+    public: boolean;
+    generatedAt: Date;
+    generatedBy: User;
+}
 
-    export interface User {
-        id: string;
-        name: string;
-    }
+export interface User {
+    id: string;
+    name: string;
+}
 ```
 
 
 ``` graphql
-    # Text.graphql
+# Text.graphql
 
-    #
-    # Text Documentation
-    #
-    # @sign: TextEntity
-    type Text {
-        id: ID!
-        name: String!
-        value: String!
-        characters: Int!
-        public: Boolean!
-        generatedAt: Date!
-        generatedBy: User!
-    }
+#
+# Text Documentation
+#
+# @sign: TextEntity
+type Text {
+    id: ID!
+    name: String!
+    value: String!
+    characters: Int!
+    public: Boolean!
+    generatedAt: Date!
+    generatedBy: User!
+}
 
-    type User {
-        id: String!
-        name: String!
-    }
+type User {
+    id: String!
+    name: String!
+}
 ```
 
 
 ``` protobuf
-    // Text.proto
+// Text.proto
 
-    // @sign: TextEntity
-    /**
-     * Text Documentation
-     */
-    message Text {
-        required string id = 1;
-        required string name = 2;
-        required string value = 3;
-        required number characters = 4;
-        required boolean public = 5;
-        required number generatedAt = 6;
-        required User generatedBy = 7;
-    }
+// @sign: TextEntity
+/**
+    * Text Documentation
+    */
+message Text {
+    required string id = 1;
+    required string name = 2;
+    required string value = 3;
+    required number characters = 4;
+    required boolean public = 5;
+    required number generatedAt = 6;
+    required User generatedBy = 7;
+}
 
-    message User {
-        required string id = 1;
-        required string name = 2;
-    }
+message User {
+    required string id = 1;
+    required string name = 2;
+}
 ```
 
 
@@ -538,8 +547,30 @@ message Count {
 
 
 
-## Packages
+##  Usage
 
+### CLI
+
+`CLI` for the single source of truth data specificator [datasign](https://github.com/plurid/datasign).
+
+```
+Usage
+
+datasign <files>
+
+-v, --version           output the version number
+-t, --target <type>     compilation targets: typescript, graphql, protobuf (default: "typescript,graphql,protobuf")
+-o, --output <path>     output path (default: ".")
+-r, --resolve <type>    resolve the output path relative to "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+-c, --comments          compile the comments into the target files (default: false)
+-s, --spacing <value>   indentation spacing to be used in the compiled files (default: "4")
+-p, --preserve <value>  preserve new lines spacing of the datasign file (default: false)
+-h, --help              display help for command
+```
+
+
+
+## Packages
 
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/datasign">
     <img src="https://img.shields.io/npm/v/@plurid/datasign.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
@@ -559,6 +590,17 @@ message Count {
 [datasign-compiler]: https://github.com/plurid/datasign/tree/master/packages/datasign-compiler
 
 
+<a target="_blank" href="https://github.com/plurid/datasign/tree/master/packages/datasign-grammar/vscode">
+    <img src="https://img.shields.io/badge/vscode-v.0.0.4-1380C3?style=for-the-badge" alt="Version">
+</a>
+
 [@plurid/datasign-grammar][datasign-grammar] • grammar for text editors (syntax highlighting, syntax verification)
 
 [datasign-grammar]: https://github.com/plurid/datasign/tree/master/packages/datasign-grammar
+
+
+
+## [Codeophon](https://github.com/ly3xqhl8g9/codeophon)
+
++ licensing: [delicense](https://github.com/ly3xqhl8g9/delicense)
++ versioning: [αver](https://github.com/ly3xqhl8g9/alpha-versioning)

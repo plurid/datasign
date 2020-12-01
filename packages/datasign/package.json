@@ -1,12 +1,12 @@
 {
     "name": "@plurid/datasign",
-    "version": "0.0.8",
+    "version": "0.0.0-0",
     "description": "CLI for single source of truth data specificator",
     "keywords": [
         "datasign"
     ],
     "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE",
     "repository": {
         "type": "git",
         "url": "https://github.com/plurid/datasign"
@@ -20,11 +20,12 @@
         "access": "public"
     },
     "engines": {
-        "node": ">=6.0.0"
+        "node": ">=12",
+        "npm": ">=6"
     },
     "main": "distribution/index.js",
     "module": "distribution/index.es.js",
-    "typings": "distribution/types/index.d.ts",
+    "typings": "distribution/index.d.ts",
     "bin": {
         "datasign": "binary/datasign"
     },
@@ -34,20 +35,20 @@
     ],
     "preferGlobal": false,
     "scripts": {
-        "spec": "jest --coverage",
-        "spec:watch": "jest --coverage --watch",
-        "spec:prod": "npm run lint && npm run spec -- --no-cache",
+        "test": "jest --coverage",
+        "test:watch": "jest --coverage --watch",
+        "test:prod": "npm run lint && npm run test -- --no-cache",
         "report-coverage": "cat ./coverage/lcov.info | coveralls",
         "documentation": "typedoc --out documentation --target es6 --theme minimal --mode file source",
         "start": "rollup -c rollup.config.ts -w",
-        "build.removeSpecs": "rm -rf `find ./distribution/ -type d -name __specs__`",
-        "build.development": "rollup -c rollup.config.ts && yarn build.removeSpecs",
-        "build": "MODE_ENV=local rollup -c rollup.config.ts && yarn build.removeSpecs",
+        "build.clean": "rm -rf `find ./distribution/ -type d -name __tests__`",
+        "build.development": "rollup -c rollup.config.ts && yarn build.clean",
+        "build": "ENV_MODE=local rollup -c rollup.config.ts && yarn build.clean",
         "prebuild": "rimraf distribution",
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
-        "@plurid/datasign-compiler": "^0.0.12",
+        "@plurid/datasign-compiler": "^0.0.0-0",
         "commander": "^5.0.0"
     },
     "devDependencies": {
