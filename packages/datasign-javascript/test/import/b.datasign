@@ -1,0 +1,14 @@
+import C_Types from c.datasign
+
+
+B {
+    one string
+}
+
+C = B & {
+    two? number
+}
+
+D = B | (C & {
+    f C_Types.F
+})

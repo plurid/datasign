@@ -1,0 +1,21 @@
+import {
+    B
+    C
+    D
+} from ./b
+
+
+A {
+    @typescript number
+    id string
+
+    @graphql C
+    b B
+    c C
+    d D
+
+    e {
+        one string
+        two string[]
+    }
+}
