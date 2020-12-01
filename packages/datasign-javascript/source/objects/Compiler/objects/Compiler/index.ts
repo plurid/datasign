@@ -1,26 +1,31 @@
-import {
-    DatasignCompilerData,
-    DatasignCompilerOptions,
-    DatasignCompileResult,
-    Target,
-} from '../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        DatasignCompilerData,
+        DatasignCompilerOptions,
+        DatasignCompileResult,
+        Target,
+    } from '../../data/interfaces';
 
-import {
-    targets,
-} from '../../data/constants';
+    import {
+        targets,
+    } from '../../data/constants';
 
-import {
-    resolveCompilerOptions,
+    import {
+        resolveCompilerOptions,
 
-    parseSource,
+        parseSource,
 
-    generateGraphql,
-    generateProtobuf,
-    generateTypescript,
-} from '../../services/logic';
+        generateGraphql,
+        generateProtobuf,
+        generateTypescript,
+    } from '../../services/logic';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 class DatasignCompiler {
     private source: string;
     private targets: Target[];
@@ -64,6 +69,10 @@ class DatasignCompiler {
         };
     }
 }
+// #endregion module
 
 
+
+// #region exports
 export default DatasignCompiler;
+// #endregion exports

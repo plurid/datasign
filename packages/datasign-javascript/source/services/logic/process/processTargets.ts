@@ -1,9 +1,14 @@
-import {
-    Target,
-} from '#objects/Compiler';
+// #region imports
+    // #region external
+    import {
+        Target,
+    } from '#objects/Compiler';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const processTargets = (
     argTargets: string[],
 ) => {
@@ -25,6 +30,10 @@ const processTargets = (
 
     return targets;
 }
+// #endregion module
 
 
+
+// #region exports
 export default processTargets;
+// #endregion exports

@@ -1,18 +1,26 @@
-import path from 'path';
-
-import {
-    CompileData,
-    ProcessData,
-} from '../data/interfaces';
-
-import {
-    processFile,
-    processTargets,
-    processResolve,
-} from '../services/logic';
+// #region imports
+    // #region libraries
+    import path from 'path';
+    // #endregion libraries
 
 
+    // #region external
+    import {
+        CompileData,
+        ProcessData,
+    } from '../data/interfaces';
 
+    import {
+        processFile,
+        processTargets,
+        processResolve,
+    } from '../services/logic';
+    // #endregion external
+// #endregion imports
+
+
+
+// #region module
 const compileCommand = async (
     data: CompileData,
 ) => {
@@ -46,6 +54,10 @@ const compileCommand = async (
         await processFile(file, processData);
     }
 }
+// #endregion module
 
 
+
+// #region exports
 export default compileCommand;
+// #endregion exports

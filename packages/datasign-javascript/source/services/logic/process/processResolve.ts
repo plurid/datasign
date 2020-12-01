@@ -1,9 +1,14 @@
-import {
-    Resolve,
-} from '../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        Resolve,
+    } from '#data/interfaces';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const processResolve = (
     argResolve: string,
 ): Resolve => {
@@ -18,6 +23,10 @@ const processResolve = (
             return 'file';
     }
 }
+// #endregion module
 
 
+
+// #region exports
 export default processResolve;
+// #endregion exports

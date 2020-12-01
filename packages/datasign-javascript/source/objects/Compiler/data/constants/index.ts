@@ -1,22 +1,27 @@
-import {
-    TargetTypescript,
-    TargetGraphQL,
-    TargetProtocolBuffers,
-    Targets,
+// #region imports
+    // #region external
+    import {
+        TargetTypescript,
+        TargetGraphQL,
+        TargetProtocolBuffers,
+        Targets,
 
-    TypeEntityAnnotation,
-    TypeEntityComment,
-    TypeFieldAnnotation,
-    TypeDataStart,
-    TypeDataEnd,
-    TypeDataField,
-    TypeEmptyLine,
+        TypeEntityAnnotation,
+        TypeEntityComment,
+        TypeFieldAnnotation,
+        TypeDataStart,
+        TypeDataEnd,
+        TypeDataField,
+        TypeEmptyLine,
 
-    DatasignCompilerOptions,
-} from '../interfaces';
+        DatasignCompilerOptions,
+    } from '../interfaces';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 export const targetTypescript: TargetTypescript = 'typescript';
 export const targetGraphQL: TargetGraphQL = 'graphql';
 export const targetProtocolBuffers: TargetProtocolBuffers = 'protobuf';
@@ -58,4 +63,5 @@ export const defaultDatasignCompilerOptions: DatasignCompilerOptions = {
     preserveSpacing: false,
     spacing: 4,
     generatedNotice: true,
-}
+};
+// #endregion module

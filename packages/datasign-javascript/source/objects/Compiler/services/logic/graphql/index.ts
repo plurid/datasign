@@ -1,20 +1,25 @@
-import {
-    DatasignEntity,
-    DatasignEntityData,
-    DatasignCompilerOptions,
-    DatasignAnnotation,
-} from '../../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        DatasignEntity,
+        DatasignEntityData,
+        DatasignCompilerOptions,
+        DatasignAnnotation,
+    } from '../../../data/interfaces';
 
-import {
-    capitalize,
-    formatCode,
-    resolveSpacing,
-    extractAnnotationsByType,
-    constructGeneratedNotice,
-} from '../../utilities';
+    import {
+        capitalize,
+        formatCode,
+        resolveSpacing,
+        extractAnnotationsByType,
+        constructGeneratedNotice,
+    } from '../../utilities';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 export const resolveAnnotationTypedField = (
     annotation: DatasignAnnotation,
 ) => {
@@ -175,6 +180,10 @@ const generateGraphql = (
 
     return formatCode(graphqlText);
 }
+// #endregion module
 
 
+
+// #region exports
 export default generateGraphql;
+// #endregion exports

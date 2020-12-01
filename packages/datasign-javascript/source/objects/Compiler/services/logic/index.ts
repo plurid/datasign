@@ -1,13 +1,18 @@
-import resolveCompilerOptions from './options';
+// #region imports
+    // #region internal
+    import resolveCompilerOptions from './options';
 
-import parseSource from './source';
+    import parseSource from './source';
 
-import generateGraphql from './graphql';
-import generateProtobuf from './protobuf';
-import generateTypescript from './typescript';
+    import generateGraphql from './graphql';
+    import generateProtobuf from './protobuf';
+    import generateTypescript from './typescript';
+    // #endregion internal
+// #endregion imports
 
 
 
+// #region exports
 export {
     resolveCompilerOptions,
 
@@ -16,4 +21,5 @@ export {
     generateGraphql,
     generateProtobuf,
     generateTypescript,
-}
+};
+// #endregion exports

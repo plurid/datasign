@@ -1,11 +1,21 @@
-import {
-    ResolveFile,
-    ResolveProcess,
-    ResolveFlatten,
-    Resolves,
-} from '../interfaces';
+// #region imports
+    // #region external
+    import {
+        ResolveFile,
+        ResolveProcess,
+        ResolveFlatten,
+        Resolves,
+    } from '../interfaces';
+    // #endregion external
+// #endregion imports
 
-export const DATASIGN_EXTENSION = '.datasign';
+
+
+// #region module
+export const DATASIGN_CLI_VERSION = '0.0.0-0';
+
+export const DATASIGN_FILENAME_EXTENSION = '.datasign';
+export const DATASIGN_MEDIA_TYPE = 'application/datasign';
 
 
 export const resolveFile: ResolveFile = 'file';
@@ -16,3 +26,4 @@ export const resolves: Resolves = {
     process: resolveProcess,
     flatten: resolveFlatten,
 };
+// #endregion module

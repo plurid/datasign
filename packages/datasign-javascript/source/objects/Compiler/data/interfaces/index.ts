@@ -1,3 +1,4 @@
+// #region module
 export interface DatasignCompilerData {
     source: string;
     targets: Target[];
@@ -93,3 +94,4 @@ export interface Targets {
     graphql: TargetGraphQL;
     protobuf: TargetProtocolBuffers;
 }
+// #endregion module

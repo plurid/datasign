@@ -1,34 +1,43 @@
-import path from 'path';
-import {
-    promises as fs,
-} from 'fs';
+// #region imports
+    // #region libraries
+    import path from 'path';
 
-import {
-    targets,
-} from '../../data/constants';
-
-import {
-    Target,
-    DatasignEntity,
-    DatasignCompilerOptions,
-} from '../../data/interfaces';
-
-import {
-    resolveCompilerOptions,
-
-    parseSource,
-
-    generateGraphql,
-    generateProtobuf,
-    generateTypescript,
-} from '../../services/logic';
-
-import {
-    isDatasignText,
-} from '../../services/utilities';
+    import {
+        promises as fs,
+    } from 'fs';
+    // #endregion libraries
 
 
+    // #region exports
+    import {
+        targets,
+    } from '../../data/constants';
 
+    import {
+        Target,
+        DatasignEntity,
+        DatasignCompilerOptions,
+    } from '../../data/interfaces';
+
+    import {
+        resolveCompilerOptions,
+
+        parseSource,
+
+        generateGraphql,
+        generateProtobuf,
+        generateTypescript,
+    } from '../../services/logic';
+
+    import {
+        isDatasignText,
+    } from '../../services/utilities';
+    // #endregion exports
+// #endregion imports
+
+
+
+// #region module
 class Loader {
     private source: string;
     private parsedSource: DatasignEntity[] = [];
@@ -70,6 +79,10 @@ class Loader {
         }
     }
 }
+// #endregion module
 
 
+
+// #region exports
 export default Loader;
+// #endregion exports

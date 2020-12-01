@@ -1,14 +1,19 @@
-import {
-    ONE_NEW_LINE,
-    TWO_NEW_LINES,
-} from '../../data/constants';
+// #region imports
+    // #region external
+    import {
+        ONE_NEW_LINE,
+        TWO_NEW_LINES,
+    } from '../../data/constants';
 
-import {
-    DatasignAnnotation,
-} from '../../data/interfaces';
+    import {
+        DatasignAnnotation,
+    } from '../../data/interfaces';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 export const isDatasignText = (
     value: string,
 ) => {
@@ -89,3 +94,4 @@ export const constructGeneratedNotice = (
 
     return notice;
 }
+// #endregion module

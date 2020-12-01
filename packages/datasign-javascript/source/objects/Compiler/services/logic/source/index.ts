@@ -1,21 +1,26 @@
-import {
-    lineTypes,
-} from '../../../data/constants';
+// #region imports
+    // #region external
+    import {
+        lineTypes,
+    } from '../../../data/constants';
 
-import {
-    DatasignEntity,
-    DatasignEntityData,
-    DatasignAnnotation,
-    TypedLine,
-    DatasignCompilerOptions,
-} from '../../../data/interfaces';
+    import {
+        DatasignEntity,
+        DatasignEntityData,
+        DatasignAnnotation,
+        TypedLine,
+        DatasignCompilerOptions,
+    } from '../../../data/interfaces';
 
-import {
-    trimTrailingSpace,
-} from '../../../services/utilities';
+    import {
+        trimTrailingSpace,
+    } from '../../../services/utilities';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const isComment = (
     line: string,
 ) => {
@@ -355,6 +360,10 @@ const parseSource= (
 
     return parseEntities(unparsedEntities);
 }
+// #endregion module
 
 
+
+// #region exports
 export default parseSource;
+// #endregion exports

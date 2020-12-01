@@ -1,28 +1,36 @@
-import path from 'path';
-import {
-    statSync,
-    promises as fs,
-} from 'fs';
-
-import DatasignCompiler, {
-    DatasignCompilerData,
-    DatasignCompileResult,
-    Target,
-    targets,
-} from '#objects/Compiler';
-
-import {
-    DATASIGN_EXTENSION,
-    resolves,
-} from '../../data/constants';
-
-import {
-    ProcessData,
-    Resolve,
-} from '../../data/interfaces';
+// #region imports
+    // #region libraries
+    import path from 'path';
+    import {
+        statSync,
+        promises as fs,
+    } from 'fs';
+    // #endregion libraries
 
 
+    // #region external
+    import DatasignCompiler, {
+        DatasignCompilerData,
+        DatasignCompileResult,
+        Target,
+        targets,
+    } from '#objects/Compiler';
 
+    import {
+        DATASIGN_FILENAME_EXTENSION,
+        resolves,
+    } from '#data/constants';
+
+    import {
+        ProcessData,
+        Resolve,
+    } from '#data/interfaces';
+    // #endregion external
+// #endregion imports
+
+
+
+// #region module
 const resolveFilename = (
     name: string,
     target: Target,
@@ -104,7 +112,7 @@ const handleFile = async (
         generated,
     } = data;
 
-    const filename = path.basename(filepath, DATASIGN_EXTENSION);
+    const filename = path.basename(filepath, DATASIGN_FILENAME_EXTENSION);
 
     const source = await fs.readFile(filepath, 'utf-8');
     const outputPath = resolveOutputPath(
@@ -148,7 +156,7 @@ const processFile = async (
     if (!statistics.isDirectory()) {
         const extension = path.extname(file);
 
-        if (extension !== DATASIGN_EXTENSION) {
+        if (extension !== DATASIGN_FILENAME_EXTENSION) {
             return;
         }
 
@@ -163,6 +171,10 @@ const processFile = async (
         await processFile(subfilePath, data);
     }
 }
+// #endregion module
 
 
+
+// #region exports
 export default processFile;
+// #endregion exports

@@ -1,10 +1,15 @@
-import DatasignCompiler from '..';
-import {
-    DatasignCompilerData,
-} from '../../../data/interfaces';
+// #region imports
+    // #region external
+    import DatasignCompiler from '../';
+    import {
+        DatasignCompilerData,
+    } from '../../../data/interfaces';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 describe('DatasignCompiler - compile to graphql', () => {
     it('simply compiles to graphql', () => {
         const source = `
@@ -291,3 +296,4 @@ message Item {
         expect('').toBe('');
     });
 });
+// #endregion module

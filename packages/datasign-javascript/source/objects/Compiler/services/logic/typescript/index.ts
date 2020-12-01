@@ -1,17 +1,22 @@
-import {
-    DatasignEntity,
-    DatasignEntityData,
-    DatasignCompilerOptions,
-} from '../../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        DatasignEntity,
+        DatasignEntityData,
+        DatasignCompilerOptions,
+    } from '../../../data/interfaces';
 
-import {
-    formatCode,
-    resolveSpacing,
-    constructGeneratedNotice,
-} from '../../utilities';
+    import {
+        formatCode,
+        resolveSpacing,
+        constructGeneratedNotice,
+    } from '../../utilities';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const generateTypescriptFields = (
     data: DatasignEntityData[],
     options: DatasignCompilerOptions,
@@ -83,6 +88,10 @@ const generateTypescript = (
 
     return formatCode(typescriptText);
 }
+// #endregion module
 
 
+
+// #region exports
 export default generateTypescript;
+// #endregion exports

@@ -1,9 +1,14 @@
-import {
-    Target,
-} from '#objects/Compiler';
+// #region imports
+    // #region external
+    import {
+        Target,
+    } from '#objects/Compiler';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 export interface CompileData {
     files: string[];
     targets: string[];
@@ -36,3 +41,4 @@ export interface Resolves {
     process: ResolveProcess;
     flatten: ResolveFlatten;
 }
+// #endregion module

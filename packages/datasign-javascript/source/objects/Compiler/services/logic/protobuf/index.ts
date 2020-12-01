@@ -1,17 +1,22 @@
-import {
-    DatasignEntity,
-    DatasignEntityData,
-    DatasignCompilerOptions,
-} from '../../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        DatasignEntity,
+        DatasignEntityData,
+        DatasignCompilerOptions,
+    } from '../../../data/interfaces';
 
-import {
-    formatCode,
-    resolveSpacing,
-    constructGeneratedNotice,
-} from '../../utilities';
+    import {
+        formatCode,
+        resolveSpacing,
+        constructGeneratedNotice,
+    } from '../../utilities';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const resolveProtobufType = (
     type: string,
 ) => {
@@ -100,6 +105,10 @@ const generateProtobuf = (
 
     return formatCode(protobufText);
 }
+// #endregion module
 
 
+
+// #region exports
 export default generateProtobuf;
+// #endregion exports

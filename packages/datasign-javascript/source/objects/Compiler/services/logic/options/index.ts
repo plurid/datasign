@@ -1,13 +1,18 @@
-import {
-    DatasignCompilerOptions,
-} from '../../data/interfaces';
+// #region imports
+    // #region external
+    import {
+        DatasignCompilerOptions,
+    } from '../../../data/interfaces';
 
-import {
-    defaultDatasignCompilerOptions,
-} from '../../data/constants';
+    import {
+        defaultDatasignCompilerOptions,
+    } from '../../../data/constants';
+    // #endregion external
+// #endregion imports
 
 
 
+// #region module
 const resolveCompilerOptions = (
     options: Partial<DatasignCompilerOptions> | undefined
 ) => {
@@ -34,6 +39,10 @@ const resolveCompilerOptions = (
     };
     return compilerOptions;
 }
+// #endregion module
 
 
+
+// #region exports
 export default resolveCompilerOptions;
+// #endregion exports
