@@ -50,7 +50,7 @@ const main = async (
             'file',
         ).option(
             '-m, --merge [name]',
-            'merge the output into a single file',
+            'merge the output into a single file (named or not) for each target',
             undefined,
         ).option(
             '-c, --comments [value]',
