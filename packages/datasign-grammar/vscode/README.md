@@ -377,7 +377,7 @@ Metas allow the insertion of specific data for each individual target.
 `
 
 !graphql `
-    // this text will be inserted only in the compiled .graphql file
+    # this text will be inserted only in the compiled .graphql file
 `
 
 !typescript `
