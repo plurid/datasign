@@ -16,6 +16,10 @@
     } from '#data/interfaces';
 
     import {
+        DATASIGN_CLI_VERSION,
+    } from '#data/constants';
+
+    import {
         separateList,
         stringToBoolean,
     } from '#services/utilities';
@@ -29,11 +33,14 @@ const main = async (
     program: CommanderStatic,
 ) => {
     program
+        .storeOptionsAsProperties(false)
+        .passCommandToAction(false)
         .name('datasign')
-        .usage('<files>')
-        .version('0.0.0-0', '-v, --version')
+        .usage('<files | directories...>')
+        .version(DATASIGN_CLI_VERSION, '-v, --version');
 
     program
+        .arguments('<files...>')
         .option(
             '-t, --target <type>',
             'compilation targets: typescript, graphql, protobuf',
@@ -63,12 +70,10 @@ const main = async (
             'inject a header in each generated file mentioning the source',
             true,
         )
-        .action(async (_, files) => {
-            if (!files) {
-                program.outputHelp();
-                return;
-            }
-
+        .action(async (
+            files: string[],
+            options,
+        ) => {
             const {
                 target,
                 output,
@@ -77,7 +82,7 @@ const main = async (
                 spacing,
                 preserve,
                 generated,
-            } = program;
+            } = options;
             const targets = separateList(target);
 
             const data: CompileData = {
