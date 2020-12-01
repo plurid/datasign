@@ -276,7 +276,7 @@ const parseEntities = (
 }
 
 
-const parseSource= (
+const parseSource = (
     source: string,
     options: DatasignCompilerOptions,
 ) => {
