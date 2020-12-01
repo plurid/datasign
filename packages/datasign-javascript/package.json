@@ -43,7 +43,9 @@
         "prepublishOnly": "yarn build && yarn build.cleanup"
     },
     "dependencies": {
-        "commander": "^6.2.0"
+        "commander": "^6.2.0",
+        "cross-fetch": "^3.0.6",
+        "sync-fetch": "^0.3.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^17.0.0",
