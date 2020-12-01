@@ -27,11 +27,11 @@
     "module": "distribution/index.es.js",
     "typings": "distribution/index.d.ts",
     "bin": {
-        "datasign": "binary/datasign"
+        "datasign": "binder/datasign"
     },
     "files": [
         "distribution",
-        "binary"
+        "binder"
     ],
     "preferGlobal": false,
     "scripts": {
