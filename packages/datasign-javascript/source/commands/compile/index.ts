@@ -15,11 +15,21 @@ const compileCommand = async (
     files: string[],
     data: ProcessData,
 ) => {
-    const metacompiler = new Metacompiler(
-        files,
-        data,
-    );
-    await metacompiler.emit();
+    try {
+        const metacompiler = new Metacompiler(
+            files,
+            data,
+        );
+        await metacompiler.emit();
+    } catch (error) {
+        console.log(`Datasign :: Something went wrong. Could not compile '${files.join(' ')}'.`);
+
+        if (data.debug) {
+            console.log(error);
+        }
+
+        return;
+    }
 }
 // #endregion module
 

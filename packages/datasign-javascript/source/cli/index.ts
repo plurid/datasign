@@ -62,14 +62,17 @@ const main = async (
             '4',
         ).option(
             '-p, --preserve [value]',
-            'preserve new lines spacing of the ".datasign" file',
+            'preserve newline spacing of the ".datasign" file',
             true,
         ).option(
             '-g, --generated [value]',
             'inject a header in each generated file mentioning the source',
             true,
-        )
-        .action(async (
+        ).option(
+            '-d, --debug',
+            'display compiling errors',
+            false,
+        ).action(async (
             files: string[],
             options,
         ) => {

@@ -8,6 +8,7 @@ export interface ProcessData {
     spacing: number;
     preserve: boolean;
     generated: boolean;
+    debug: boolean;
 }
 
 

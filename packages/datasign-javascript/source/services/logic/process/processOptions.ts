@@ -34,6 +34,7 @@ const processOptions = (
         spacing,
         preserve,
         generated,
+        debug,
     } = options;
 
     const targets = processTargets(
@@ -61,6 +62,7 @@ const processOptions = (
         spacing: spacingValue,
         preserve: preserveValue,
         generated: generatedValue,
+        debug,
     };
 
     return processData;
