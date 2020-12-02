@@ -38,11 +38,11 @@ const main = async (
         .arguments('<files...>')
         .option(
             '-t, --target <type>',
-            'compilation targets: typescript, graphql, protobuf',
-            'typescript,graphql,protobuf',
+            'comma-separated compilation targets: typescript, graphql, proto',
+            'typescript,graphql,proto',
         ).option(
             '-o, --output <path>',
-            'output path',
+            'output directory path',
             '.',
         ).option(
             '-r, --resolve <type>',
@@ -54,7 +54,7 @@ const main = async (
             undefined,
         ).option(
             '-c, --comments [value]',
-            'compile the comments into the target files',
+            'insert the comments into the target files',
             true,
         ).option(
             '-s, --spacing <value>',
@@ -62,7 +62,7 @@ const main = async (
             '4',
         ).option(
             '-p, --preserve [value]',
-            'preserve new lines spacing of the datasign file',
+            'preserve new lines spacing of the ".datasign" file',
             true,
         ).option(
             '-g, --generated [value]',
