@@ -178,17 +178,17 @@ message User {
 Usage: datasign <files | directories...>
 
 Options:
-    -v, --version                 output the version number
-    -t, --target <type>           comma-separated compilation targets: typescript, graphql, proto (default: "typescript,graphql,proto")
-    -o, --output <path>           output directory path (default: ".")
-    -r, --resolve <type>          resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
-    -m, --merge [name]            merge the output into a single file (named or not) for each target
-    -c, --comments [value]        insert the comments into the target files (default: true)
-    -s, --spacing <value>         indentation spacing to be used in the compiled files (default: "4")
-    -p, --preserve [value]        preserve newline spacing of the ".datasign" file (default: true)
-    -g, --generated [value]       inject a header in each generated file mentioning the source (default: true)
-    -d, --debug                   display compiling errors (default: false)
-    -h, --help                    display help for command
+-v, --version                output the version number
+-t, --target <type>          comma-separated compilation targets: typescript, graphql, proto (default: "typescript,graphql,proto")
+-o, --output <path>          output directory path (default: ".")
+-r, --resolve <type>         resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
+-m, --merge [name]           merge the output into a single file (named or not) for each target
+-c, --comments [value]       insert the comments into the target files (default: true)
+-s, --spacing <value>        indentation spacing to be used in the compiled files (default: "4")
+-p, --preserve [value]       preserve newline spacing of the ".datasign" file (default: true)
+-g, --generated [value]      inject a header in each generated file mentioning the source (default: true)
+-d, --debug                  display compiling errors (default: false)
+-h, --help                   display help for command
 ```
 
 
