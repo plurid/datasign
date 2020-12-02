@@ -2,7 +2,7 @@
 export enum TokenType {
     // Single-character tokens.
     ALPHASAND,
-    QUESTION_MARK,
+    QUESTION_MARK, BANG,
     AMPERSAND, PIPE,
     DOT, COMMA,
     LEFT_CURLY_BRACKET, RIGHT_CURLY_BRACKET,
@@ -19,6 +19,10 @@ export enum TokenType {
     ANNOTATE_GRAPHQL,
     ANNOTATE_PROTOBUF,
     ANNOTATE_TYPESCRIPT,
+
+    META_GRAPHQL,
+    META_PROTOBUF,
+    META_TYPESCRIPT,
 
 
     // Operators
