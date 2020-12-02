@@ -62,7 +62,7 @@ export const resolves: Resolves = {
 
 export const targetTypescript: TargetTypescript = 'typescript';
 export const targetGraphQL: TargetGraphQL = 'graphql';
-export const targetProtocolBuffers: TargetProtocolBuffers = 'protobuf';
+export const targetProtocolBuffers: TargetProtocolBuffers = 'proto';
 
 export const targets: Targets = {
     graphql: targetGraphQL,
