@@ -278,8 +278,6 @@ A `Datasign Field` is a `key type` pair, incremented with `2` or `4` spaces.
 
 Each `Datasign Field` should be on a new line.
 
-example:
-
 ``` datasign
 // .datasign
 
