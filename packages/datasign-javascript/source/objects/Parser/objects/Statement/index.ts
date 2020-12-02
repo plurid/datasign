@@ -19,6 +19,7 @@ export abstract class Statement {
 
 export interface Visitor<T> {
     visitImportStatement: (importStatement: ImportStatement) => T;
+    visitMetaStatement: (metaStatement: MetaStatement) => T;
     visitDatatypeStatement: (datatypeStatement: DatatypeStatement) => T;
     visitFieldStatement: (fieldStatement: FieldStatement) => T;
 }
@@ -50,6 +51,28 @@ export class ImportStatement extends Statement {
         visitor: Visitor<T>,
     ) {
         return visitor.visitImportStatement(this);
+    }
+}
+
+
+export class MetaStatement extends Statement {
+    private type: Token;
+    private data: any;
+
+    constructor(
+        type: Token,
+        data: any,
+    ) {
+        super();
+
+        this.type = type;
+        this.data = data;
+    }
+
+    accept<T>(
+        visitor: Visitor<T>,
+    ) {
+        return visitor.visitMetaStatement(this);
     }
 }
 
