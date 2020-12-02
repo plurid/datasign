@@ -50,7 +50,7 @@ class Scanner {
 
         this.endScan();
 
-        this.identify();
+        // this.identify();
 
         return this.tokens;
     }
@@ -180,7 +180,7 @@ class Scanner {
         this.advance();
 
         const value = this.source.substring(this.start + 1, this.current - 1);
-        this.addTokenLiteral(TokenType.VALUE, value);
+        this.addTokenLiteral(TokenType.TYPE, value);
     }
 
     private signifier() {
