@@ -192,7 +192,7 @@ Options:
 ```
 
 
-For scripting usage, run in your package the command
+For scripting usage, run in the package
 
 ``` bash
 npm install @plurid/datasign
