@@ -180,7 +180,7 @@ Usage: datasign <files | directories...>
 Options:
 -v, --version                output the version number
 -t, --target <type>          comma-separated compilation targets: typescript, graphql, proto (default: "typescript,graphql,proto")
--o, --output <path>          output directory path (default: ".")
+-o, --output <path>          output directory path (default: "./")
 -r, --resolve <type>         resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path (default: "file")
 -m, --merge [name]           merge the output into a single file (named or not) for each target
 -c, --comments [value]       insert the comments into the target files (default: true)
