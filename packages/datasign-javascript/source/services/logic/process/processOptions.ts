@@ -40,7 +40,10 @@ const processOptions = (
     const targets = processTargets(
         separateList(target)
     );
-    const outputValue = path.join(process.cwd(), output);
+    const outputValue = path.join(
+        process.cwd(),
+        output,
+    );
     const resolveValue = processResolve(resolve);
     const parsedSpacing = parseInt(spacing);
     const spacingValue = isNaN(parsedSpacing)

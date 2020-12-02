@@ -43,7 +43,7 @@ const main = async (
         ).option(
             '-o, --output <path>',
             'output directory path',
-            '.',
+            './',
         ).option(
             '-r, --resolve <type>',
             'resolve the output path relative to the "file" directory, "process" directory, or "flatten" into the output path',
