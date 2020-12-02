@@ -112,7 +112,7 @@ export interface TypedLine {
 
 export type TargetTypescript = 'typescript';
 export type TargetGraphQL = 'graphql';
-export type TargetProtocolBuffers = 'protobuf';
+export type TargetProtocolBuffers = 'proto';
 export type Target = TargetTypescript | TargetGraphQL | TargetProtocolBuffers;
 
 export interface Targets {

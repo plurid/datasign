@@ -18,7 +18,7 @@ const processTargets = (
         switch (argTarget) {
             case 'typescript':
             case 'graphql':
-            case 'protobuf':
+            case 'proto':
                 targets.push(argTarget);
                 break;
         }
