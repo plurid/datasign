@@ -50,7 +50,7 @@ class Scanner {
 
         this.endScan();
 
-        // this.identify();
+        this.identify();
 
         return this.tokens;
     }

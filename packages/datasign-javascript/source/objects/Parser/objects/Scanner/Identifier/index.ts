@@ -5,6 +5,10 @@
     } from '../../../data/enumerations';
 
     import Token from '../../Token';
+
+    import {
+        inGroupClassify,
+    } from '../../../utilities/general';
     // #endregion external
 // #endregion imports
 
@@ -28,6 +32,41 @@ class Identifier {
 
         const tokens: Token[] = [];
 
+        const pushAdvance = (
+            token: Token,
+        ) => {
+            tokens.push(token);
+            this.advance();
+        }
+
+        while(
+            !this.isAtEnd()
+        ) {
+            const previous = this.previous();
+            const current = this.peek();
+            const next = this.next();
+
+            const inGroup = this.inGroup(this.current);
+
+            if (
+                next
+                && next.type === TokenType.LEFT_CURLY_BRACKET
+                && inGroup === 'ROOT'
+                && current.type === TokenType.SIGNIFIER
+            ) {
+                const dataTypeToken = this.tokenFrom(
+                    TokenType.DATATYPE,
+                    current,
+                );
+
+                pushAdvance(dataTypeToken);
+                continue;
+            }
+
+            tokens.push(current);
+            this.advance();
+        }
+
         return tokens;
     }
 
@@ -42,6 +81,10 @@ class Identifier {
 
     private peek() {
         return this.tokens[this.current];
+    }
+
+    private next() {
+        return this.tokens[this.current + 1];
     }
 
     private previous() {
@@ -73,6 +116,18 @@ class Identifier {
         );
 
         return token;
+    }
+
+    private inGroup(
+        position: number,
+    ) {
+        const tokens = this.tokens
+            .slice(0, position)
+            .reverse();
+
+        return inGroupClassify(
+            tokens,
+        );
     }
 }
 // #endregion module

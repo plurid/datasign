@@ -8,6 +8,12 @@
     import {
         DATASIGN_FILENAME_EXTENSION,
     } from '#data/constants';
+
+    import {
+        TokenType,
+    } from '../../data/enumerations';
+
+    import Token from '../../objects/Token';
     // #endregion external
 // #endregion imports
 
@@ -74,6 +80,47 @@ const resolveAbsolutePath = (
 
     return filepath;
 }
+
+
+const inGroupClassify = (
+    tokens: Token[],
+) => {
+    if (tokens.length === 0) {
+        return 'ROOT';
+    }
+
+    const curlyBrackets = {
+        left: 0,
+        right: 0,
+    };
+
+    for (const token of tokens) {
+        switch (token.type) {
+            case TokenType.LEFT_CURLY_BRACKET:
+                curlyBrackets.left += 1;
+                break;
+            case TokenType.RIGHT_CURLY_BRACKET:
+                curlyBrackets.right += 1;
+                break;
+        }
+
+        if (curlyBrackets.left > curlyBrackets.right) {
+            return 'TYPE';
+        }
+    }
+
+    /**
+     * TODO
+     * to find a less expensive way to check for root
+     */
+    if (
+        curlyBrackets.left === curlyBrackets.right
+    ) {
+        return 'ROOT';
+    }
+
+    return '';
+}
 // #endregion module
 
 
@@ -85,5 +132,6 @@ export {
     solveExtensionName,
     removeEndDoubleNewline,
     resolveAbsolutePath,
+    inGroupClassify,
 };
 // #endregion exports

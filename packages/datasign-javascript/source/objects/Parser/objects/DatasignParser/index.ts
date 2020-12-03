@@ -25,7 +25,7 @@ class DatasignParser {
     private hadError = false;
 
     /**
-     * Parse `locator` data.
+     * Parse `datasign` data.
      *
      * @param data
      * @param options
