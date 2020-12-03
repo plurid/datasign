@@ -1,13 +1,13 @@
 // #region imports
     // #region external
-    import DatasignParser from '..';
+    import Sourcer from '..';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-describe('DatasignParser', () => {
+describe('Sourcer', () => {
     it('collection', () => {
         const data = `
             One {
@@ -15,8 +15,8 @@ describe('DatasignParser', () => {
             }
         `;
 
-        const datasignParser = new DatasignParser();
-        const parsed = datasignParser.parse(data);
+        const sourcer = new Sourcer();
+        const parsed = sourcer.parse(data);
     });
 });
 // #endregion module

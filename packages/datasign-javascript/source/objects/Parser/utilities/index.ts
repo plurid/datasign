@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import DatasignParser from '../objects/DatasignParser';
+    import Sourcer from '../objects/Sourcer';
     // #endregion internal
 // #endregion imports
 
@@ -10,8 +10,8 @@
 const parseSource = (
     value: string,
 ) => {
-    const locator = new DatasignParser();
-    const data = locator.parse(value);
+    const sourcer = new Sourcer();
+    const data = sourcer.parse(value);
 
     return data;
 }

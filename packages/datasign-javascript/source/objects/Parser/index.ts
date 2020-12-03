@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import DatasignParser from './objects/DatasignParser';
+    import Sourcer from './objects/Sourcer';
 
     import {
         parseSource,
@@ -16,5 +16,5 @@ export {
 };
 
 
-export default DatasignParser;
+export default Sourcer;
 // #endregion exports

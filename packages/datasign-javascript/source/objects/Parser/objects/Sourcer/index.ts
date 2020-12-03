@@ -21,7 +21,7 @@
 
 
 // #region module
-class DatasignParser {
+class Sourcer {
     private hadError = false;
 
     /**
@@ -90,7 +90,7 @@ class DatasignParser {
         where: string,
         message: string,
     ) {
-        const value = 'DatasignParser :: [line ' + line + '] Error' + where + ': ' + message;
+        const value = 'Parser :: [line ' + line + '] Error' + where + ': ' + message;
         console.log(value);
 
         this.hadError = true;
@@ -101,5 +101,5 @@ class DatasignParser {
 
 
 // #region exports
-export default DatasignParser;
+export default Sourcer;
 // #endregion exports
