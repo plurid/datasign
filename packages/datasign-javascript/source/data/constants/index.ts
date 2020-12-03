@@ -66,7 +66,7 @@ export const targetProtocolBuffers: TargetProtocolBuffers = 'proto';
 
 export const targets: Targets = {
     graphql: targetGraphQL,
-    protobuf: targetProtocolBuffers,
+    proto: targetProtocolBuffers,
     typescript: targetTypescript,
 };
 
