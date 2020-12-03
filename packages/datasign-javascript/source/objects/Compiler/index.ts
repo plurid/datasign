@@ -54,7 +54,7 @@ class Compiler {
         const graphql = this.targets.includes(targets.graphql)
             ? generateGraphql(this.filename, parsedSource, this.options)
             : '';
-        const protobuf = this.targets.includes(targets.protobuf)
+        const proto = this.targets.includes(targets.proto)
             ? generateProtobuf(this.filename, parsedSource, this.options)
             : '';
         const typescript = this.targets.includes(targets.typescript)
@@ -64,7 +64,7 @@ class Compiler {
         return {
             source: this.source,
             graphql,
-            protobuf,
+            proto,
             typescript,
         };
     }

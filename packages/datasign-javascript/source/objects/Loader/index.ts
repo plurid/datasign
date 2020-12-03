@@ -8,7 +8,7 @@
     // #endregion libraries
 
 
-    // #region exports
+    // #region external
     import {
         targets,
     } from '~data/constants';
@@ -32,7 +32,7 @@
     import {
         isDatasignText,
     } from '~services/utilities';
-    // #endregion exports
+    // #endregion external
 // #endregion imports
 
 
@@ -72,7 +72,7 @@ class Loader {
         switch (target) {
             case targets.graphql:
                 return generateGraphql(undefined, this.parsedSource, this.options);
-            case targets.protobuf:
+            case targets.proto:
                 return generateProtobuf(undefined, this.parsedSource, this.options);
             case targets.typescript:
                 return generateTypescript(undefined, this.parsedSource, this.options);

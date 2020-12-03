@@ -53,7 +53,7 @@ export interface DatasignCompileResult {
     source: string;
     typescript?: string;
     graphql?: string;
-    protobuf?: string;
+    proto?: string;
 }
 
 
@@ -68,7 +68,7 @@ export interface DatasignEntity {
      * Entities may be annotated with `@only` to allow compilation
      * for only a type of target.
      *
-     * Supported: typescript, graphql, protobuf.
+     * Supported: typescript, graphql, proto.
      * Default: `[]`.
      */
     only?: Target[];
@@ -118,6 +118,6 @@ export type Target = TargetTypescript | TargetGraphQL | TargetProtocolBuffers;
 export interface Targets {
     typescript: TargetTypescript;
     graphql: TargetGraphQL;
-    protobuf: TargetProtocolBuffers;
+    proto: TargetProtocolBuffers;
 }
 // #endregion module

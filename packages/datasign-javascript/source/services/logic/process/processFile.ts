@@ -49,7 +49,7 @@ const resolveFilename = (
         case targets.graphql:
             extension = '.graphql';
             break;
-        case targets.protobuf:
+        case targets.proto:
             extension = '.proto';
             break;
     }

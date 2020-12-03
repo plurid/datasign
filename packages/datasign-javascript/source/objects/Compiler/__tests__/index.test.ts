@@ -1,6 +1,7 @@
 // #region imports
     // #region external
     import DatasignCompiler from '../';
+
     import {
         DatasignCompilerData,
     } from '../../../data/interfaces';
@@ -151,8 +152,8 @@ data Message {
 });
 
 
-describe('DatasignCompiler - compile to protobuf', () => {
-    it('simply compiles to protobuf', () => {
+describe('DatasignCompiler - compile to proto', () => {
+    it('simply compiles to proto', () => {
         const source = `
 data Message {
     id: string;
@@ -162,7 +163,7 @@ data Message {
 }`;
         const data: DatasignCompilerData = {
             source,
-            targets: ['protobuf'],
+            targets: ['proto'],
             options: {
                 generatedNotice: false,
                 // preserveSpacing: true,
@@ -184,7 +185,7 @@ data Message {
         // console.log('compilation', compilation);
         // console.log('----');
 
-        expect(compilation).toStrictEqual(result.protobuf);
+        expect(compilation).toStrictEqual(result.proto);
     });
 });
 
@@ -251,7 +252,7 @@ data Text {
     public: boolean;
 
     @graphql: Date
-    @protobuf: number
+    @proto: number
     generatedAt: Date;
     generatedBy: User;
 }
@@ -264,7 +265,7 @@ data User {
             targets: [
                 'typescript',
                 'graphql',
-                'protobuf',
+                'proto',
             ],
             options: {
                 comments: true,
@@ -284,7 +285,7 @@ type Item {
     id: String!
 }
         `;
-        const expectedProtobuf = `
+        const expectedproto = `
 message Item {
     required string id = 1;
 }
