@@ -7,7 +7,7 @@
     // #region external
     import {
         DATASIGN_FILENAME_EXTENSION,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         TokenType,

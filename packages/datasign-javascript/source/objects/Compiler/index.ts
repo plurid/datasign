@@ -5,11 +5,11 @@
         DatasignCompilerOptions,
         DatasignCompileResult,
         Target,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         targets,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         resolveCompilerOptions,
@@ -19,7 +19,7 @@
         generateGraphql,
         generateProtobuf,
         generateTypescript,
-    } from '#services/logic';
+    } from '~services/logic';
     // #endregion external
 // #endregion imports
 

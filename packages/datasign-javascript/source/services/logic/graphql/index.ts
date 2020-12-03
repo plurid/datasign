@@ -5,7 +5,7 @@
         DatasignEntityData,
         DatasignCompilerOptions,
         DatasignAnnotation,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         capitalize,
@@ -13,7 +13,7 @@
         resolveSpacing,
         extractAnnotationsByType,
         constructGeneratedNotice,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -133,10 +133,10 @@ const generateGraphqlFields = (
 const formatGraphqlComments = (
     comments: string,
 ) => {
-    comments = comments.replace(/\/\//g, '#');
-    comments = comments.replace(/\/\*\*/g, '#');
-    comments = comments.replace(/\s\*/g, '#');
-    comments = comments.replace(/\s\*\//g, '#');
+    comments = comments.replace(/\/\//g, '~');
+    comments = comments.replace(/\/\*\*/g, '~');
+    comments = comments.replace(/\s\*/g, '~');
+    comments = comments.replace(/\s\*\//g, '~');
     return comments;
 }
 

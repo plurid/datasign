@@ -4,13 +4,13 @@
         DatasignEntity,
         DatasignEntityData,
         DatasignCompilerOptions,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         formatCode,
         resolveSpacing,
         constructGeneratedNotice,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

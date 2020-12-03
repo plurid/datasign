@@ -7,12 +7,12 @@
     // #region external
     import {
         ProcessData,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         separateList,
         stringToBoolean,
-    } from '#services/utilities';
+    } from '~services/utilities';
 
     import processTargets from './processTargets';
     import processResolve from './processResolve';

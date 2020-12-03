@@ -2,7 +2,7 @@
     // #region external
     import {
         Target,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
     // #endregion external
 // #endregion imports
 

@@ -11,7 +11,7 @@
 
     import {
         fetcherDefaultImportHeaders,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         solveExtensionName,

@@ -14,23 +14,23 @@
         DatasignCompilerData,
         DatasignCompileResult,
         Target,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         targets,
-    } from '#data/constants';
+    } from '~data/constants';
 
-    import DatasignCompiler from '#objects/Compiler';
+    import DatasignCompiler from '~objects/Compiler';
 
     import {
         DATASIGN_FILENAME_EXTENSION,
         resolves,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         ProcessData,
         Resolve,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
     // #endregion external
 // #endregion imports
 

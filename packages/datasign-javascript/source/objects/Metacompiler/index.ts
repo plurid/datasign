@@ -2,7 +2,7 @@
     // #region external
     import {
         processFile,
-    } from '#services/logic';
+    } from '~services/logic';
     // #endregion external
 // #endregion imports
 

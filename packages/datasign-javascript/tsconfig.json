@@ -4,20 +4,17 @@
 
         "baseUrl": ".",
         "paths": {
-            "#data/*": [
+            "~data/*": [
                 "./source/data/*"
             ],
-            "#commands/*": [
+            "~commands/*": [
                 "./source/commands/*"
             ],
-            "#objects/*": [
+            "~objects/*": [
                 "./source/objects/*"
             ],
-            "#services/*": [
+            "~services/*": [
                 "./source/services/*"
-            ],
-            "#Compiler/*": [
-                "./source/objects/Compiler/*"
             ]
         },
 

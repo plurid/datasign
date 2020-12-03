@@ -3,11 +3,11 @@
     import {
         ONE_NEW_LINE,
         TWO_NEW_LINES,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         DatasignAnnotation,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
     // #endregion external
 // #endregion imports
 
@@ -113,7 +113,7 @@ export const constructGeneratedNotice = (
     type: string,
 ) => {
     const commentMark = type === 'graphql'
-        ? '#'
+        ? '~'
         : '//';
 
     const generatedFrom = filename

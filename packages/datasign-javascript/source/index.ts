@@ -1,7 +1,7 @@
 // #region imports
     // #region internal
-    import DatasignCompiler from '#objects/Compiler';
-    import DatasignLoader from '#objects/Loader';
+    import DatasignCompiler from '~objects/Compiler';
+    import DatasignLoader from '~objects/Loader';
 
     import cli from './cli';
     // #endregion internal
@@ -10,7 +10,7 @@
 
 
 // #region exports
-export * from '#data/interfaces';
+export * from '~data/interfaces';
 
 export {
     DatasignCompiler,

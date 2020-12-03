@@ -9,15 +9,15 @@
     // #region external
     import {
         compileCommand,
-    } from '#commands/index';
+    } from '~commands/index';
 
     import {
         DATASIGN_CLI_VERSION,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         processOptions,
-    } from '#services/logic';
+    } from '~services/logic';
     // #endregion external
 // #endregion imports
 
