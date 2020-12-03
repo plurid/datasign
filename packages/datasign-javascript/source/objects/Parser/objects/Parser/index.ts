@@ -6,9 +6,6 @@
     import {
         TokenType,
     } from '../../data/enumerations';
-
-    import {
-    } from '../../data/interfaces';
     // #endregion external
 // #endregion imports
 
@@ -19,7 +16,7 @@ class Parser {
     private tokens: Token[];
     private current = 0;
     private ParseError = class ParseError extends Error {};
-    private loqueError: any;
+    private datasignError: any;
 
 
     constructor(
@@ -27,7 +24,7 @@ class Parser {
         error: any,
     ) {
         this.tokens = tokens;
-        this.loqueError = error;
+        this.datasignError = error;
     }
 
 
@@ -49,6 +46,12 @@ class Parser {
             const current = this.peek();
 
             if (
+                current.type === TokenType.DATATYPE
+            ) {
+                return this.datatype();
+            }
+
+            if (
                 current.type === TokenType.DOT
             ) {
                 return this.dot();
@@ -58,12 +61,26 @@ class Parser {
             return;
         } catch (error) {
             this.synchronize();
-            return null;
+            return;
         }
     }
 
+    private datatype() {
+        const name = this.peek();
+
+        const datatype = new Statement.DatatypeStatement(
+            name,
+            [],
+        );
+
+        this.advance();
+
+        return datatype;
+    }
+
     private dot() {
-        const next = this.next();
+        // const next = this.next();
+        this.advance();
     }
 
 
@@ -89,7 +106,7 @@ class Parser {
         token: Token,
         message: string,
     ) {
-        this.loqueError(token, message);
+        this.datasignError(token, message);
 
         return new this.ParseError();
     }
@@ -116,8 +133,6 @@ class Parser {
     }
 
     private advance() {
-        // console.log('CURRENT TOKEN', this.tokens[this.current]);
-
         if (!this.isAtEnd()) {
             this.current += 1;
         }
