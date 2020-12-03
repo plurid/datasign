@@ -68,6 +68,16 @@ class Parser {
     private datatype() {
         const name = this.peek();
 
+        // let consumedEnd = false;
+        // let inType = 0;
+
+        // while(
+        //     !this.isAtEnd()
+        //     && !consumedEnd
+        // ) {
+        //     this.advance();
+        // }
+
         const datatype = new Statement.DatatypeStatement(
             name,
             [],
