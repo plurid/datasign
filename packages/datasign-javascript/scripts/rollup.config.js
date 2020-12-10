@@ -1,5 +1,6 @@
 // #region imports
     // #region libraries
+    import ttypescript from 'ttypescript';
     import commonjs from '@rollup/plugin-commonjs';
     import sourceMaps from 'rollup-plugin-sourcemaps';
     import typescript from 'rollup-plugin-typescript2';
@@ -16,6 +17,12 @@
 // #region module
 const datasign = {
     input: `source/index.ts`,
+    external: [
+        'fs',
+        'path',
+        'util',
+        'commander',
+    ],
     output: [
         {
             file: pkg.main,
@@ -30,11 +37,6 @@ const datasign = {
             exports: 'named',
         },
     ],
-    external: [
-        'fs',
-        'path',
-        'commander',
-    ],
     watch: {
         include: 'source/**',
     },
@@ -43,6 +45,7 @@ const datasign = {
         sourceMaps(),
         typescript({
             file: '../tsconfig.json',
+            typescript: ttypescript,
             useTsconfigDeclarationDir: true,
         }),
     ],

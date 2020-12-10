@@ -43,7 +43,14 @@
         "declarationDir": "distribution",
 
         "rootDir": "source",
-        "outDir": "distribution"
+        "outDir": "distribution",
+
+        "plugins": [
+            {
+                "transform": "@zerollup/ts-transform-paths",
+                "exclude": ["*"]
+            }
+        ]
     },
     "exclude": [
         "binder",
